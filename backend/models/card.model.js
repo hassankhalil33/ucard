@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const cardSchema = new mongoose.Schema({
   category: {
     type: String,
-    required: 'category is required'
+    required: 'category is required',
+    enum: ["personal", "business", "gaming", "other"]
   },
 
   name: {
@@ -12,7 +13,7 @@ const cardSchema = new mongoose.Schema({
     trim: true
   },
 
-  name: {
+  profession: {
     type: String,
     required: 'profession is required',
     trim: true

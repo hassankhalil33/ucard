@@ -27,25 +27,28 @@ const userSchema = new mongoose.Schema({
     trim:true
   },
 
-  cards: {
-    type: Array
-  },
+  cards: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Card'
+  }],
 
   card_count: {
     type: Number,
     default: 0
   },
 
-  following: {
-    type: Array
-  },
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
 
-  suggested: {
-    type: Array
-  },
+  suggested: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
 
   notifications: {
-    type: String
+    type: Array
   },
 
   timestamp: {
