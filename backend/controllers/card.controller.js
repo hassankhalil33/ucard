@@ -61,6 +61,7 @@ const updateCard = async (req, res) => {
 }
 
 const deleteCard = async (req, res) => {
+  const {_id: user_id, card_count, cards} = req.user;
   const {id} = req.body;
 
   if (!id) {
@@ -70,10 +71,19 @@ const deleteCard = async (req, res) => {
 
   try {
     await Card.findByIdAndDelete(id);
-    res.json({message: "success"})
   } catch (error) {
     res.json(error)
+    return
   }
+
+  await User.findByIdAndUpdate(user_id, {
+    card_count: card_count - 1,
+    cards: cards.filter((card) => {
+      return card != id
+    })
+  })
+
+  res.json({message: "success"})
 }
 
 module.exports = {
