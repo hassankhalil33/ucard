@@ -22,8 +22,8 @@ router.get('/suggested', userMiddleware, getSuggested);
 router.get('/notification', userMiddleware, getNotifications);
 router.delete('/notification', userMiddleware, deleteNotifications);
 
-router.get('/following', userMiddleware, getFollowing);
-router.post('/following', userMiddleware, followCard);
-router.delete('/following', userMiddleware, unfollowCard);
+router.get('/follow', userMiddleware, getFollowing);
+router.post('/follow', userMiddleware, followCard);
+router.delete('/follow', userMiddleware, unfollowCard);
 
 module.exports = router;
