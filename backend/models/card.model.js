@@ -27,16 +27,17 @@ const cardSchema = new mongoose.Schema({
     type: String,
   },
 
-  emails: {
+  email: {
     type: String
   },
 
-  links: {
+  link: {
     type: String
   },
 
   is_public: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
 
   timestamp: {
