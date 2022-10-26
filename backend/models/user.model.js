@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const followingSchema = new mongoose.Schema({
-  id: {
+  card_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Card'
   },
@@ -10,7 +10,7 @@ const followingSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-})
+}, { _id:  false })
 
 const userSchema = new mongoose.Schema({
   name: {

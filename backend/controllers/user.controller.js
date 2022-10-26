@@ -25,6 +25,7 @@ const deleteUser = async (req, res) => {
   await User.findByIdAndDelete(id);
 
   res.json({message: "success"})
+  //ALSO DELETE ALL HIS CARDS
 }
 
 const getSuggested = async (req, res) => {
@@ -46,7 +47,7 @@ const followCard = async (req, res) => {
   const {_id: id, following} = req.user;
 
   await User.findByIdAndUpdate(id, {
-    following: [...following, [follow_id]]
+    following: [...following, {card_id: follow_id}]
   });
 
   res.json({message: "success"})
@@ -58,7 +59,7 @@ const unfollowCard = async (req, res) => {
 
   await User.findByIdAndUpdate(id, {
     following: following.filter((follow) => {
-      return follow != unfollow_id
+      return follow.card_id != unfollow_id
     })
   });
 
