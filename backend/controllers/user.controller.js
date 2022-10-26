@@ -37,7 +37,7 @@ const getSuggested = async (req, res) => {
 
 const getFollowing = async (req, res) => {
   const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
-  const user = await User.findById(id).populate("following");
+  const user = await User.findById(id).populate({path: "following", populate: { path:  "card_id"}});
 
   res.json(user.following)
 }
