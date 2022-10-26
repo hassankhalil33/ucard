@@ -61,7 +61,19 @@ const updateCard = async (req, res) => {
 }
 
 const deleteCard = async (req, res) => {
-  
+  const {id} = req.body;
+
+  if (!id) {
+    res.status(400).json({message: "no id"});
+    return
+  }
+
+  try {
+    await Card.findByIdAndDelete(id);
+    res.json({message: "success"})
+  } catch (error) {
+    res.json(error)
+  }
 }
 
 module.exports = {
