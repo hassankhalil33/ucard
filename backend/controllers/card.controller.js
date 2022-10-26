@@ -19,9 +19,16 @@ const getCard = async (req, res) => {
 const createCard = async (req, res) => {
   const {_id: id, name, card_count, cards} = req.user;
 
+  if (!id) {
+    res.status(400).json({message: "no id"});
+    return
+  }
+
   if (card_count >= 5) {
-    res.status(403).json({message: "too many cards"})
-  } else {
+    res.status(403).json({message: "too many cards"});
+    return
+  }
+
   const card = new Card;
 
   card.user_id = id;
@@ -36,11 +43,15 @@ const createCard = async (req, res) => {
   })
 
   res.json({message: "success"})
-  }
 }
 
 const updateCard = async (req, res) => {
   const {id, category, name, profession, photo, emails, links, is_public} = req.body;
+
+  if (!id) {
+    res.status(400).json({message: "no id"});
+    return
+  }
 
   await Card.findByIdAndUpdate(id, {
     category, name, profession, photo, emails, links, is_public
@@ -50,7 +61,7 @@ const updateCard = async (req, res) => {
 }
 
 const deleteCard = async (req, res) => {
-
+  
 }
 
 module.exports = {
