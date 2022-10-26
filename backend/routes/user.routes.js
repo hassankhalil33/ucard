@@ -8,8 +8,8 @@ const {
   getSuggested,
   getFollowing,
   followCard,
-  getNotification,
-  deleteNotification
+  getNotifications,
+  deleteNotifications
 } = require('../controllers/user.controller');
 
 
@@ -18,8 +18,8 @@ router.put('/', userMiddleware, updateUser);
 router.delete('/', userMiddleware, deleteUser);
 
 router.get('/suggested', userMiddleware, getSuggested);
-router.get('/notification', userMiddleware, getNotification);
-router.delete('/notification', userMiddleware, deleteNotification);
+router.get('/notification', userMiddleware, getNotifications);
+router.delete('/notification', userMiddleware, deleteNotifications);
 
 router.get('/following', userMiddleware, getFollowing);
 router.post('/following', userMiddleware, followCard);

@@ -52,14 +52,25 @@ const followCard = async (req, res) => {
   res.json({message: "success"})
 }
 
-const getNotification = async (req, res) => {
+const getNotifications = async (req, res) => {
   const {notifications} = req.user;
 
   res.json(notifications)
 }
 
-const deleteNotification = async (req, res) => {
+const deleteNotifications = async (req, res) => {
+  const {_id: id} = req.user;
+
+  try {
+    await User.findByIdAndUpdate(id, {
+      notifications: []
+    })
+  } catch (error) {
+    res.json(error);
+    return
+  }
   
+  res.json({message: "success"})
 }
 
 module.exports = {
@@ -69,6 +80,6 @@ module.exports = {
   getSuggested,
   getFollowing,
   followCard,
-  getNotification,
-  deleteNotification
+  getNotifications,
+  deleteNotifications
 }
