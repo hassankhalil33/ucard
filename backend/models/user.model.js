@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+const followingSchema = new mongoose.Schema({
+  id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Card'
+  },
+
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
+})
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -37,16 +49,9 @@ const userSchema = new mongoose.Schema({
     default: 0
   },
 
-  following: [[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Card'
-  },
-
-  {
-    type: Date,
-    default: Date.now
-  }
-]],
+  following: [
+    followingSchema
+  ],
 
   suggested: [{
     type: mongoose.Schema.Types.ObjectId,

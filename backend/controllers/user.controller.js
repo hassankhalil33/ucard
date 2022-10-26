@@ -43,22 +43,22 @@ const getFollowing = async (req, res) => {
 
 const followCard = async (req, res) => {
   const {id: follow_id} = req.body
-  const {_id: id} = req.user;
+  const {_id: id, following} = req.user;
 
   await User.findByIdAndUpdate(id, {
-    following: [follow_id]
+    following: [...following, [follow_id]]
   });
 
   res.json({message: "success"})
 }
 
 const unfollowCard = async (req, res) => {
-  const {id: follow_id} = req.body
+  const {id: unfollow_id} = req.body
   const {_id: id, following} = req.user;
 
   await User.findByIdAndUpdate(id, {
     following: following.filter((follow) => {
-      return follow != follow_id
+      return follow != unfollow_id
     })
   });
 
