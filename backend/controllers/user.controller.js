@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
 
+
 const getUser = (req, res) => {
   const user = req.user;
 

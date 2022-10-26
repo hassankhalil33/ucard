@@ -10,6 +10,7 @@ const {
   followCard
 } = require('../controllers/user.controller');
 
+
 router.get('/', userMiddleware, getUser);
 router.put('/', userMiddleware, updateUser);
 router.delete('/', userMiddleware, deleteUser);
