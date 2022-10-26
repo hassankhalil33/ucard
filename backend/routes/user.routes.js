@@ -8,6 +8,7 @@ const {
   getSuggested,
   getFollowing,
   followCard,
+  unfollowCard,
   getNotifications,
   deleteNotifications
 } = require('../controllers/user.controller');
@@ -23,5 +24,6 @@ router.delete('/notification', userMiddleware, deleteNotifications);
 
 router.get('/following', userMiddleware, getFollowing);
 router.post('/following', userMiddleware, followCard);
+router.delete('/following', userMiddleware, unfollowCard);
 
 module.exports = router;
