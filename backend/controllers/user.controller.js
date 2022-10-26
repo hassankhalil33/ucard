@@ -26,8 +26,16 @@ const deleteUser = async (req, res) => {
   res.json({message: "success"})
 }
 
+const getSuggested = async (req, res) => {
+  const {_id: id} = req.user;
+  const user = await User.findById(id).populate("suggested");
+
+  res.json(user.suggested)
+}
+
 module.exports = {
   getUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getSuggested
 }
