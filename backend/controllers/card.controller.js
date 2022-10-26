@@ -40,7 +40,13 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
+  const {id, category, name, profession, photo, emails, links, is_public} = req.body;
 
+  await Card.findByIdAndUpdate(id, {
+    category, name, profession, photo, emails, links, is_public
+  });
+
+  res.json({message: "success"})
 }
 
 const deleteCard = async (req, res) => {
