@@ -6,14 +6,18 @@ const {
   updateUser,
   deleteUser,
   getSuggested,
-  getRecent
-} = require('../controllers/user.controller')
+  getFollowing,
+  followCard
+} = require('../controllers/user.controller');
 
 router.get('/', userMiddleware, getUser);
 router.put('/', userMiddleware, updateUser);
 router.delete('/', userMiddleware, deleteUser);
 
 router.get('/suggested', userMiddleware, getSuggested);
-router.get('/recent', userMiddleware, getRecent);
+// router.get('/notification', userMiddleware, getNotification);
+
+router.get('/following', userMiddleware, getFollowing);
+router.post('/following', userMiddleware, followCard);
 
 module.exports = router;

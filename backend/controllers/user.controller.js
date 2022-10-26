@@ -33,11 +33,22 @@ const getSuggested = async (req, res) => {
   res.json(user.suggested)
 }
 
-const getRecent = async (req, res) => {
+const getFollowing = async (req, res) => {
   const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
   const user = await User.findById(id).populate("following");
 
   res.json(user.following)
+}
+
+const followCard = async (req, res) => {
+  const {id: follow_id} = req.body
+  const {_id: id} = req.user;
+
+  await User.findByIdAndUpdate(id, {
+    following: [follow_id]
+  });
+
+  res.json({message: "success"})
 }
 
 module.exports = {
@@ -45,5 +56,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getSuggested,
-  getRecent
+  getFollowing,
+  followCard
 }
