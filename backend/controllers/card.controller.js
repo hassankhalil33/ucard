@@ -17,16 +17,26 @@ const getCard = async (req, res) => {
 }
 
 const createCard = async (req, res) => {
+  const {_id: id, name, card_count, cards} = req.user;
+
+  if (card_count >= 5) {
+    res.status(403).json({message: "too many cards"})
+  } else {
   const card = new Card;
 
-  card.user_id = req.user._id;
+  card.user_id = id;
   card.category = "personal";
-  card.name = req.user.name;
+  card.name = name;
 
-  
   card.save();
 
+  await User.findByIdAndUpdate(id, {
+    card_count: card_count + 1,
+    cards: [...cards, card._id]
+  })
+
   res.json({message: "success"})
+  }
 }
 
 const updateCard = async (req, res) => {
