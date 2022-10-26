@@ -27,15 +27,23 @@ const deleteUser = async (req, res) => {
 }
 
 const getSuggested = async (req, res) => {
-  const {_id: id} = req.user;
+  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
   const user = await User.findById(id).populate("suggested");
 
   res.json(user.suggested)
+}
+
+const getRecent = async (req, res) => {
+  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const user = await User.findById(id).populate("following");
+
+  res.json(user.following)
 }
 
 module.exports = {
   getUser,
   updateUser,
   deleteUser,
-  getSuggested
+  getSuggested,
+  getRecent
 }

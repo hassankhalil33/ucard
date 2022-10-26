@@ -37,10 +37,16 @@ const userSchema = new mongoose.Schema({
     default: 0
   },
 
-  following: [{
+  following: [[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Card'
-  }],
+  },
+
+  {
+    type: Date,
+    default: Date.now
+  }
+]],
 
   suggested: [{
     type: mongoose.Schema.Types.ObjectId,

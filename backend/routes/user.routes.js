@@ -5,7 +5,8 @@ const {
   getUser,
   updateUser,
   deleteUser,
-  getSuggested
+  getSuggested,
+  getRecent
 } = require('../controllers/user.controller')
 
 router.get('/', userMiddleware, getUser);
@@ -13,5 +14,6 @@ router.put('/', userMiddleware, updateUser);
 router.delete('/', userMiddleware, deleteUser);
 
 router.get('/suggested', userMiddleware, getSuggested);
+router.get('/recent', userMiddleware, getRecent);
 
 module.exports = router;
