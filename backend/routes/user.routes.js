@@ -17,6 +17,7 @@ router.delete('/', userMiddleware, deleteUser);
 
 router.get('/suggested', userMiddleware, getSuggested);
 // router.get('/notification', userMiddleware, getNotification);
+// router.delete('/notification', userMiddleware, deleteNotification);
 
 router.get('/following', userMiddleware, getFollowing);
 router.post('/following', userMiddleware, followCard);
