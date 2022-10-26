@@ -39,12 +39,12 @@ const userSchema = new mongoose.Schema({
 
   following: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Card'
   }],
 
   suggested: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Card'
   }],
 
   notifications: {

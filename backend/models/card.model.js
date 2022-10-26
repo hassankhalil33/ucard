@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
+  user_id: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+
   category: {
     type: String,
     required: 'category is required',
