@@ -10,7 +10,10 @@ const getAllCards = async (req, res) => {
 }
 
 const getCard = async (req, res) => {
-  
+  const {id} = req.params;
+  const card = await Card.findById(id);
+
+  res.json(card);
 }
 
 const createCard = async (req, res) => {
