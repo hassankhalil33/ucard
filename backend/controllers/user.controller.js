@@ -20,5 +20,6 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = {
-  getUser
+  getUser,
+  updateUser
 }
