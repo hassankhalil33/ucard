@@ -23,6 +23,7 @@ const createCard = async (req, res) => {
   card.category = "personal";
   card.name = req.user.name;
 
+  
   card.save();
 
   res.json({message: "success"})
