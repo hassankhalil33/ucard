@@ -9,6 +9,6 @@ const {
 
 router.get('/', userMiddleware, getUser);
 router.put('/', userMiddleware, updateUser);
-// router.delete('/', userMiddleware, deleteUser);
+router.delete('/', userMiddleware, deleteUser);
 
 module.exports = router;

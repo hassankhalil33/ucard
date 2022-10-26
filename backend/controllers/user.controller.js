@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
 
-const getUser = async (req, res) => {
+const getUser = (req, res) => {
   const user = req.user;
 
   res.json(user);
@@ -19,7 +19,15 @@ const updateUser = async (req, res) => {
   res.json({message: "success"})
 }
 
+const deleteUser = async (req, res) => {
+  const {_id: id} = req.user;
+  await User.findByIdAndDelete(id);
+
+  res.json({message: "success"})
+}
+
 module.exports = {
   getUser,
-  updateUser
+  updateUser,
+  deleteUser
 }
