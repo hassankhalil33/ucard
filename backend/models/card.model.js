@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
-  user_id: [{
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }],
+  },
 
   category: {
     type: String,
@@ -28,11 +28,11 @@ const cardSchema = new mongoose.Schema({
   },
 
   emails: {
-    type: Array
+    type: String
   },
 
   links: {
-    type: Array
+    type: String
   },
 
   is_public: {

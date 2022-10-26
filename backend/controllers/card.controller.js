@@ -4,7 +4,7 @@ const Card = require("../models/card.model");
 
 const getAllCards = async (req, res) => {
   const {_id: id} = req.user;
-  const user = await User.findById(id).populate(cards);
+  const user = await User.findById(id).populate("cards");
 
   res.json(user.cards);
 }
@@ -46,7 +46,7 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
-  const {id, category, name, profession, photo, emails, links, is_public} = req.body;
+  const {id, category, name, profession, photo, email, link, is_public} = req.body;
 
   if (!id) {
     res.status(400).json({message: "no id"});
@@ -54,7 +54,7 @@ const updateCard = async (req, res) => {
   }
 
   await Card.findByIdAndUpdate(id, {
-    category, name, profession, photo, emails, links, is_public
+    category, name, profession, photo, email, link, is_public
   });
 
   res.json({message: "success"})
