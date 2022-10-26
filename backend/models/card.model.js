@@ -20,7 +20,6 @@ const cardSchema = new mongoose.Schema({
 
   profession: {
     type: String,
-    required: 'profession is required',
     trim: true
   },
 

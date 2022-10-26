@@ -17,7 +17,15 @@ const getCard = async (req, res) => {
 }
 
 const createCard = async (req, res) => {
+  const card = new Card;
 
+  card.user_id = req.user._id;
+  card.category = "personal";
+  card.name = req.user.name;
+
+  card.save();
+
+  res.json({message: "success"})
 }
 
 const updateCard = async (req, res) => {
