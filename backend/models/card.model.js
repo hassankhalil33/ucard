@@ -35,6 +35,10 @@ const cardSchema = new mongoose.Schema({
     type: String
   },
 
+  notifications: {
+    type: Array
+  },
+
   is_public: {
     type: Boolean,
     default: false

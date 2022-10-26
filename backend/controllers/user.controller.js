@@ -52,11 +52,23 @@ const followCard = async (req, res) => {
   res.json({message: "success"})
 }
 
+const getNotification = async (req, res) => {
+  const {notifications} = req.user;
+
+  res.json(notifications)
+}
+
+const deleteNotification = async (req, res) => {
+  
+}
+
 module.exports = {
   getUser,
   updateUser,
   deleteUser,
   getSuggested,
   getFollowing,
-  followCard
+  followCard,
+  getNotification,
+  deleteNotification
 }
