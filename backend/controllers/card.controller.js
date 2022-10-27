@@ -17,7 +17,7 @@ const getCard = async (req, res) => {
 }
 
 const createCard = async (req, res) => {
-  const {_id: id, name, card_count, cards} = req.user;
+  const {_id: id, name, card_count, cards, location} = req.user;
 
   if (!id) {
     res.status(400).json({message: "no id"});
@@ -34,6 +34,7 @@ const createCard = async (req, res) => {
   card.user_id = id;
   card.category = "personal";
   card.name = name;
+  card.location = location;
 
   card.save();
 
@@ -46,7 +47,7 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
-  const {id, category, name, profession, photo, email, link, is_public} = req.body;
+  const {id, category, name, profession, photo, email, link, is_public, location} = req.body;
 
   if (!id) {
     res.status(400).json({message: "no id"});
@@ -54,7 +55,7 @@ const updateCard = async (req, res) => {
   }
 
   await Card.findByIdAndUpdate(id, {
-    category, name, profession, photo, email, link, is_public
+    category, name, profession, photo, email, link, is_public, location
   });
 
   res.json({message: "success"})
