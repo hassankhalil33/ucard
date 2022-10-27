@@ -18,6 +18,9 @@ router.get('/', userMiddleware, getUser);
 router.put('/', userMiddleware, updateUser);
 router.delete('/', userMiddleware, deleteUser);
 
+// CREATE ALGOS FOR SUGGESTED AND NOTIFICATIONS
+// SUGGESTED AND NOTIFICATIONS EVERY 15 MINS (node-schedule)
+// USE FCM (FireBase) TO SEND PUSH NOTIFICATIONS
 router.get('/suggested', userMiddleware, getSuggested);
 router.get('/notification', userMiddleware, getNotifications);
 router.delete('/notification', userMiddleware, deleteNotifications);

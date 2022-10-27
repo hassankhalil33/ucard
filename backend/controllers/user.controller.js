@@ -25,7 +25,8 @@ const deleteUser = async (req, res) => {
   await User.findByIdAndDelete(id);
 
   res.json({message: "success"})
-  //ALSO DELETE ALL HIS CARDS
+  // ALSO DELETE ALL HIS CARDS
+  // OR INSTEAD DISABLE ACCOUNT (TO SELL DATA LATER)
 }
 
 const getSuggested = async (req, res) => {
