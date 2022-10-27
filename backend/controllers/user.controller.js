@@ -3,7 +3,9 @@ const Card = require("../models/card.model");
 const schedule = require("node-schedule");
 
 
+// Will Run Every 15 Mins
 const scheduledJob = schedule.scheduleJob("*/5 * * * * *", () => {
+  // Update Suggested Every 15 mins
   console.log("Im Running");
 })
 

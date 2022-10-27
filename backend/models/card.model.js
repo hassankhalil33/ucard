@@ -35,6 +35,10 @@ const cardSchema = new mongoose.Schema({
     type: String
   },
 
+  location: {
+    type: String
+  },
+
   notifications: {
     type: Array
   },
