@@ -1,6 +1,11 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
+const schedule = require("node-schedule");
 
+
+const scheduledJob = schedule.scheduleJob("*/5 * * * * *", () => {
+  console.log("Im Running");
+})
 
 const getUser = (req, res) => {
   const user = req.user;
