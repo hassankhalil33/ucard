@@ -21,8 +21,6 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
         (card2.profession === profession) &&
         (card2.user_id.toString() != user_id.toString()) &&
         (!user.suggested.includes(card2._id))) {
-          console.log(card2.user_id);
-          console.log(id);
           const newSuggested = [card2._id, ...user.suggested];
           await User.findByIdAndUpdate(user._id, {
             suggested: newSuggested
