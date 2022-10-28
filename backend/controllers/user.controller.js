@@ -11,16 +11,16 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
 
   data.forEach(async user => {
     user.cards.forEach(card => {
-      card_id = card._id;
-      location = card.location;
-      profession = card.profession;
-      user_id = card.user_id
+      const card_id = card._id;
+      const location = card.location;
+      const profession = card.profession;
+      const user_id = card.user_id
 
       allCards.forEach(async card2 => {
         if ((card2.location === location) &&
         (card2.profession === profession) &&
         (card2.user_id.toString() != user_id.toString()) &&
-        (!user.suggested.includes(card_id))) {
+        (!user.suggested.includes(card2._id))) {
           console.log(card2.user_id);
           console.log(id);
           const newSuggested = [card2._id, ...user.suggested];
