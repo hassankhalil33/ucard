@@ -4,20 +4,29 @@ const schedule = require("node-schedule");
 
 
 // Will Run Every 15 Mins
-const scheduledJob = schedule.scheduleJob("*/5 * * * * *", async () => {
+const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
   // Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
 
-  data.forEach(user => {
+  data.forEach(async user => {
     user.cards.forEach(card => {
+      card_id = card._id;
       location = card.location;
       profession = card.profession;
-      id = card.user_id
+      user_id = card.user_id
 
-      allCards.forEach(card2 => {
-        if (card2.location === location && card2.profession === profession && card2.userid != id) {
-          user.suggested = [card2._id, ...user.suggested];
+      allCards.forEach(async card2 => {
+        if ((card2.location === location) &&
+        (card2.profession === profession) &&
+        (card2.user_id.toString() != user_id.toString()) &&
+        (!user.suggested.includes(card_id))) {
+          console.log(card2.user_id);
+          console.log(id);
+          const newSuggested = [card2._id, ...user.suggested];
+          await User.findByIdAndUpdate(user._id, {
+            suggested: newSuggested
+          })
         }
       });
     });
