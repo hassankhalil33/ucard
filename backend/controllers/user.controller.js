@@ -4,8 +4,25 @@ const schedule = require("node-schedule");
 
 
 // Will Run Every 15 Mins
-const scheduledJob = schedule.scheduleJob("*/5 * * * * *", () => {
+const scheduledJob = schedule.scheduleJob("*/5 * * * * *", async () => {
   // Update Suggested Every 15 mins
+  const data = await User.find().populate("cards");
+  const allCards = await Card.find();
+
+  data.forEach(user => {
+    user.cards.forEach(card => {
+      location = card.location;
+      profession = card.profession;
+      id = card.user_id
+
+      allCards.forEach(card2 => {
+        if (card2.location === location && card2.profession === profession && card2.userid != id) {
+          user.suggested = [card2._id, ...user.suggested];
+        }
+      });
+    });
+  });
+
   console.log("Im Running");
 })
 
