@@ -7,7 +7,9 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
       <Image style={styles.logo} source={require("../../assets/Logo.png")} />
 
-      <CardComponent />
+      <View style={{ marginTop: "50%" }}>
+        <CardComponent />
+      </View>
 
       <View style={styles.lowerView}>
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
@@ -33,9 +35,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#303841",
     width: "100%",
     height: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row"
+    flexDirection: "column"
   },
 
   logo: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
   },
 
   lowerView: {
-    alignSelf: "flex-end",
+    // alignSelf: "flex-end",
     padding: 45,
   },
 

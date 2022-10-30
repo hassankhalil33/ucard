@@ -5,7 +5,7 @@ export default function WelcomeScreen(props) {
   const { height, width, name, profession, description, logo, color } = props;
 
   return (
-    <View>
+    <View >
       <Text>Hello World</Text>
     </View>
   )
