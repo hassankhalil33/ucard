@@ -15,18 +15,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#303841",
+    width: "100%",
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "row"
   },
 
   text: {
     color: "#f3f3f3",
-    fontSize: 26,
+    fontSize: 28,
   },
 
   lowerView: {
     alignSelf: "flex-end",
-    padding: 40,
+    padding: 45,
   }
 });
