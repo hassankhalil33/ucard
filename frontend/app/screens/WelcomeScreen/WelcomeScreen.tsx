@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
+      <Image style={styles.logo} source={require("../../assets/Logo.png")} />
+
       <View style={styles.lowerView}>
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
 
@@ -12,7 +14,7 @@ export default function WelcomeScreen() {
         </TouchableOpacity>
 
         <View style={{ flexDirection: "row" }}>
-          <Text style={styles.textOther}>You have account?</Text>
+          <Text style={styles.textOther}>You have account? </Text>
           <TouchableOpacity>
             <Text style={styles.buttonOther}>sign in</Text>
           </TouchableOpacity>
@@ -33,6 +35,14 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
 
+  logo: {
+    position: "absolute",
+    height: 58,
+    width: 125,
+    top: 50,
+    left: 45,
+  },
+
   textMain: {
     color: "#f3f3f3",
     fontSize: 28,
@@ -44,8 +54,8 @@ const styles = StyleSheet.create({
   },
 
   textOther: {
-    color: "#f3f3f3",
-    fontSize: 11,
+    color: "#67747C",
+    fontSize: 14,
   },
 
   lowerView: {
@@ -68,5 +78,6 @@ const styles = StyleSheet.create({
 
   buttonOther: {
     color: "#f3f3f3",
+    fontSize: 14,
   }
 });
