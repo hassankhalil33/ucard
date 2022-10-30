@@ -1,18 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.lowerView}>
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
-        <TouchableHighlight style={styles.button}>
+
+        <TouchableOpacity style={styles.buttonMain}>
           <Text style={styles.textInner}>Welcome</Text>
-        </TouchableHighlight>
-        <Text style={styles.textOther}>
-          You have account?
-          <Button title="sign in" />
-        </Text>
+        </TouchableOpacity>
+
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.textOther}>You have account?</Text>
+          <TouchableOpacity>
+            <Text style={styles.buttonOther}>sign in</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View >
   );
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 45,
   },
 
-  button: {
+  buttonMain: {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#3A4750",
@@ -60,5 +64,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.17)",
     borderRadius: 18,
+  },
+
+  buttonOther: {
+    color: "#f3f3f3",
   }
 });
