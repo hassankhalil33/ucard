@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import CardComponent from "../../components/CardComponent/CardComponent";
 
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require("../../assets/Logo.png")} />
+
+      <CardComponent />
 
       <View style={styles.lowerView}>
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
