@@ -12,9 +12,9 @@ export default function WelcomeScreen() {
 
       <View style={{
         position: "absolute",
-        top: "30%",
-        transform: [{ rotate: "-20.2deg" }],
-
+        top: "22%",
+        left: "-10%",
+        transform: [{ rotate: "-20.2deg" }]
       }}>
         <CardComponent
           name={"Hassan Khalil"}
@@ -28,9 +28,9 @@ export default function WelcomeScreen() {
       </View>
       <View style={{
         position: "absolute",
-        top: "30%",
-        transform: [{ rotate: "24.64deg" }],
-
+        top: "35%",
+        left: "20%",
+        transform: [{ rotate: "24.64deg" }]
       }}>
         <CardComponent
           name={"Hassan Khalil"}
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   },
 
   lowerView: {
-    // alignSelf: "flex-end",
     padding: 45,
   },
 
