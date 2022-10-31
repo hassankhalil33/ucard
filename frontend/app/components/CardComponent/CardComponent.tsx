@@ -17,10 +17,9 @@ export default function WelcomeScreen(props) {
   )
 }
 
-const styles = (color = "#00ADB5", height = vw25, width = vw85) => StyleSheet.create({
+const styles = (color = "#00ADB5", height = 200, width = 330) => StyleSheet.create({
   container: {
-    padding: 10,
-    paddingLeft: 30,
+    padding: 30,
     height: height,
     width: width,
     backgroundColor: color,
@@ -38,13 +37,13 @@ const styles = (color = "#00ADB5", height = vw25, width = vw85) => StyleSheet.cr
     color: "#eeeeee",
     fontSize: 14,
     opacity: 0.5,
+    marginTop: 75
   },
 
   name: {
     color: "#eeeeee",
     fontSize: 22,
     fontWeight: "500",
-    alignSelf: "flex-end"
   },
 
   logo: {
@@ -54,5 +53,4 @@ const styles = (color = "#00ADB5", height = vw25, width = vw85) => StyleSheet.cr
     bottom: 30,
     right: 35,
   }
-
 });

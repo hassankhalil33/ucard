@@ -10,12 +10,35 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
       <Image style={styles.logo} source={logo} />
 
-      <View style={{ marginTop: "50%" }}>
+      <View style={{
+        position: "absolute",
+        top: "30%",
+        transform: [{ rotate: "-20.2deg" }],
+
+      }}>
+        <CardComponent
+          name={"Hassan Khalil"}
+          profession={"Web Developer"}
+          description={"Tap to Share"}
+          color={"#FF5722"}
+          logo={cardLogoOrange}
+          height={249}
+          width={417}
+        />
+      </View>
+      <View style={{
+        position: "absolute",
+        top: "30%",
+        transform: [{ rotate: "24.64deg" }],
+
+      }}>
         <CardComponent
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
           logo={cardLogoBlue}
+          height={218}
+          width={365}
         />
       </View>
 
@@ -43,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#303841",
     width: "100%",
     height: "100%",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "column"
   },
