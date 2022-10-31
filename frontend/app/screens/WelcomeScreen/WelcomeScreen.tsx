@@ -1,14 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
+const logo = require("../../assets/Logo.png");
+const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
+const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require("../../assets/Logo.png")} />
+      <Image style={styles.logo} source={logo} />
 
       <View style={{ marginTop: "50%" }}>
-        <CardComponent />
+        <CardComponent
+          name={"Hassan Khalil"}
+          profession={"Web Developer"}
+          description={"Tap to Share"}
+          logo={cardLogoBlue}
+        />
       </View>
 
       <View style={styles.lowerView}>
@@ -49,12 +57,12 @@ const styles = StyleSheet.create({
   },
 
   textMain: {
-    color: "#f3f3f3",
+    color: "#eeeeee",
     fontSize: 28,
   },
 
   textInner: {
-    color: "#f3f3f3",
+    color: "#eeeeee",
     fontSize: 16,
   },
 
@@ -82,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   buttonOther: {
-    color: "#f3f3f3",
+    color: "#eeeeee",
     fontSize: 14,
   }
 });
