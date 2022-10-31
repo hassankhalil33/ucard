@@ -13,7 +13,7 @@ export default function WelcomeScreen() {
       <View style={{
         position: "absolute",
         top: "22%",
-        left: "-10%",
+        left: "-9%",
         transform: [{ rotate: "-20.2deg" }]
       }}>
         <CardComponent
@@ -21,15 +21,15 @@ export default function WelcomeScreen() {
           profession={"Web Developer"}
           description={"Tap to Share"}
           color={"#FF5722"}
-          logo={cardLogoOrange}
           height={249}
           width={417}
+          normal={false}
         />
       </View>
       <View style={{
         position: "absolute",
-        top: "35%",
-        left: "20%",
+        top: "34%",
+        left: "17%",
         transform: [{ rotate: "24.64deg" }]
       }}>
         <CardComponent
@@ -39,6 +39,7 @@ export default function WelcomeScreen() {
           logo={cardLogoBlue}
           height={218}
           width={365}
+          normal={false}
         />
       </View>
 
