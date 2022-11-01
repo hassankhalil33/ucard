@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
+import colors from "../../constants/pallete";
 
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 const vw25 = (Dimensions.get('window').height / 10) * 2.5;
@@ -17,7 +18,7 @@ export default function WelcomeScreen(props) {
   )
 }
 
-const styles = (color = "#00ADB5", height = 200, width = 330, normal = true) => StyleSheet.create({
+const styles = (color = colors.blue, height = 200, width = 330, normal = true) => StyleSheet.create({
   container: {
     padding: 30,
     height: height,
@@ -29,19 +30,19 @@ const styles = (color = "#00ADB5", height = 200, width = 330, normal = true) => 
   },
 
   desc: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 14
   },
 
   prof: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 14,
     opacity: 0.5,
     marginTop: normal ? 75 : "28%"
   },
 
   name: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 22,
     fontWeight: "500",
   },
