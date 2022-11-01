@@ -5,8 +5,10 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
+const back = require("../../assets/back-button.png");
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -22,6 +24,10 @@ export default function LoginScreen() {
         <Image style={styles.backgroundImage} source={background} />
       </View>
 
+      <TouchableOpacity style={styles.backButtonContainer} onPress={() => navigation.pop()}>
+        <Image source={back} style={styles.backButton} />
+      </TouchableOpacity>
+
       <Image style={styles.logo} source={logo} />
 
       <Text>This is Login Screen!</Text>
@@ -36,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column"
   },
@@ -47,6 +53,17 @@ const styles = StyleSheet.create({
     width: 125,
     top: 60,
     alignSelf: "center"
+  },
+
+  backButtonContainer: {
+    position: "absolute",
+    top: 73.75,
+    left: 30
+  },
+
+  backButton: {
+    width: 30,
+    height: 30.5,
   },
 
   background: {
