@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -16,7 +16,17 @@ export default function LoginScreen() {
     return null;
   }
 
+  return (
+    <View style={styles.container}>
+      <View style={styles.background}>
+        <Image style={styles.backgroundImage} source={background} />
+      </View>
 
+      <Image style={styles.logo} source={logo} />
+
+      <StatusBar style="light" />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
