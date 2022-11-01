@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import colors from "../../constants/pallete";
+import { useFonts } from 'expo-font';
 
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 const vw25 = (Dimensions.get('window').height / 10) * 2.5;
@@ -18,6 +19,15 @@ interface WelcomeScreenProps {
 
 const WelcomeScreen: FC<WelcomeScreenProps> = (props) => {
   const { height, width, name, profession, description, logo, color, normal } = props;
+
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <View style={styles(color, height, width).container}>
@@ -41,11 +51,13 @@ const styles = (color = colors.blue, height = 200, width = 330, normal = true) =
   },
 
   desc: {
+    fontFamily: "Poppins-Regular",
     color: colors.white,
     fontSize: 14
   },
 
   prof: {
+    fontFamily: "Poppins-Medium",
     color: colors.white,
     fontSize: 14,
     opacity: 0.5,
@@ -53,9 +65,9 @@ const styles = (color = colors.blue, height = 200, width = 330, normal = true) =
   },
 
   name: {
+    fontFamily: "Poppins-Medium",
     color: colors.white,
     fontSize: 22,
-    fontWeight: "500",
   },
 
   logo: {
