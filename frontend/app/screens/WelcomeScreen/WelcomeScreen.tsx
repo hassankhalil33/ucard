@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
+const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 
@@ -18,6 +19,10 @@ export default function WelcomeScreen() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.background}>
+        <Image style={styles.backgroundImage} source={background} />
+      </View>
+
       <Image style={styles.logo} source={logo} />
 
       <View style={{
@@ -74,7 +79,6 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
     width: "100%",
     height: "100%",
     justifyContent: "flex-end",
