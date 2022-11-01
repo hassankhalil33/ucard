@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
@@ -72,6 +73,7 @@ export default function WelcomeScreen() {
           </TouchableOpacity>
         </View>
       </View>
+      <StatusBar style="light" />
     </View >
   );
 }
