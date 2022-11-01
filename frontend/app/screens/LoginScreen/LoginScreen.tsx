@@ -24,6 +24,8 @@ export default function LoginScreen() {
 
       <Image style={styles.logo} source={logo} />
 
+      <Text>This is Login Screen!</Text>
+
       <StatusBar style="light" />
     </View>
   )
