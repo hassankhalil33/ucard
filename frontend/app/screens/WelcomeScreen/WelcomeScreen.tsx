@@ -64,7 +64,7 @@ export default function WelcomeScreen(props) {
       <View style={styles.lowerView}>
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
 
-        <TouchableOpacity style={styles.buttonMain}>
+        <TouchableOpacity style={styles.buttonMain} onPress={() => navigation.navigate("register")}>
           <Text style={styles.textInner}>Get Started</Text>
         </TouchableOpacity>
 
