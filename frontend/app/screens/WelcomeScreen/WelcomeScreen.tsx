@@ -2,10 +2,20 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import colors from "../../constants/pallete";
+import { useFonts } from "expo-font";
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 
 export default function WelcomeScreen() {
+  const [fontsLoaded] = useFonts({
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={logo} />
@@ -51,7 +61,7 @@ export default function WelcomeScreen() {
         </TouchableOpacity>
 
         <View style={{ flexDirection: "row" }}>
-          <Text style={styles.textOther}>You have account? </Text>
+          <Text style={styles.textOther}>You have account?  </Text>
           <TouchableOpacity>
             <Text style={styles.buttonOther}>sign in</Text>
           </TouchableOpacity>
@@ -81,16 +91,19 @@ const styles = StyleSheet.create({
   },
 
   textMain: {
+    fontFamily: "Poppins-Medium",
     color: colors.white,
     fontSize: 28,
   },
 
   textInner: {
+    fontFamily: "Poppins-Medium",
     color: colors.white,
     fontSize: 16,
   },
 
   textOther: {
+    fontFamily: "Poppins-Bold",
     color: colors.primary_light,
     fontSize: 14,
   },
@@ -113,6 +126,7 @@ const styles = StyleSheet.create({
   },
 
   buttonOther: {
+    fontFamily: "Poppins-Medium",
     color: colors.white,
     fontSize: 14,
   }
