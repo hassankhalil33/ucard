@@ -94,6 +94,21 @@ const styles = StyleSheet.create({
     left: 45,
   },
 
+  background: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  backgroundImage: {
+    height: 1000,
+    width: 450,
+  },
+
   textMain: {
     fontFamily: "Poppins-Medium",
     color: colors.white,
@@ -108,7 +123,7 @@ const styles = StyleSheet.create({
 
   textOther: {
     fontFamily: "Poppins-Bold",
-    color: colors.primary_light,
+    color: colors.primary_lighter,
     fontSize: 14,
   },
 
@@ -119,7 +134,7 @@ const styles = StyleSheet.create({
   buttonMain: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary_light,
     marginTop: 12,
     marginBottom: 12,
     width: 160,
