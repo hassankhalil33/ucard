@@ -30,7 +30,9 @@ export default function RegisterScreen({ navigation }) {
 
       <Image style={styles.logo} source={logo} />
 
-      <Text>This is Register Screen!</Text>
+      <View>
+        <LoginForm />
+      </View>
 
       <StatusBar style="light" />
     </View>
