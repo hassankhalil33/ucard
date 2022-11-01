@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import LoginForm from "../../components/LoginForm/LoginForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/back-button.png");
@@ -31,7 +32,12 @@ export default function RegisterScreen({ navigation }) {
       <Image style={styles.logo} source={logo} />
 
       <View>
-        <LoginForm />
+        <LoginForm
+          title={"Create Account"}
+          arrayOfFields={["Name", "Email", "Password", "Confirm Password", "Location"]}
+          buttonTitle={"REGISTER"}
+          buttonColor={colors.orange}
+        />
       </View>
 
       <StatusBar style="light" />
