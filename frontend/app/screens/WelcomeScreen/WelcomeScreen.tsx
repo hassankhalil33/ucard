@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import colors from "../../constants/pallete";
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 
@@ -19,7 +20,7 @@ export default function WelcomeScreen() {
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
-          color={"#FF5722"}
+          color={colors.orange}
           height={249}
           width={417}
           normal={false}
@@ -63,7 +64,7 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#303841",
+    backgroundColor: colors.primary,
     width: "100%",
     height: "100%",
     justifyContent: "flex-end",
@@ -80,17 +81,17 @@ const styles = StyleSheet.create({
   },
 
   textMain: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 28,
   },
 
   textInner: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 16,
   },
 
   textOther: {
-    color: "#67747C",
+    color: colors.primary_light,
     fontSize: 14,
   },
 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   buttonMain: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#3A4750",
+    backgroundColor: colors.primary,
     marginTop: 12,
     marginBottom: 12,
     width: 160,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   },
 
   buttonOther: {
-    color: "#eeeeee",
+    color: colors.white,
     fontSize: 14,
   }
 });
