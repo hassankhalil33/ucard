@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     height: 58,
     width: 125,
     top: 60,
-    left: 45,
+    alignSelf: "center"
   },
 
   background: {

@@ -8,7 +8,9 @@ const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen(props) {
+  const { navigation } = props;
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -69,7 +71,7 @@ export default function WelcomeScreen() {
         <View style={{ flexDirection: "row" }}>
           <Text style={styles.textOther}>You have account?  </Text>
           <TouchableOpacity>
-            <Text style={styles.buttonOther}>sign in</Text>
+            <Text style={styles.buttonOther} onPress={() => navigation.navigate("login")}>sign in</Text>
           </TouchableOpacity>
         </View>
       </View>
