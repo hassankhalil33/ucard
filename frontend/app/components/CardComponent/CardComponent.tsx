@@ -1,11 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import colors from "../../constants/pallete";
 
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 const vw25 = (Dimensions.get('window').height / 10) * 2.5;
 
-export default function WelcomeScreen(props) {
+interface WelcomeScreenProps {
+  color?: string;
+  height?: number;
+  width?: number;
+  normal?: boolean;
+  name: string;
+  profession: string;
+  description: string;
+  logo?: any;
+}
+
+const WelcomeScreen: FC<WelcomeScreenProps> = (props) => {
   const { height, width, name, profession, description, logo, color, normal } = props;
 
   return (
@@ -55,3 +66,5 @@ const styles = (color = colors.blue, height = 200, width = 330, normal = true) =
     right: 35,
   }
 });
+
+export default WelcomeScreen
