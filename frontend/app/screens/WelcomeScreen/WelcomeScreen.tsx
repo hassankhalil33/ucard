@@ -47,7 +47,7 @@ export default function WelcomeScreen() {
         <Text style={styles.textMain}>Create Your Business Card in Seconds!</Text>
 
         <TouchableOpacity style={styles.buttonMain}>
-          <Text style={styles.textInner}>Welcome</Text>
+          <Text style={styles.textInner}>Get Started</Text>
         </TouchableOpacity>
 
         <View style={{ flexDirection: "row" }}>
