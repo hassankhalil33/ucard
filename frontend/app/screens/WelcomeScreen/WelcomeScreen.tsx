@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import CardComponent from "../../components/CardComponent/CardComponent";
 const logo = require("../../assets/Logo.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
-const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 
 export default function WelcomeScreen() {
   return (
