@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
+import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 const background = require("../../assets/background.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
@@ -116,9 +117,16 @@ export default function HomeScreen(props) {
           <Text style={styles.suggestedHeader}>Suggested</Text>
 
           <View>
-            {/* <FlatList
+            <FlatList
               data={cardData}
-            /> */}
+              renderItem={({ item }) =>
+                <ProfileComponent
+                  name={item.name}
+                  profession={item.profession}
+                  dark={false}
+                />
+              }
+            />
           </View>
         </View>
 
