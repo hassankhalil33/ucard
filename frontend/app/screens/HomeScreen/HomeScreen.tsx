@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -20,6 +20,10 @@ export default function HomeScreen(props) {
       <View style={styles.background}>
         <Image style={styles.backgroundImage} source={background} />
       </View>
+
+      <Text style={styles.header}>Home</Text>
+
+      <StatusBar style="light" />
     </View>
   )
 }
@@ -29,7 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "column"
   },
@@ -48,4 +51,11 @@ const styles = StyleSheet.create({
     height: 1000,
     width: 450,
   },
+
+  header: {
+    fontFamily: "Poppins-Bold",
+    fontSize: 24,
+    color: colors.white,
+    paddingTop: 75
+  }
 });
