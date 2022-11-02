@@ -13,8 +13,6 @@ const MyButton: FC<MyButtonProps> = (props) => {
   const { title, color, press } = props;
 
   const [fontsLoaded] = useFonts({
-    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
-    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
 

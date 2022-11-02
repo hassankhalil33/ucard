@@ -37,7 +37,7 @@ export default function RegisterScreen({ navigation }) {
           arrayOfFields={["Name", "Email", "Password", "Confirm Password", "Location"]}
           buttonTitle={"REGISTER"}
           buttonColor={colors.orange}
-          press={() => alert("REGISTERED")}
+          press={() => alert("Registered!")}
         />
       </View>
 
