@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
 import MyButton from "../MyButton/MyButton";
+import InputField from "../InputField/InputField";
 
 interface LoginFormProps {
   title: string,
@@ -31,7 +32,10 @@ const LoginForm: FC<LoginFormProps> = (props) => {
 
       {arrayOfFields.map((field, index) => {
         return (
-          <Text key={index}>{field}</Text>
+          <InputField
+            key={index}
+            placeholder={field}
+          />
         )
       })}
 
