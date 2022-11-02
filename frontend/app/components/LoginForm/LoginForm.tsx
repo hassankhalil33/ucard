@@ -6,10 +6,10 @@ import { useFonts } from 'expo-font';
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 
 interface LoginFormProps {
-  title: string,
+  title: String,
   [arrayOfFields: string]: any,
-  buttonTitle: string,
-  buttonColor: string
+  buttonTitle: String,
+  buttonColor: String
 }
 
 const LoginForm: FC<LoginFormProps> = (props) => {
@@ -35,9 +35,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         )
       })}
 
-      <TouchableOpacity>
-        <Text>{buttonTitle}</Text>
-      </TouchableOpacity>
+      <MyButton title={buttonTitle} />
 
     </View>
   )

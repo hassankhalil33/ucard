@@ -7,14 +7,14 @@ const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 const vw25 = (Dimensions.get('window').height / 10) * 2.5;
 
 interface WelcomeScreenProps {
-  color?: string;
-  height?: number;
-  width?: number;
-  normal?: boolean;
-  name: string;
-  profession: string;
-  description: string;
-  logo?: any;
+  color?: String,
+  height?: Number,
+  width?: Number,
+  normal?: Boolean,
+  name: String,
+  profession: String,
+  description: String,
+  logo?: any
 }
 
 const WelcomeScreen: FC<WelcomeScreenProps> = (props) => {
