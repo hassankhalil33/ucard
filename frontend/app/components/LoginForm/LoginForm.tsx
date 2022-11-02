@@ -1,5 +1,5 @@
-import React, { useState, FC } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
 import MyButton from "../MyButton/MyButton";
