@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import { useFonts } from 'expo-font';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 
 interface MyButtonProps {
   title: string,
@@ -8,11 +8,11 @@ interface MyButtonProps {
 }
 
 const MyButton: FC<MyButtonProps> = (props) => {
-
+  const { title, press } = props;
 
   return (
     <TouchableOpacity>
-      <Text>{ }</Text>
+      <Text>{title}</Text>
     </TouchableOpacity>
   )
 }

@@ -2,6 +2,7 @@ import React, { useState, FC } from "react";
 import { StyleSheet, Dimensions, Text, TouchableOpacity, View } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
+import MyButton from "../MyButton/MyButton";
 
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 
@@ -9,11 +10,12 @@ interface LoginFormProps {
   title: string,
   [arrayOfFields: string]: any,
   buttonTitle: string,
-  buttonColor: string
+  buttonColor: string,
+  press: Function
 }
 
 const LoginForm: FC<LoginFormProps> = (props) => {
-  const { title, arrayOfFields, buttonTitle, buttonColor } = props;
+  const { title, arrayOfFields, buttonTitle, buttonColor, press } = props;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -35,7 +37,10 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         )
       })}
 
-      <MyButton title={buttonTitle} />
+      <MyButton
+        title={buttonTitle}
+        press={press}
+      />
 
     </View>
   )
