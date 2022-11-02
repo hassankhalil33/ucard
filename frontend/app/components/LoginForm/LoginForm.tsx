@@ -6,10 +6,10 @@ import { useFonts } from 'expo-font';
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 
 interface LoginFormProps {
-  title: String,
+  title: string,
   [arrayOfFields: string]: any,
-  buttonTitle: String,
-  buttonColor: String
+  buttonTitle: string,
+  buttonColor: string
 }
 
 const LoginForm: FC<LoginFormProps> = (props) => {
