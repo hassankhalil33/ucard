@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
+const darkPhoto = require("../../assets/profile_dark.png");
+const lightPhoto = require("../../assets/profile_light.png");
 
 interface ProfileComponentProps {
   name: string,
@@ -15,26 +17,36 @@ interface ProfileComponentProps {
 const ProfileComponent: FC<ProfileComponentProps> = (props) => {
   const { name, profession, photo, timestamp, dark, width } = props;
 
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles(width).container}>
       <View style={styles().image}>
-        <Image source={photo} />
+        <Image style={styles().image} source={photo ? photo : dark ? darkPhoto : lightPhoto} />
       </View>
 
       <View style={{ flexDirection: "row", height: 60 }}>
-        <View style={{ height: 60 }}>
-          <Text>{name}</Text>
-          <Text>{profession}</Text>
+        <View style={styles().content}>
+          <Text style={styles(width, dark).name}>{name}</Text>
+          <Text style={styles(width, dark).prof}>{profession}</Text>
         </View>
         <View style={{ height: 60 }}>
-          <Text>{timestamp}</Text>
+          <Text style={styles(width, dark).time}>14:29</Text>
         </View>
       </View>
     </View>
   )
 }
 
-const styles = (width = 370) => StyleSheet.create({
+const styles = (width = 370, dark = false) => StyleSheet.create({
   container: {
     height: 60,
     width: width,
@@ -44,6 +56,27 @@ const styles = (width = 370) => StyleSheet.create({
   image: {
     width: 60,
     height: 60
+  },
+
+  content: {
+    justifyContent: "center",
+    height: 60,
+    paddingLeft: 15
+  },
+
+  name: {
+    fontFamily: "Poppins-Bold",
+    fontSize: 16,
+    lineHeight: 24,
+    color: dark ? colors.primary : colors.white
+  },
+
+  prof: {
+
+  },
+
+  time: {
+
   }
 })
 
