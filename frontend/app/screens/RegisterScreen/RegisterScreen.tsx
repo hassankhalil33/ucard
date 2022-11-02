@@ -8,6 +8,7 @@ const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/back-button.png");
 
+const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw90 = (Dimensions.get('window').width / 10) * 9;
 
 export default function RegisterScreen({ navigation }) {
@@ -43,6 +44,13 @@ export default function RegisterScreen({ navigation }) {
         />
       </View>
 
+      <View style={styles.viewOther}>
+        <Text style={styles.textOther}>You have account?  </Text>
+        <TouchableOpacity>
+          <Text style={styles.buttonOther} onPress={() => navigation.navigate("login")}>sign in</Text>
+        </TouchableOpacity>
+      </View>
+
       <StatusBar style="light" />
     </View>
   )
@@ -53,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+    paddingTop: vw10,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column"
@@ -90,6 +99,25 @@ const styles = StyleSheet.create({
   backgroundImage: {
     height: 1000,
     width: 450,
+  },
+
+  viewOther: {
+    paddingTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  textOther: {
+    fontFamily: "Poppins-Bold",
+    color: colors.primary_lighter,
+    fontSize: 14,
+  },
+
+  buttonOther: {
+    fontFamily: "Poppins-Medium",
+    color: colors.white,
+    fontSize: 14,
   },
 
   form: {
