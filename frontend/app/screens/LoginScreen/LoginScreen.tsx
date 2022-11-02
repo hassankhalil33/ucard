@@ -1,11 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import LoginForm from "../../components/LoginForm/LoginForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/back-button.png");
+
+const vw10 = (Dimensions.get('window').width / 10) * 1;
+const vw90 = (Dimensions.get('window').width / 10) * 9;
 
 export default function LoginScreen({ navigation }) {
 
@@ -30,7 +34,22 @@ export default function LoginScreen({ navigation }) {
 
       <Image style={styles.logo} source={logo} />
 
-      <Text>This is Login Screen!</Text>
+      <View style={styles.form}>
+        <LoginForm
+          title={"Sign In"}
+          arrayOfFields={["Email", "Password"]}
+          buttonTitle={"LOGIN"}
+          buttonColor={colors.blue}
+          press={() => alert("Logged In!")}
+        />
+      </View>
+
+      <View style={styles.viewOther}>
+        <Text style={styles.textOther}>Dont have account?  </Text>
+        <TouchableOpacity>
+          <Text style={styles.buttonOther} onPress={() => navigation.navigate("register")}>register</Text>
+        </TouchableOpacity>
+      </View>
 
       <StatusBar style="light" />
     </View>
@@ -42,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+    paddingTop: vw10,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column"
@@ -80,4 +100,27 @@ const styles = StyleSheet.create({
     height: 1000,
     width: 450,
   },
+
+  viewOther: {
+    paddingTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  textOther: {
+    fontFamily: "Poppins-Bold",
+    color: colors.primary_lighter,
+    fontSize: 14,
+  },
+
+  buttonOther: {
+    fontFamily: "Poppins-Medium",
+    color: colors.white,
+    fontSize: 14,
+  },
+
+  form: {
+    width: vw90
+  }
 });
