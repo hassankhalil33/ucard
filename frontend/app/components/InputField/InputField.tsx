@@ -7,4 +7,10 @@ interface InputFieldProps {
   placeholder: string,
 }
 
+const InputField: FC<InputFieldProps> = (props) => {
+  return (
+    <Text>TEST</Text>
+  )
+}
 
+export default InputField
