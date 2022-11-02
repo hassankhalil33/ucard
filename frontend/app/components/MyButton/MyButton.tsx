@@ -1,6 +1,8 @@
 import React, { useState, FC } from "react";
 import { useFonts } from 'expo-font';
-import { TouchableOpacity, Text } from "react-native";
+import { StyleSheet, Dimensions, TouchableOpacity, Text } from "react-native";
+
+const vw70 = (Dimensions.get('window').width / 10) * 7;
 
 interface MyButtonProps {
   title: string,
@@ -11,10 +13,20 @@ const MyButton: FC<MyButtonProps> = (props) => {
   const { title, press } = props;
 
   return (
-    <TouchableOpacity>
-      <Text>{title}</Text>
+    <TouchableOpacity style={styles.button} onPress={() => press()}>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+
+  },
+
+  text: {
+
+  }
+})
 
 export default MyButton
