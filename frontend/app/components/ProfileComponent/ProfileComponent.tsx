@@ -7,12 +7,30 @@ interface ProfileComponentProps {
   name: string,
   profession: string,
   photo?: any,
-  timestamp?: string
+  timestamp?: string,
+  dark?: boolean,
+  width?: number
 }
 
 const ProfileComponent: FC<ProfileComponentProps> = (props) => {
+  const { name, profession, photo, timestamp, dark, width } = props;
+
   return (
-    <Text>Im Profile</Text>
+    <View>
+      <View>
+        <Image source={photo} />
+      </View>
+
+      <View>
+        <View>
+          <Text>{name}</Text>
+          <Text>{profession}</Text>
+        </View>
+        <View>
+          <Text>{timestamp}</Text>
+        </View>
+      </View>
+    </View>
   )
 }
 

@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
   },
 
   suggestedView: {
+    borderRadius: 15,
     marginTop: 10,
     backgroundColor: colors.primary_light,
     width: "90%",
