@@ -12,6 +12,7 @@ const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
 const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw485 = (Dimensions.get('window').width / 10) * 4.85;
+const vh50 = (Dimensions.get('window').height / 10) * 5;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vw80 = (Dimensions.get('window').width / 10) * 8;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
@@ -72,49 +73,58 @@ export default function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.background}>
         <Image style={styles.backgroundImage} source={background} />
       </View>
 
-      <Text style={styles.header}>Home</Text>
+      <View style={styles.upperHalf}>
 
-      <Text style={styles.subHeader}>Your Cards</Text>
+        <Text style={styles.header}>Home</Text>
 
-      <FlatList
-        style={styles.carousel}
-        data={cardData}
-        renderItem={({ item }) =>
-          <View style={styles.card}>
-            <CardComponent
-              color={item.color}
-              name={item.name}
-              profession={item.profession}
-              description={item.description}
-              width={vw100}
-              height={vw60}
-              normal={false}
-              logo={item.logo}
-            />
-          </View>
-        }
-        horizontal
-        pagingEnabled
-      />
+        <Text style={styles.subHeader}>Your Cards</Text>
 
-      <View style={styles.search}>
-        <InputField placeholder={"Search"} />
-      </View>
-
-      <View style={styles.suggestedView}>
-        <Text style={styles.suggestedHeader}>Suggested</Text>
-
-        {/* <FlatList
+        <FlatList
+          style={styles.carousel}
           data={cardData}
-        /> */}
+          renderItem={({ item }) =>
+            <View style={styles.card}>
+              <CardComponent
+                color={item.color}
+                name={item.name}
+                profession={item.profession}
+                description={item.description}
+                width={vw100}
+                height={vw60}
+                normal={false}
+                logo={item.logo}
+              />
+            </View>
+          }
+          horizontal
+          pagingEnabled
+        />
 
       </View>
+      <View style={styles.lowerHalf}>
 
-      <StatusBar style="light" />
+        <View style={styles.search}>
+          <InputField placeholder={"Search"} />
+        </View>
+
+        <View style={styles.suggestedView}>
+          <Text style={styles.suggestedHeader}>Suggested</Text>
+
+          <View>
+            {/* <FlatList
+              data={cardData}
+            /> */}
+          </View>
+        </View>
+
+        <StatusBar style="light" />
+
+      </View>
     </View>
   )
 }
@@ -126,6 +136,18 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     flexDirection: "column"
+  },
+
+  upperHalf: {
+    width: "100%",
+    height: "50%",
+    alignItems: "center",
+  },
+
+  lowerHalf: {
+    width: "100%",
+    height: "50%",
+    alignItems: "center",
   },
 
   background: {
@@ -157,7 +179,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: colors.white,
     marginLeft: 30,
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 10
   },
 
@@ -168,13 +190,23 @@ const styles = StyleSheet.create({
   },
 
   search: {
+    paddingTop: 20,
     width: "80%"
   },
 
   suggestedView: {
+    marginTop: 20,
     backgroundColor: colors.primary_light,
     width: "90%",
-    justifyContent: "center",
-    alignItems: "center"
+    height: "100%",
+    padding: vw5
+  },
+
+  suggestedHeader: {
+    alignSelf: "flex-start",
+    fontFamily: "Poppins-Medium",
+    fontSize: 20,
+    lineHeight: 30,
+    color: colors.blue,
   }
 });
