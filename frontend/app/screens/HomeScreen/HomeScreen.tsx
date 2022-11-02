@@ -5,7 +5,8 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import CardComponent from "../../components/CardComponent/CardComponent";
 const background = require("../../assets/background.png");
-const logo = require("../../assets/Logo.png");
+const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
+const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
 const vw10 = (Dimensions.get('window').width / 10) * 1;
@@ -21,21 +22,24 @@ export default function HomeScreen(props) {
       color: colors.blue,
       name: "Hassan Khalil",
       profession: "Web Developer",
-      description: "Tap to Share"
+      description: "Tap to Share",
+      logo: cardLogoBlue
     },
 
     {
       color: colors.orange,
       name: "LambdaTiger",
       profession: "CS: Global Offensive",
-      description: "Tap to Share"
+      description: "Tap to Share",
+      logo: cardLogoOrange
     },
 
     {
       color: colors.blue,
       name: "Hassan Khalil",
       profession: "CEO of Google",
-      description: "Tap to Share"
+      description: "Tap to Share",
+      logo: cardLogoBlue
     }
   ]
 
@@ -71,7 +75,7 @@ export default function HomeScreen(props) {
               width={vw100}
               height={vw60}
               normal={false}
-              logo={logo}
+              logo={item.logo}
             />
           </View>
         }
