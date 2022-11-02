@@ -37,11 +37,13 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         )
       })}
 
-      <MyButton
-        title={buttonTitle}
-        color={buttonColor}
-        press={press}
-      />
+      <View style={styles.button}>
+        <MyButton
+          title={buttonTitle}
+          color={buttonColor}
+          press={press}
+        />
+      </View>
 
     </View>
   )
@@ -63,6 +65,11 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     fontSize: 20,
     lineHeight: 30,
+  },
+
+  button: {
+    width: "100%",
+    marginTop: 30
   }
 })
 

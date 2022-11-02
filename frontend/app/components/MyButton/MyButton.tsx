@@ -3,8 +3,6 @@ import { useFonts } from 'expo-font';
 import { StyleSheet, Dimensions, TouchableOpacity, Text } from "react-native";
 import colors from "../../constants/pallete";
 
-const vw70 = (Dimensions.get('window').width / 10) * 7;
-
 interface MyButtonProps {
   title: string,
   color: string,
@@ -24,8 +22,11 @@ const MyButton: FC<MyButtonProps> = (props) => {
 const styles = (color = colors.blue) => StyleSheet.create({
   button: {
     backgroundColor: color,
-    width: vw70,
-
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: 60,
+    borderRadius: 10,
   },
 
   text: {
