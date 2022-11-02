@@ -39,6 +39,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
 
       <MyButton
         title={buttonTitle}
+        color={buttonColor}
         press={press}
       />
 
