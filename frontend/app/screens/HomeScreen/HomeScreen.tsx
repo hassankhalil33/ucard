@@ -190,12 +190,12 @@ const styles = StyleSheet.create({
   },
 
   search: {
-    paddingTop: 20,
+    MarginTop: 10,
     width: "80%"
   },
 
   suggestedView: {
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: colors.primary_light,
     width: "90%",
     height: "100%",
