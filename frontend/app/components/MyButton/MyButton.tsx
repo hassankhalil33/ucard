@@ -1,6 +1,6 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import { useFonts } from 'expo-font';
-import { StyleSheet, Dimensions, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import colors from "../../constants/pallete";
 
 interface MyButtonProps {
