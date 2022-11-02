@@ -1,10 +1,8 @@
 import React, { useState, FC } from "react";
-import { StyleSheet, Dimensions, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
 import MyButton from "../MyButton/MyButton";
-
-const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 
 interface LoginFormProps {
   title: string,
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     paddingLeft: 20,
     paddingRight: 20,
-    width: vw85
+    width: "100%"
   },
 
   title: {

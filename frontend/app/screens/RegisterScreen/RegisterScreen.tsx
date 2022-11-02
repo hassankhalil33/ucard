@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -7,6 +7,8 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/back-button.png");
+
+const vw90 = (Dimensions.get('window').width / 10) * 9;
 
 export default function RegisterScreen({ navigation }) {
 
@@ -31,7 +33,7 @@ export default function RegisterScreen({ navigation }) {
 
       <Image style={styles.logo} source={logo} />
 
-      <View>
+      <View style={styles.form}>
         <LoginForm
           title={"Create Account"}
           arrayOfFields={["Name", "Email", "Password", "Confirm Password", "Location"]}
@@ -89,4 +91,8 @@ const styles = StyleSheet.create({
     height: 1000,
     width: 450,
   },
+
+  form: {
+    width: vw90
+  }
 });
