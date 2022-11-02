@@ -39,6 +39,7 @@ const WelcomeScreen: FC<WelcomeScreenProps> = (props) => {
   )
 }
 
+//ratio 1.65
 const styles = (color = colors.blue, height = 200, width = 330, normal = true) => StyleSheet.create({
   container: {
     padding: 30,

@@ -5,11 +5,15 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import CardComponent from "../../components/CardComponent/CardComponent";
 const background = require("../../assets/background.png");
+const logo = require("../../assets/Logo.png");
 
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
 const vw10 = (Dimensions.get('window').width / 10) * 1;
-const vw80 = (Dimensions.get('window').width / 10) * 8;
 const vw485 = (Dimensions.get('window').width / 10) * 4.85;
+const vw60 = (Dimensions.get('window').width / 10) * 6;
+const vw80 = (Dimensions.get('window').width / 10) * 8;
+const vw100 = (Dimensions.get('window').width / 10) * 10;
+
 
 export default function HomeScreen(props) {
   const exData = [
@@ -24,6 +28,13 @@ export default function HomeScreen(props) {
       color: colors.orange,
       name: "LambdaTiger",
       profession: "CS: Global Offensive",
+      description: "Tap to Share"
+    },
+
+    {
+      color: colors.blue,
+      name: "Hassan Khalil",
+      profession: "CEO of Google",
       description: "Tap to Share"
     }
   ]
@@ -45,6 +56,8 @@ export default function HomeScreen(props) {
 
       <Text style={styles.header}>Home</Text>
 
+      <Text style={styles.subHeader}>Your Cards</Text>
+
       <FlatList
         style={styles.carousel}
         data={exData}
@@ -55,15 +68,15 @@ export default function HomeScreen(props) {
               name={item.name}
               profession={item.profession}
               description={item.description}
-              width={vw80}
-              height={vw485}
+              width={vw100}
+              height={vw60}
               normal={false}
+              logo={logo}
             />
           </View>
         }
         horizontal
         pagingEnabled
-        showsHorizontalScrollIndicator
       />
 
       <StatusBar style="light" />
@@ -102,13 +115,20 @@ const styles = StyleSheet.create({
     paddingTop: 75
   },
 
+  subHeader: {
+    alignSelf: "flex-start",
+    fontFamily: "Poppins-Medium",
+    fontSize: 16,
+    lineHeight: 24,
+    color: colors.white,
+    marginLeft: 30,
+    marginTop: 30,
+    marginBottom: 10
+  },
+
   carousel: {
-    width: "100%",
-    marginLeft: vw5,
-    marginRight: vw5,
   },
 
   card: {
-    padding: vw5
   }
 });
