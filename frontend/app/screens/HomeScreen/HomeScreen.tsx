@@ -116,15 +116,17 @@ export default function HomeScreen(props) {
         <View style={styles.suggestedView}>
           <Text style={styles.suggestedHeader}>Suggested</Text>
 
-          <View>
+          <View style={styles.profiles}>
             <FlatList
               data={profData}
               renderItem={({ item }) =>
-                <ProfileComponent
-                  name={item.name}
-                  profession={item.profession}
-                  dark={false}
-                />
+                <View style={styles.profiles}>
+                  <ProfileComponent
+                    name={item.name}
+                    profession={item.profession}
+                    dark={false}
+                  />
+                </View>
               }
             />
           </View>
@@ -217,5 +219,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 30,
     color: colors.blue,
+  },
+
+  profiles: {
+    marginTop: 15,
   }
 });
