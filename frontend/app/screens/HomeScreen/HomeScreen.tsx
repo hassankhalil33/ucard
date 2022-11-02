@@ -17,7 +17,9 @@ export default function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text>Home Screen!</Text>
+      <View style={styles.background}>
+        <Image style={styles.backgroundImage} source={background} />
+      </View>
     </View>
   )
 }
@@ -30,5 +32,20 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "column"
+  },
+
+  background: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  backgroundImage: {
+    height: 1000,
+    width: 450,
   },
 });
