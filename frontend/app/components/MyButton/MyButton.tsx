@@ -12,6 +12,16 @@ interface MyButtonProps {
 const MyButton: FC<MyButtonProps> = (props) => {
   const { title, color, press } = props;
 
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <TouchableOpacity style={styles(color).button} onPress={() => press()}>
       <Text style={styles().text}>{title}</Text>
@@ -30,7 +40,10 @@ const styles = (color = colors.blue) => StyleSheet.create({
   },
 
   text: {
-
+    color: colors.white,
+    fontFamily: "Poppins-Bold",
+    fontSize: 18,
+    lineHeight: 27,
   }
 })
 
