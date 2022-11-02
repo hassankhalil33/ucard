@@ -4,6 +4,7 @@ import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import InputField from "../../components/InputField/InputField";
 const background = require("../../assets/background.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
@@ -17,7 +18,7 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const exData = [
+  const cardData = [
     {
       color: colors.blue,
       name: "Hassan Khalil",
@@ -43,6 +44,23 @@ export default function HomeScreen(props) {
     }
   ]
 
+  const profData = [
+    {
+      name: "Charbel Maroun",
+      profession: "Web Developer"
+    },
+
+    {
+      name: "Charbel Maroun",
+      profession: "Web Developer"
+    },
+
+    {
+      name: "Charbel Maroun",
+      profession: "Web Developer"
+    }
+  ]
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -64,7 +82,7 @@ export default function HomeScreen(props) {
 
       <FlatList
         style={styles.carousel}
-        data={exData}
+        data={cardData}
         renderItem={({ item }) =>
           <View style={styles.card}>
             <CardComponent
@@ -82,6 +100,19 @@ export default function HomeScreen(props) {
         horizontal
         pagingEnabled
       />
+
+      <View style={styles.search}>
+        <InputField placeholder={"Search"} />
+      </View>
+
+      <View style={styles.suggestedView}>
+        <Text style={styles.suggestedHeader}>Suggested</Text>
+
+        {/* <FlatList
+          data={cardData}
+        /> */}
+
+      </View>
 
       <StatusBar style="light" />
     </View>
@@ -134,5 +165,16 @@ const styles = StyleSheet.create({
   },
 
   card: {
+  },
+
+  search: {
+    width: "80%"
+  },
+
+  suggestedView: {
+    backgroundColor: colors.primary_light,
+    width: "90%",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
