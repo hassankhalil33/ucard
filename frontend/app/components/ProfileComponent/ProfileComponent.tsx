@@ -33,12 +33,12 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
         <Image style={styles().image} source={photo ? photo : dark ? darkPhoto : lightPhoto} />
       </View>
 
-      <View style={{ flexDirection: "row", height: 60 }}>
-        <View style={styles().content}>
+      <View style={{ marginLeft: "5%", justifyContent: "center", height: 60 }}>
+        <View style={{}}>
           <Text style={styles(width, dark).name}>{name}</Text>
-          <Text style={styles(width, dark).prof}>{profession}</Text>
         </View>
-        <View style={{ height: 60 }}>
+        <View style={{ width: "65%", flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles(width, dark).prof}>{profession}</Text>
           <Text style={styles(width, dark).time}>14:29</Text>
         </View>
       </View>
@@ -72,11 +72,17 @@ const styles = (width = 370, dark = false) => StyleSheet.create({
   },
 
   prof: {
-
+    fontFamily: "Poppins-Regular",
+    fontSize: 12,
+    lineHeight: 18,
+    color: dark ? colors.primary : colors.white
   },
 
   time: {
-
+    fontFamily: "Poppins-Regular",
+    fontSize: 12,
+    lineHeight: 18,
+    color: dark ? colors.primary : colors.white
   }
 })
 

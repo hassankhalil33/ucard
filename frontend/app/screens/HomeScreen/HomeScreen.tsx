@@ -118,7 +118,7 @@ export default function HomeScreen(props) {
 
           <View>
             <FlatList
-              data={cardData}
+              data={profData}
               renderItem={({ item }) =>
                 <ProfileComponent
                   name={item.name}
