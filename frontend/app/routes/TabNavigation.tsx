@@ -49,7 +49,7 @@ const TabNavigationScreen = ({ navigation }) => {
                 height: "68%"
               }}
             /> :
-            <TouchableOpacity onPress={() => navigation.navigate("home")}>
+            <TouchableOpacity>
               <Image
                 source={iconName}
                 style={{
