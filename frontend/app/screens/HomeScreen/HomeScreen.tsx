@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
+import ModalComponent from "../../components/ModalComponent/ModalComponent";
 const background = require("../../assets/background.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
@@ -152,9 +153,13 @@ export default function HomeScreen(props) {
           </View>
         </View>
 
-        <StatusBar style="light" />
-
       </View>
+
+      <View style={styles.modal}>
+        <ModalComponent />
+      </View>
+
+      <StatusBar style="light" />
     </View>
   )
 }
@@ -176,7 +181,7 @@ const styles = StyleSheet.create({
 
   lowerHalf: {
     width: "100%",
-    height: "40%",
+    height: "38%",
     alignItems: "center",
   },
 
@@ -248,5 +253,16 @@ const styles = StyleSheet.create({
 
   profile: {
     marginTop: 15,
+  },
+
+  modal: {
+    paddingTop: "6%",
+    paddingLeft: 40,
+    paddingRight: 40,
+    backgroundColor: colors.white,
+    width: "100%",
+    height: "12%",
+    borderRadius: 27,
+    bottom: 0
   }
 });
