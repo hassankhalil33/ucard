@@ -1,11 +1,13 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import WelcomeStackScreen from "./app/routes/WelcomeStack";
-import HomeScreen from "./app/screens/HomeScreen/HomeScreen";
+import TabNavigationScreen from "./app/routes/TabNavigation";
 
 export default function App() {
   return (
-    <HomeScreen />
+    <NavigationContainer>
+      <TabNavigationScreen />
+    </NavigationContainer>
   )
 }
 
