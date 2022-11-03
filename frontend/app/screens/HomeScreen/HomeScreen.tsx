@@ -60,6 +60,26 @@ export default function HomeScreen(props) {
     {
       name: "Charbel Maroun",
       profession: "Web Developer"
+    },
+
+    {
+      name: "Charbel Maroun",
+      profession: "Web Developer"
+    },
+
+    {
+      name: "Charbel Maroun",
+      profession: "Web Developer"
+    },
+
+    {
+      name: "Ali Khatoun",
+      profession: "Architect"
+    },
+
+    {
+      name: "Ali Khatoun",
+      profession: "Gamer"
     }
   ]
 
@@ -120,7 +140,7 @@ export default function HomeScreen(props) {
             <FlatList
               data={profData}
               renderItem={({ item }) =>
-                <View style={styles.profiles}>
+                <View style={styles.profile}>
                   <ProfileComponent
                     name={item.name}
                     profession={item.profession}
@@ -222,6 +242,11 @@ const styles = StyleSheet.create({
   },
 
   profiles: {
+    marginTop: 15,
+    paddingBottom: "45%"
+  },
+
+  profile: {
     marginTop: 15,
   }
 });
