@@ -11,11 +11,12 @@ interface ProfileComponentProps {
   photo?: any,
   timestamp?: string,
   dark?: boolean,
-  width?: number
+  width?: number,
+  margin?: number
 }
 
 const ProfileComponent: FC<ProfileComponentProps> = (props) => {
-  const { name, profession, photo, timestamp, dark, width } = props;
+  const { name, profession, photo, timestamp, dark, width, margin } = props;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -28,7 +29,7 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
   }
 
   return (
-    <View style={styles(width).container}>
+    <View style={styles(width, dark, margin).container}>
       <View style={styles().image}>
         <Image style={styles().image} source={photo ? photo : dark ? darkPhoto : lightPhoto} />
       </View>
@@ -46,11 +47,12 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
   )
 }
 
-const styles = (width = 370, dark = false) => StyleSheet.create({
+const styles = (width = 370, dark = false, margin = 0) => StyleSheet.create({
   container: {
     height: 60,
     width: width,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: margin
   },
 
   image: {

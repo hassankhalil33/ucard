@@ -9,6 +9,7 @@ const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 
 const vh40 = (Dimensions.get('window').height / 10) * 4.7;
+const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 interface ModalComponentProps {
   title?: string,
@@ -34,6 +35,27 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     modalizeRef.current?.close();
   };
 
+  // const renderItems = ({ item }) => {
+  //   return (
+  //     <>
+  //       <View style={styles().default}>
+  //         <Text style={styles().header}>Inside Recents</Text>
+  //         <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
+  //           <Image source={arrowDown} style={{ width: 12, height: 6 }} />
+  //         </TouchableOpacity>
+  //       </View>
+
+  //       <View style={styles().profile}>
+  //         <ProfileComponent
+  //           name={item.name}
+  //           profession={item.profession}
+  //           dark={true}
+  //         />
+  //       </View>
+  //     </>
+  //   )
+  // }
+
   return (
     <>
       <View style={styles().default}>
@@ -48,27 +70,32 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         modalStyle={styles().modal}
         modalHeight={vh40}
         ref={modalizeRef}
+      // flatListProps={{
+      //   data: profData,
+      //   renderItem: renderItems,
+      //   keyExtractor: (item, index) => "key" + index,
+      //   showsVerticalScrollIndicator: false
+      // }}
       >
         <View style={styles().default}>
-
-          <Text style={styles().header}>Inside Recents</Text>
+          <Text style={styles().header}>Recents</Text>
           <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
             <Image source={arrowDown} style={{ width: 12, height: 6 }} />
           </TouchableOpacity>
+        </View>
 
-          <FlatList
-            data={profData}
-            renderItem={({ item }) =>
-              <View style={styles.profile}>
-                <ProfileComponent
-                  name={item.name}
-                  profession={item.profession}
-                  dark={false}
-                />
-              </View>
-            }
-          />
-
+        <View>
+          {profData.map((item, index) => {
+            return (
+              <ProfileComponent
+                key={index}
+                name={item.name}
+                profession={item.profession}
+                dark={true}
+                margin={20}
+              />
+            )
+          })}
         </View>
       </Modalize>
     </>
@@ -92,14 +119,15 @@ const styles = () => StyleSheet.create({
   modal: {
     backgroundColor: colors.white,
     minHeight: vh40,
-    width: "100%",
-    bottom: 0,
-    position: "absolute",
+    width: vw100,
     paddingTop: "6%",
     paddingLeft: 40,
     paddingRight: 40,
-    borderRadius: 27
-  }
+  },
+
+  profile: {
+    marginTop: 15
+  },
 });
 
 export default ModalComponent
