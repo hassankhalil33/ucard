@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
 const appIcon = require("../assets/navigation/icon.png");
@@ -13,7 +13,7 @@ const cardsIcon = require("../assets/navigation/cards.png");
 const cardsIconFocused = require("../assets/navigation/cards-focused.png");
 
 const TabNavigation = createBottomTabNavigator();
-const TabNavigationScreen = () => {
+const TabNavigationScreen = ({ navigation }) => {
   return (
     <TabNavigation.Navigator
       screenOptions={({ route }) => ({
@@ -22,7 +22,9 @@ const TabNavigationScreen = () => {
         tabBarStyle: {
           height: "7%",
           padding: 0,
-          margin: 0
+          margin: 0,
+          justifyContent: "center",
+          alignItems: "center"
         },
         tabBarIcon: ({ focused, size, color }) => {
           let iconName;
@@ -39,7 +41,23 @@ const TabNavigationScreen = () => {
             iconName = !focused ? cardsIcon : cardsIconFocused
           }
 
-          return <Image source={iconName} style={{ width: "70%", height: "80%" }} />
+          return route.name != "home2" ?
+            <Image
+              source={iconName}
+              style={{
+                width: "76%",
+                height: "68%"
+              }}
+            /> :
+            <TouchableOpacity onPress={() => navigation.navigate("home")}>
+              <Image
+                source={iconName}
+                style={{
+                  width: 50,
+                  height: 50
+                }}
+              />
+            </TouchableOpacity>
         }
       })}
     >
