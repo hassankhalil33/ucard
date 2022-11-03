@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
 
   lowerHalf: {
     width: "100%",
-    height: "42%",
+    height: "40%",
     alignItems: "center",
   },
 
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 
   profiles: {
     marginTop: 15,
-    paddingBottom: "17%"
+    paddingBottom: "13%"
   },
 
   profile: {
