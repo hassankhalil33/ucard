@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
-import WelcomeStackScreen from "./app/routes/welcomeStack";
+import WelcomeStackScreen from "./app/routes/WelcomeStack";
 import HomeScreen from "./app/screens/HomeScreen/HomeScreen";
 
 export default function App() {
