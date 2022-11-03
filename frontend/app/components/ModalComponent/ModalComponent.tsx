@@ -26,19 +26,28 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     modalizeRef.current?.open();
   };
 
+  const onClose = () => {
+    modalizeRef.current?.close();
+  };
+
   return (
     <>
       <View style={styles().default}>
         <Text style={styles().header}>Recents</Text>
-        <TouchableOpacity onPress={onOpen}>
+        <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onOpen}>
           <Image source={arrowUp} style={{ width: 12, height: 6 }} />
         </TouchableOpacity>
       </View>
 
-      <Modalize
-        ref={modalizeRef}
-      >
-        <Text>I'm The Modalize</Text>
+      <Modalize modalStyle={styles().modal} ref={modalizeRef}>
+        <View style={styles().default}>
+
+          <Text style={styles().header}>Inside Recents</Text>
+          <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
+            <Image source={arrowDown} style={{ width: 12, height: 6 }} />
+          </TouchableOpacity>
+
+        </View>
       </Modalize>
     </>
   );
@@ -56,6 +65,13 @@ const styles = () => StyleSheet.create({
     fontSize: 20,
     lineHeight: 30,
     color: colors.blue
+  },
+
+  modal: {
+    paddingTop: "6%",
+    paddingLeft: 40,
+    paddingRight: 40,
+    borderRadius: 27,
   }
 });
 
