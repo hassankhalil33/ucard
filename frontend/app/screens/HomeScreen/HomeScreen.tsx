@@ -7,6 +7,7 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import profData from "../../constants/profileData";
 const background = require("../../assets/background.png");
 const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
@@ -44,43 +45,6 @@ export default function HomeScreen(props) {
       profession: "CEO of Google",
       description: "Tap to Share",
       logo: cardLogoBlue
-    }
-  ]
-
-  const profData = [
-    {
-      name: "Charbel Maroun",
-      profession: "Web Developer"
-    },
-
-    {
-      name: "Charbel Maroun",
-      profession: "Web Developer"
-    },
-
-    {
-      name: "Charbel Maroun",
-      profession: "Web Developer"
-    },
-
-    {
-      name: "Charbel Maroun",
-      profession: "Web Developer"
-    },
-
-    {
-      name: "Charbel Maroun",
-      profession: "Web Developer"
-    },
-
-    {
-      name: "Ali Khatoun",
-      profession: "Architect"
-    },
-
-    {
-      name: "Ali Khatoun",
-      profession: "Gamer"
     }
   ]
 
