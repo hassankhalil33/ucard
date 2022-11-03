@@ -13,9 +13,10 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 interface ModalComponentProps {
   title?: string,
+  content: any
 }
 
-const ModalComponent: FC<ModalComponentProps> = (props) => {
+const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
   const modalizeRef = useRef<Modalize>(null);
 
   const [fontsLoaded] = useFonts({
@@ -78,14 +79,14 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
       // }}
       >
         <View style={styles().default}>
-          <Text style={styles().header}>Recents</Text>
+          <Text style={styles().header}>{title}</Text>
           <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
             <Image source={arrowDown} style={{ width: 12, height: 6 }} />
           </TouchableOpacity>
         </View>
 
         <View>
-          {profData.map((item, index) => {
+          {content.map((item, index) => {
             return (
               <ProfileComponent
                 key={index}

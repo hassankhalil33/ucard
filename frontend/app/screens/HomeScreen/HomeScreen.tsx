@@ -120,7 +120,10 @@ export default function HomeScreen(props) {
       </View>
 
       <View style={styles.modal}>
-        <ModalComponent />
+        <ModalComponent
+          title={"Recents"}
+          content={profData}
+        />
       </View>
 
       <StatusBar style="light" />
