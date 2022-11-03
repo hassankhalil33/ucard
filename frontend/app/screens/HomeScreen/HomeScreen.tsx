@@ -170,13 +170,13 @@ const styles = StyleSheet.create({
 
   upperHalf: {
     width: "100%",
-    height: "50%",
+    height: "53%",
     alignItems: "center",
   },
 
   lowerHalf: {
     width: "100%",
-    height: "50%",
+    height: "42%",
     alignItems: "center",
   },
 
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
 
   search: {
-    MarginTop: 10,
+    paddingTop: 7,
     width: "80%"
   },
 
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 
   profiles: {
     marginTop: 15,
-    paddingBottom: "45%"
+    paddingBottom: "17%"
   },
 
   profile: {
