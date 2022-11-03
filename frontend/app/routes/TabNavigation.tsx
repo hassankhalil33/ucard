@@ -3,6 +3,7 @@ import { Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
 import NotificationsScreen from "../screens/NotificationsScreen/NotificationsScreen";
+import ContactsScreen from "../screens/ContactsScreen/ContactsScreen";
 const appIcon = require("../assets/navigation/icon.png");
 const homeIcon = require("../assets/navigation/home.png");
 const homeIconFocused = require("../assets/navigation/home-focused.png");
@@ -77,7 +78,7 @@ const TabNavigationScreen = () => {
       />
       <TabNavigation.Screen
         name={"contacts"}
-        component={HomeScreen}
+        component={ContactsScreen}
       />
       <TabNavigation.Screen
         name={"cards"}

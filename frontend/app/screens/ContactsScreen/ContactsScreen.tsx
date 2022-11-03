@@ -22,7 +22,7 @@ export default function ContactsScreen(props) {
         <Image style={styles.backgroundImage} source={background} />
       </View>
 
-      <Text style={styles.header}>Notifications</Text>
+      <Text style={styles.header}>Contacts</Text>
 
     </View>
   )
