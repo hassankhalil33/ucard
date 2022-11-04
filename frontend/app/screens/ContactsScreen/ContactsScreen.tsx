@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import profileData from "../../constants/profileData";
+import CardComponent from "../../components/CardComponent/CardComponent";
 const background = require("../../assets/background.png");
 
 export default function ContactsScreen(props) {
@@ -15,6 +17,19 @@ export default function ContactsScreen(props) {
     return null;
   }
 
+  const renderItems = ({ item }) => {
+    return (
+      <View style={styles.profile}>
+        <CardComponent
+          name={item.name}
+          profession={item.profession}
+          description={"hold to share"}
+          color={item.color}
+        />
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
 
@@ -23,6 +38,16 @@ export default function ContactsScreen(props) {
       </View>
 
       <Text style={styles.header}>Contacts</Text>
+
+      <View style={styles.innerContainer}>
+        <FlatList
+          data={profileData}
+          renderItem={renderItems}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
+
+      <StatusBar style="light" />
 
     </View>
   )
@@ -58,4 +83,14 @@ const styles = StyleSheet.create({
     color: colors.white,
     paddingTop: 75
   },
+
+  innerContainer: {
+    paddingBottom: "35%",
+    marginTop: "10%",
+  },
+
+  profile: {
+    marginTop: 15
+  },
+
 })

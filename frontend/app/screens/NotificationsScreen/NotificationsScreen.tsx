@@ -20,7 +20,7 @@ export default function NotificationsScreen() {
 
   const renderItems = ({ item }) => {
     return (
-      <View style={styles().profile}>
+      <View style={styles.profile}>
         <ProfileComponent
           name={item.name}
           profession={item.profession}
@@ -32,21 +32,21 @@ export default function NotificationsScreen() {
   }
 
   return (
-    <View style={styles().container}>
+    <View style={styles.container}>
 
-      <View style={styles().background}>
-        <Image style={styles().backgroundImage} source={background} />
+      <View style={styles.background}>
+        <Image style={styles.backgroundImage} source={background} />
       </View>
 
-      <Text style={styles().header}>Notifications</Text>
+      <Text style={styles.header}>Notifications</Text>
 
-      <View style={styles().innerContainer}>
+      <View style={styles.innerContainer}>
         <FlatList
           data={profileData}
           renderItem={renderItems}
         />
 
-        <View style={styles().button}>
+        <View style={styles.button}>
           <MyButton
             title={"Delete Notifications"}
             color={colors.primary}
@@ -61,7 +61,7 @@ export default function NotificationsScreen() {
   )
 }
 
-const styles = () => StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",

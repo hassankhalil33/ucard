@@ -6,7 +6,7 @@ import { useFonts } from 'expo-font';
 const vw85 = (Dimensions.get('window').width / 10) * 8.5;
 const vw25 = (Dimensions.get('window').height / 10) * 2.5;
 
-interface WelcomeScreenProps {
+interface CardComponentProps {
   color?: string,
   height?: number,
   width?: number,
@@ -17,7 +17,7 @@ interface WelcomeScreenProps {
   logo?: any
 }
 
-const WelcomeScreen: FC<WelcomeScreenProps> = (props) => {
+const CardComponent: FC<CardComponentProps> = (props) => {
   const { height, width, name, profession, description, logo, color, normal } = props;
 
   const [fontsLoaded] = useFonts({
@@ -80,4 +80,4 @@ const styles = (color = colors.blue, height = 200, width = 330, normal = true) =
   }
 });
 
-export default WelcomeScreen
+export default CardComponent
