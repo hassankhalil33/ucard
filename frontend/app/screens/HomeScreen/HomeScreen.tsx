@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
@@ -51,6 +52,23 @@ export default function HomeScreen(props) {
     }
   ]
 
+  const renderItems = ({ item, index }) => {
+    return (
+      <View style={styles.card}>
+        <CardComponent
+          color={item.color}
+          name={item.name}
+          profession={item.profession}
+          description={item.description}
+          width={vw100}
+          height={vw60}
+          normal={false}
+          logo={item.logo}
+        />
+      </View>
+    );
+  }
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -73,7 +91,7 @@ export default function HomeScreen(props) {
 
         <Text style={styles.subHeader}>Your Cards</Text>
 
-        <FlatList
+        {/* <FlatList
           style={styles.carousel}
           data={cardData}
           renderItem={({ item }) =>
@@ -92,6 +110,17 @@ export default function HomeScreen(props) {
           }
           horizontal
           pagingEnabled
+        /> */}
+
+        <Carousel
+          loop
+          width={vw100}
+          autoPlay={false}
+          pagingEnabled={true}
+          snapEnabled={true}
+          data={cardData}
+          renderItem={renderItems}
+          mode="parallax"
         />
 
       </View>
