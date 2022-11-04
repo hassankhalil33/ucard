@@ -4,7 +4,6 @@ import { Modalize } from 'react-native-modalize';
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
-import profData from "../../constants/profileData";
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 
@@ -115,7 +114,7 @@ const styles = () => StyleSheet.create({
     paddingBottom: "4%",
     backgroundColor: colors.white,
     width: "100%",
-    borderRadius: 20,
+    borderRadius: 10,
     height: "12%"
   },
 
@@ -126,7 +125,6 @@ const styles = () => StyleSheet.create({
     paddingBottom: "4%",
     backgroundColor: colors.white,
     width: "100%",
-    borderRadius: 27,
     height: "12%"
   },
 
