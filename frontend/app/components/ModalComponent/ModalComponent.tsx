@@ -61,7 +61,7 @@ const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
     <>
       <View style={styles().default}>
         <Text style={styles().header}>Recents</Text>
-        <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onOpen}>
+        <TouchableOpacity style={{ padding: 20 }} onPress={onOpen}>
           <Image source={arrowUp} style={{ width: 12, height: 6 }} />
         </TouchableOpacity>
       </View>
@@ -71,6 +71,7 @@ const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
         modalStyle={styles().modal}
         modalHeight={vh40}
         ref={modalizeRef}
+
       // flatListProps={{
       //   data: profData,
       //   renderItem: renderItems,
@@ -78,20 +79,21 @@ const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
       //   showsVerticalScrollIndicator: false
       // }}
       >
-        <View style={styles().default}>
+        <View style={styles().innerView}>
           <Text style={styles().header}>{title}</Text>
-          <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
-            <Image source={arrowDown} style={{ width: 12, height: 6 }} />
+          <TouchableOpacity style={{ padding: 20 }} onPress={onClose}>
+            <Image source={arrowDown} style={{ width: 12, height: 6, }} />
           </TouchableOpacity>
         </View>
 
-        <View>
+        <View style={{ paddingBottom: "20%" }}>
           {content.map((item, index) => {
             return (
               <ProfileComponent
                 key={index}
                 name={item.name}
                 profession={item.profession}
+                timestamp={item.timestamp}
                 dark={true}
                 margin={20}
               />
@@ -107,7 +109,25 @@ const styles = () => StyleSheet.create({
   default: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingBottom: "4%",
+    backgroundColor: colors.white,
+    width: "100%",
+    borderRadius: 20,
+    height: "12%"
+  },
+
+  innerView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom: "4%",
+    backgroundColor: colors.white,
+    width: "100%",
+    borderRadius: 27,
+    height: "12%"
   },
 
   header: {
@@ -119,11 +139,11 @@ const styles = () => StyleSheet.create({
 
   modal: {
     backgroundColor: colors.white,
-    minHeight: vh40,
-    width: vw100,
+    width: "100%",
     paddingTop: "6%",
     paddingLeft: 40,
     paddingRight: 40,
+    marginBottom: "-5%"
   },
 
   profile: {

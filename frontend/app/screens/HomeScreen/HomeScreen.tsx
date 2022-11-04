@@ -15,6 +15,9 @@ const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
 const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw485 = (Dimensions.get('window').width / 10) * 4.85;
+const vh15 = (Dimensions.get('window').height / 10) * 1.5;
+const vh40 = (Dimensions.get('window').height / 10) * 4;
+const vh6 = (Dimensions.get('window').height / 10) * 0.6;
 const vh50 = (Dimensions.get('window').height / 10) * 5;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vw80 = (Dimensions.get('window').width / 10) * 8;
@@ -119,12 +122,10 @@ export default function HomeScreen(props) {
 
       </View>
 
-      <View style={styles.modal}>
-        <ModalComponent
-          title={"Recents"}
-          content={profData}
-        />
-      </View>
+      <ModalComponent
+        title={"Recents"}
+        content={profData}
+      />
 
       <StatusBar style="light" />
     </View>
@@ -221,15 +222,4 @@ const styles = StyleSheet.create({
   profile: {
     marginTop: 15,
   },
-
-  modal: {
-    paddingTop: "6%",
-    paddingLeft: 40,
-    paddingRight: 40,
-    backgroundColor: colors.white,
-    width: "100%",
-    height: "12%",
-    borderRadius: 27,
-    bottom: 0
-  }
 });
