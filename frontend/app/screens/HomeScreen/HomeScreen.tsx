@@ -21,6 +21,7 @@ const vh15 = (Dimensions.get('window').height / 10) * 1.5;
 const vh40 = (Dimensions.get('window').height / 10) * 4;
 const vh6 = (Dimensions.get('window').height / 10) * 0.6;
 const vh50 = (Dimensions.get('window').height / 10) * 5;
+const vh53 = (Dimensions.get('window').height / 10) * 5.3;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vw80 = (Dimensions.get('window').width / 10) * 8;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
@@ -114,6 +115,7 @@ export default function HomeScreen(props) {
         /> */}
 
         <Carousel
+          style={{ marginTop: -20, marginBottom: -20 }}
           loop={false}
           width={vw100}
           data={cardData}
@@ -152,6 +154,7 @@ export default function HomeScreen(props) {
       <ModalComponent
         title={"Recents"}
         content={profData}
+        height={vh53}
       />
 
       <StatusBar style="light" />
@@ -170,13 +173,13 @@ const styles = StyleSheet.create({
 
   upperHalf: {
     width: "100%",
-    height: "53%",
+    height: "47%",
     alignItems: "center",
   },
 
   lowerHalf: {
     width: "100%",
-    height: "38%",
+    height: "44%",
     alignItems: "center",
   },
 
@@ -210,7 +213,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginLeft: 30,
     marginTop: 20,
-    marginBottom: 10
   },
 
   carousel: {
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
   },
 
   search: {
-    paddingTop: 7,
+    paddingTop: "3%",
     width: "80%"
   },
 
@@ -243,7 +245,7 @@ const styles = StyleSheet.create({
 
   profiles: {
     marginTop: 15,
-    paddingBottom: "13%"
+    paddingBottom: "31%"
   },
 
   profile: {

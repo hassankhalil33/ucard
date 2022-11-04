@@ -12,10 +12,13 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 interface ModalComponentProps {
   title?: string,
-  content: any
+  content: any,
+  height: number
 }
 
-const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
+const ModalComponent: FC<ModalComponentProps> = (props) => {
+  const { title, content, height } = props;
+
   const modalizeRef = useRef<Modalize>(null);
 
   const [fontsLoaded] = useFonts({
@@ -68,7 +71,7 @@ const ModalComponent: FC<ModalComponentProps> = ({ title, content }) => {
       <Modalize
         withHandle={false}
         modalStyle={styles().modal}
-        modalHeight={vh40}
+        modalHeight={height}
         ref={modalizeRef}
 
       // flatListProps={{
