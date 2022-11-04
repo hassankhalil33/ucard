@@ -16,11 +16,11 @@ interface ModalComponentProps {
   content: any,
   height?: number,
   defHeight?: string,
-  profile?: boolean
+  cardScreen?: boolean
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, defHeight, profile } = props;
+  const { title, content, height, defHeight, cardScreen } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -72,7 +72,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           </TouchableOpacity>
         </View>
 
-        <Image style={{ width: 130, height: 130, alignSelf: "center" }} source={profileBig} />
+        <Image style={styles().image} source={profileBig} />
       </View>
 
       <Modalize
@@ -95,6 +95,11 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           </TouchableOpacity>
         </View>
 
+        {cardScreen &&
+          <TouchableOpacity>
+            <Image style={styles().image} source={profileBig} />
+          </TouchableOpacity>}
+
         <View style={{ paddingBottom: "20%" }}>
           {content.map((item, index) => {
             return (
@@ -114,7 +119,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
   );
 };
 
-const styles = (defHeight = "12%") => StyleSheet.create({
+const styles = (defHeight = "12%",) => StyleSheet.create({
   container: {
     justifyContent: "flex-start",
     alignContent: "center",
@@ -138,10 +143,10 @@ const styles = (defHeight = "12%") => StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    paddingBottom: "4%",
     backgroundColor: colors.white,
     width: "100%",
-    height: "12%"
+    height: "12%",
+    marginBottom: "-10%"
   },
 
   header: {
@@ -163,6 +168,13 @@ const styles = (defHeight = "12%") => StyleSheet.create({
   profile: {
     marginTop: 15
   },
+
+  image: {
+    width: 130,
+    height: 130,
+    alignSelf: "center",
+    marginBottom: 10
+  }
 });
 
 export default ModalComponent

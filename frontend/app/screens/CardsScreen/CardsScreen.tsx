@@ -13,6 +13,7 @@ const addButton = require("../../assets/buttons/add-button.png");
 
 const vw100 = (Dimensions.get('window').width / 10) * 10;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
+const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
   const [fontsLoaded] = useFonts({
@@ -71,6 +72,8 @@ export default function CardsScreen(props) {
         title={"Card Details"}
         content={profData}
         defHeight={"40%"}
+        cardScreen={true}
+        height={vh165}
       />
 
       <StatusBar style="light" />
