@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
+import profileData from "../../constants/profileData";
+import MyButton from "../../components/MyButton/MyButton";
 const background = require("../../assets/background.png");
 
-export default function NotificationsScreen(props) {
+export default function NotificationsScreen() {
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -15,20 +18,49 @@ export default function NotificationsScreen(props) {
     return null;
   }
 
-  return (
-    <View style={styles.container}>
+  const renderItems = ({ item }) => {
+    return (
+      <View style={styles().profile}>
+        <ProfileComponent
+          name={item.name}
+          profession={item.profession}
+          dark={true}
+          timestamp={"19:54"}
+        />
+      </View>
+    )
+  }
 
-      <View style={styles.background}>
-        <Image style={styles.backgroundImage} source={background} />
+  return (
+    <View style={styles().container}>
+
+      <View style={styles().background}>
+        <Image style={styles().backgroundImage} source={background} />
       </View>
 
-      <Text style={styles.header}>Notifications</Text>
+      <Text style={styles().header}>Notifications</Text>
 
+      <View style={styles().innerContainer}>
+        <FlatList
+          data={profileData}
+          renderItem={renderItems}
+        />
+
+        <MyButton
+          title={"Delete Notifications"}
+          color={colors.primary}
+          press={() => alert("Notifications Deleted!")}
+        />
+      </View>
+
+
+
+      <StatusBar style="light" />
     </View>
   )
 }
 
-const styles = StyleSheet.create({
+const styles = () => StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
@@ -58,4 +90,15 @@ const styles = StyleSheet.create({
     color: colors.white,
     paddingTop: 75
   },
+
+  profile: {
+    marginTop: 15
+  },
+
+  innerContainer: {
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    padding: "10%",
+    marginTop: "10%",
+  }
 })
