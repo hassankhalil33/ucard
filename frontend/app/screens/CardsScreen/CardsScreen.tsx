@@ -52,7 +52,7 @@ export default function CardsScreen(props) {
         <Image source={addButton} style={styles.addButton} />
       </TouchableOpacity>
 
-      <View>
+      <View style={styles.upperHalf}>
         <Text style={styles.subHeader}>Your Cards</Text>
 
         <Carousel
@@ -78,6 +78,12 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     flexDirection: "column"
+  },
+
+  upperHalf: {
+    width: "100%",
+    height: "50%",
+    alignItems: "center",
   },
 
   background: {
@@ -124,6 +130,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: colors.white,
     marginLeft: 30,
-    marginTop: 20,
+    marginTop: "20%",
   },
 })
