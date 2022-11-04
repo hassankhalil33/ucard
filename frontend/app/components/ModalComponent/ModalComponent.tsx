@@ -17,11 +17,13 @@ interface ModalComponentProps {
   content: any,
   height?: number,
   defHeight?: string,
-  cardScreen?: boolean
+  cardScreen?: boolean,
+  value?: string,
+  label?: string
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, defHeight, cardScreen } = props;
+  const { title, content, height, defHeight, cardScreen, value, label } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -105,7 +107,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           {content.map((item, index) => {
             return (
               cardScreen ?
-                <TextInput variant="outlined" label="Name" />
+                <TextInput style={{ marginBottom: 10 }} variant="outlined" label={label} value={value} />
                 :
                 <ProfileComponent
                   key={index}
