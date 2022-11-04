@@ -1,8 +1,9 @@
 import React, { useRef, FC } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Modalize } from 'react-native-modalize';
-import colors from "../../constants/pallete";
+import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
+import colors from "../../constants/pallete";
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
@@ -103,14 +104,17 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         <View style={{ paddingBottom: "20%" }}>
           {content.map((item, index) => {
             return (
-              <ProfileComponent
-                key={index}
-                name={item.name}
-                profession={item.profession}
-                timestamp={item.timestamp}
-                dark={true}
-                margin={20}
-              />
+              cardScreen ?
+                <TextInput variant="outlined" label="Name" />
+                :
+                <ProfileComponent
+                  key={index}
+                  name={item.name}
+                  profession={item.profession}
+                  timestamp={item.timestamp}
+                  dark={true}
+                  margin={20}
+                />
             )
           })}
         </View>
