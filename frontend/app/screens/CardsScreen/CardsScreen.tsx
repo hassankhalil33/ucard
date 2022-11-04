@@ -4,6 +4,7 @@ import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 const background = require("../../assets/background.png");
+const addButton = require("../../assets/buttons/add-button.png");
 
 export default function CardsScreen(props) {
   const [fontsLoaded] = useFonts({
@@ -23,6 +24,12 @@ export default function CardsScreen(props) {
       </View>
 
       <Text style={styles.header}>Cards</Text>
+
+      <TouchableOpacity style={styles.addButtonContainer} onPress={() => alert("New Card Added!")}>
+        <Image source={addButton} style={styles.addButton} />
+      </TouchableOpacity>
+
+      <StatusBar style="light" />
 
     </View>
   )
@@ -57,5 +64,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: colors.white,
     paddingTop: 75
+  },
+
+  addButtonContainer: {
+    position: "absolute",
+    top: "10%",
+    right: 40
+  },
+
+  addButton: {
+    width: 30,
+    height: 30.5,
   },
 })
