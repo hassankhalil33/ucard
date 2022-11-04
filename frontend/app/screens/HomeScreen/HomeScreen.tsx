@@ -4,6 +4,7 @@ import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import Carousel from "react-native-reanimated-carousel";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
@@ -79,7 +80,7 @@ export default function HomeScreen(props) {
   }
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
 
       <View style={styles.background}>
         <Image style={styles.backgroundImage} source={background} />
@@ -113,14 +114,11 @@ export default function HomeScreen(props) {
         /> */}
 
         <Carousel
-          loop
+          loop={false}
           width={vw100}
-          autoPlay={false}
-          pagingEnabled={true}
-          snapEnabled={true}
           data={cardData}
           renderItem={renderItems}
-          mode="parallax"
+          mode={"parallax"}
         />
 
       </View>
@@ -157,7 +155,7 @@ export default function HomeScreen(props) {
       />
 
       <StatusBar style="light" />
-    </View>
+    </GestureHandlerRootView>
   )
 }
 
