@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import LoginForm from "../../components/LoginForm/LoginForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
-const back = require("../../assets/back-button.png");
+const back = require("../../assets/buttons/back-button.png");
 
 const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw90 = (Dimensions.get('window').width / 10) * 9;
