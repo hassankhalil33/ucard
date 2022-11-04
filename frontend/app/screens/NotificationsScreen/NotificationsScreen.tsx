@@ -46,14 +46,15 @@ export default function NotificationsScreen() {
           renderItem={renderItems}
         />
 
-        <MyButton
-          title={"Delete Notifications"}
-          color={colors.primary}
-          press={() => alert("Notifications Deleted!")}
-        />
+        <View style={styles().button}>
+          <MyButton
+            title={"Delete Notifications"}
+            color={colors.primary}
+            press={() => alert("Notifications Deleted!")}
+          />
+        </View>
+
       </View>
-
-
 
       <StatusBar style="light" />
     </View>
@@ -99,6 +100,15 @@ const styles = () => StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 10,
     padding: "10%",
+    paddingBottom: "50%",
     marginTop: "10%",
+  },
+
+  button: {
+    flex: 1,
+    alignSelf: "center",
+    position: "absolute",
+    bottom: "26%",
+    width: "100%",
   }
 })
