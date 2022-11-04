@@ -9,10 +9,9 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import cardData from "../../constants/cardData";
 import profData from "../../constants/profileData";
 const background = require("../../assets/background.png");
-const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
-const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
 const vw10 = (Dimensions.get('window').width / 10) * 1;
@@ -28,32 +27,6 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const cardData = [
-    {
-      color: colors.blue,
-      name: "Hassan Khalil",
-      profession: "Web Developer",
-      description: "Tap to Share",
-      logo: cardLogoBlue
-    },
-
-    {
-      color: colors.orange,
-      name: "LambdaTiger",
-      profession: "CS: Global Offensive",
-      description: "Tap to Share",
-      logo: cardLogoOrange
-    },
-
-    {
-      color: colors.blue,
-      name: "Hassan Khalil",
-      profession: "CEO of Google",
-      description: "Tap to Share",
-      logo: cardLogoBlue
-    }
-  ]
-
   const renderItems = ({ item, index }) => {
     return (
       <View style={styles.card}>
