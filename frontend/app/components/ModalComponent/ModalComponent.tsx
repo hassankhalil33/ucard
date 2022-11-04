@@ -63,15 +63,17 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
   // }
 
   return (
-    <View style={styles(defHeight).container}>
-      <View style={styles(defHeight).default}>
-        <Text style={styles().header}>{title}</Text>
-        <TouchableOpacity style={{ padding: 20 }} onPress={onOpen}>
-          <Image source={arrowUp} style={{ width: 12, height: 6 }} />
-        </TouchableOpacity>
-      </View>
+    <>
+      <View style={styles(defHeight).container}>
+        <View style={styles(defHeight).default}>
+          <Text style={styles().header}>{title}</Text>
+          <TouchableOpacity style={{ padding: 20 }} onPress={onOpen}>
+            <Image source={arrowUp} style={{ width: 12, height: 6 }} />
+          </TouchableOpacity>
+        </View>
 
-      <Image style={{ width: 130, height: 130, alignSelf: "center" }} source={profileBig} />
+        <Image style={{ width: 130, height: 130, alignSelf: "center" }} source={profileBig} />
+      </View>
 
       <Modalize
         withHandle={false}
@@ -108,7 +110,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           })}
         </View>
       </Modalize>
-    </View>
+    </>
   );
 };
 
@@ -118,11 +120,10 @@ const styles = (defHeight = "12%") => StyleSheet.create({
     alignContent: "center",
     paddingLeft: 40,
     paddingRight: 40,
-    paddingBottom: "4%",
+    paddingBottom: "15%",
     backgroundColor: colors.white,
     width: "100%",
     borderRadius: 10,
-    height: defHeight
   },
 
   default: {
