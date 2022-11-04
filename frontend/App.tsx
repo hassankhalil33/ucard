@@ -16,8 +16,10 @@ export default function App() {
 
 // export default function App() {
 //   return (
+//  <GestureHandlerRootView style={{ flex: 1 }}>
 //     <NavigationContainer>
 //       <WelcomeStackScreen />
 //     </NavigationContainer>
+//  </GestureHandlerRootView>
 //   );
 // }

@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
+const profileBig = require("../../assets/profile-big.png");
 
 const vh40 = (Dimensions.get('window').height / 10) * 4.7;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
@@ -13,11 +14,13 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 interface ModalComponentProps {
   title?: string,
   content: any,
-  height: number
+  height?: number,
+  defHeight?: string,
+  profile?: boolean
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height } = props;
+  const { title, content, height, defHeight, profile } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -60,13 +63,15 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
   // }
 
   return (
-    <>
-      <View style={styles().default}>
-        <Text style={styles().header}>Recents</Text>
+    <View>
+      <View style={styles(defHeight).default}>
+        <Text style={styles().header}>{title}</Text>
         <TouchableOpacity style={{ padding: 20 }} onPress={onOpen}>
           <Image source={arrowUp} style={{ width: 12, height: 6 }} />
         </TouchableOpacity>
       </View>
+
+      <Image source={profileBig} />
 
       <Modalize
         withHandle={false}
@@ -103,11 +108,11 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           })}
         </View>
       </Modalize>
-    </>
+    </View>
   );
 };
 
-const styles = () => StyleSheet.create({
+const styles = (defHeight = "12%") => StyleSheet.create({
   default: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -118,13 +123,13 @@ const styles = () => StyleSheet.create({
     backgroundColor: colors.white,
     width: "100%",
     borderRadius: 10,
-    height: "12%"
+    height: defHeight
   },
 
   innerView: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     paddingBottom: "4%",
     backgroundColor: colors.white,
     width: "100%",

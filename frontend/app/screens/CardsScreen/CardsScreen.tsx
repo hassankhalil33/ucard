@@ -5,7 +5,9 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import cardData from "../../constants/cardData";
+import profData from "../../constants/profileData";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -64,6 +66,12 @@ export default function CardsScreen(props) {
           mode={"parallax"}
         />
       </View>
+
+      <ModalComponent
+        title={"Card Details"}
+        content={profData}
+        defHeight={"40%"}
+      />
 
       <StatusBar style="light" />
 
