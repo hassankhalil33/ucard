@@ -50,14 +50,14 @@ export default function LoginScreen({ navigation }) {
           arrayOfFields={["Email", "Password"]}
           buttonTitle={"LOGIN"}
           buttonColor={colors.blue}
-          press={() => alert("Logged In!")}
+          press={() => storeData(token)}
         />
       </View>
 
       <View style={styles.viewOther}>
         <Text style={styles.textOther}>Dont have account?  </Text>
         <TouchableOpacity>
-          <Text style={styles.buttonOther} onPress={() => storeData(token)}>register</Text>
+          <Text style={styles.buttonOther} onPress={() => navigation.navigate("register")}>register</Text>
         </TouchableOpacity>
       </View>
 
