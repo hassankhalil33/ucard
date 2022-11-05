@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import colors from "../../constants/pallete";
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
+import CardsScreen from '../../screens/CardsScreen/CardsScreen';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
@@ -81,7 +82,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
       <Modalize
         withHandle={false}
-        modalStyle={styles().modal}
+        modalStyle={styles(defHeight, cardScreen).modal}
         modalHeight={height}
         ref={modalizeRef}
 
@@ -100,9 +101,10 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => alert("Photo Updated!")}>
             <Image style={styles().image} source={profileBig} />
-          </TouchableOpacity>}
+          </TouchableOpacity>
+        }
 
         <View style={{ paddingBottom: "20%", marginTop: cardScreen && "8%" }}>
           {content.map((item, index) => {
@@ -128,12 +130,23 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
             )
           })}
         </View>
+
+        {cardScreen &&
+          <View style={styles().button}>
+            <MyButton
+              title={"Update Card"}
+              color={colors.primary}
+              press={() => alert("Card Updated Successfully!")}
+            />
+          </View>
+        }
+
       </Modalize>
     </>
   );
 };
 
-const styles = (defHeight = "12%",) => StyleSheet.create({
+const styles = (defHeight = "12%", cardScreen = false) => StyleSheet.create({
   container: {
     justifyContent: "flex-start",
     alignContent: "center",
@@ -188,6 +201,13 @@ const styles = (defHeight = "12%",) => StyleSheet.create({
     height: 130,
     alignSelf: "center",
     marginBottom: 10
+  },
+
+  button: {
+    flex: 1,
+    alignSelf: "center",
+    width: "100%",
+    paddingBottom: "22%"
   }
 });
 
