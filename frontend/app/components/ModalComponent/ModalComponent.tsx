@@ -5,6 +5,7 @@ import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
 import colors from "../../constants/pallete";
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
+import MyButton from '../MyButton/MyButton';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
@@ -103,11 +104,18 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
             <Image style={styles().image} source={profileBig} />
           </TouchableOpacity>}
 
-        <View style={{ paddingBottom: "20%" }}>
+        <View style={{ paddingBottom: "20%", marginTop: cardScreen && "8%" }}>
           {content.map((item, index) => {
             return (
               cardScreen ?
-                <TextInput style={{ marginBottom: 10 }} variant="outlined" label={label} value={value} />
+                <TextInput
+                  key={index}
+                  style={{ marginBottom: 10 }}
+                  color={colors.blue}
+                  inputStyle={{ color: colors.primary }}
+                  variant="outlined"
+                  label={item.label}
+                  value={item.value} />
                 :
                 <ProfileComponent
                   key={index}

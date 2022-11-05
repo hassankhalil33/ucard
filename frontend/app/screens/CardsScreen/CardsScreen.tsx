@@ -8,6 +8,7 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import cardData from "../../constants/cardData";
 import profData from "../../constants/profileData";
+import inputData from "../../constants/inputData";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -70,7 +71,7 @@ export default function CardsScreen(props) {
 
       <ModalComponent
         title={"Card Details"}
-        content={profData}
+        content={inputData}
         defHeight={"40%"}
         cardScreen={true}
         height={vh165}
