@@ -3,16 +3,26 @@ import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "rea
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginForm from "../../components/LoginForm/LoginForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
 
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhhc3NhbkBnbWFpbC5jb20iLCJpYXQiOjE2NjY4MjY0NjYsImV4cCI6Mzc2NjY4MjI4NjZ9.ge6j1PAgkva95DL-cceStlJEBBoXoM7yxL5m4MUey48";
+
 const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw90 = (Dimensions.get('window').width / 10) * 9;
 
-export default function LoginScreen({ navigation }) {
+const storeData = async (value) => {
+  try {
+    await AsyncStorage.setItem("@storage_Key", value);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
+export default function LoginScreen({ navigation }) {
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -47,7 +57,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.viewOther}>
         <Text style={styles.textOther}>Dont have account?  </Text>
         <TouchableOpacity>
-          <Text style={styles.buttonOther} onPress={() => navigation.navigate("register")}>register</Text>
+          <Text style={styles.buttonOther} onPress={() => storeData(token)}>register</Text>
         </TouchableOpacity>
       </View>
 
