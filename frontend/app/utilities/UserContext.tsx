@@ -1,5 +1,95 @@
-import { createContext } from "react";
+import React, { createContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "./axios";
 
-const UserContext = createContext(null);
+interface UserProviderStore {
+  cardData: object[];
+  setCardData: Function;
+  followingData: object[];
+  setFollowingData: Function;
+  token: string;
+  setToken: Function;
+  getToken: Function;
+  getCardData: Function;
+  getFollowingData: Function;
+}
 
-export default UserContext
+export const UserContext = createContext({} as UserProviderStore);
+
+export const UserProvider = ({ children }) => {
+  const [cardData, setCardData] = useState([]);
+  const [followingData, setFollowingData] = useState([]);
+  const [token, setToken] = useState("");
+
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@storage_Key");
+
+      if (value !== null) {
+        setToken(value);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const getCardData = async () => {
+    try {
+      const response = await axios.get("/card", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setCardData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getFollowingData = async () => {
+    try {
+      const response = await axios.get("/user/follow", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setFollowingData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const postFollowingData = async () => {
+    try {
+      const response = await axios.post("/user/follow", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setFollowingData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const allData = {
+    cardData,
+    setCardData,
+    followingData,
+    setFollowingData,
+    token,
+    setToken,
+    getToken,
+    getCardData,
+    getFollowingData
+  };
+
+  return (
+    <UserContext.Provider value={allData}>
+      {children}
+    </UserContext.Provider>
+  )
+}

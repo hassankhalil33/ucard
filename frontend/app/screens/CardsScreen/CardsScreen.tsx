@@ -8,7 +8,7 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
 import inputData from "../../constants/inputData";
-import CardContext from "../../utilities/UserContext";
+import { UserContext } from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -17,7 +17,7 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
-  const { cardData, setCardData } = useContext(CardContext);
+  const { cardData, setCardData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),

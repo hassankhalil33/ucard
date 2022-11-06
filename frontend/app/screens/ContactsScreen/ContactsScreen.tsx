@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import axios from "../../utilities/axios";
 import CardComponent from "../../components/CardComponent/CardComponent";
-import UserContext from "../../utilities/UserContext";
+import { UserContext } from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 
 export default function ContactsScreen(props) {
@@ -19,10 +19,6 @@ export default function ContactsScreen(props) {
   if (!fontsLoaded) {
     return null;
   }
-
-  // useEffect(() => {
-  //   getFollowingData();
-  // }, [token])
 
   const renderItems = ({ item }) => {
     return (
