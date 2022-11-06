@@ -27,8 +27,6 @@ const vw80 = (Dimensions.get('window').width / 10) * 8;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
-
-
 export default function HomeScreen(props) {
   const [token, setToken] = useState("");
 
@@ -38,16 +36,16 @@ export default function HomeScreen(props) {
 
       if (value !== null) {
         setToken(value);
-        alert(value);
+        alert(getCardData());
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  const getUserData = async () => {
+  const getCardData = async () => {
     try {
-      const response = await axios.get("/user", {
+      const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
       });
       console.log(response.data);
