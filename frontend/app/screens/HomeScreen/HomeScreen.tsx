@@ -10,7 +10,6 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import cardData from "../../constants/cardData";
 import profData from "../../constants/profileData";
 const background = require("../../assets/background.png");
 
@@ -56,7 +55,6 @@ export default function HomeScreen(props) {
     } catch (err) {
       console.log(err);
     }
-
   }
 
   useEffect(() => {
