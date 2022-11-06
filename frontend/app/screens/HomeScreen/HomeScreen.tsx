@@ -48,7 +48,7 @@ export default function HomeScreen(props) {
   const getUserData = async () => {
     try {
       const response = await axios.get("/user", {
-        headers: { Authentication: "Bearer " + token }
+        headers: { Authorization: "Bearer " + token }
       });
       console.log(response.data);
     } catch (err) {

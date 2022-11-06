@@ -9,7 +9,7 @@ const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhhc3NhbkBnbWFpbC5jb20iLCJpYXQiOjE2NjY4MjY0NjYsImV4cCI6Mzc2NjY4MjI4NjZ9.ge6j1PAgkva95DL-cceStlJEBBoXoM7yxL5m4MUey48";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhhc3NhbkBnbWFpbC5jb20iLCJpYXQiOjE2Njc2OTQwMDEsImV4cCI6Mzc2Njc2OTA0MDF9.k2iRwHz8_W1Uicb1LJR_B6cblxarN8KuXqsPGNR3T-k";
 
 const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw90 = (Dimensions.get('window').width / 10) * 9;
