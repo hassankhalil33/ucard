@@ -21,10 +21,10 @@ export default function ContactsScreen(props) {
     return (
       <View style={styles.profile}>
         <CardComponent
+          category={item.category}
           name={item.name}
           profession={item.profession}
           description={"hold to share"}
-          color={item.color}
         />
       </View>
     )

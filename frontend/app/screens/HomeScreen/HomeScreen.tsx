@@ -67,7 +67,7 @@ export default function HomeScreen(props) {
         <CardComponent
           name={item.name}
           profession={item.profession}
-          description={"tap to share"}
+          description={"hold for NFC share"}
           width={vw100}
           height={vw60}
           normal={false}
