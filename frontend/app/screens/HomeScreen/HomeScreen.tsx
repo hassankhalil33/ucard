@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import axios from "../../utilities/axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
@@ -25,7 +27,37 @@ const vw80 = (Dimensions.get('window').width / 10) * 8;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
+
+
 export default function HomeScreen(props) {
+  const [token, setToken] = useState("");
+
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@storage_Key");
+
+      if (value !== null) {
+        setToken(value);
+        alert(value);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const getUserData = async () => {
+    try {
+      const response = await axios.get("/user", {
+        headers: { Authentication: "Bearer " + token }
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  getToken();
+
   const renderItems = ({ item, index }) => {
     return (
       <View style={styles.card}>
