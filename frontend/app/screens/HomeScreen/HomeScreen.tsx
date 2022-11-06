@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
@@ -28,23 +28,22 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const [token, setToken] = useState("");
   const { cardData, setCardData } = useContext(CardContext);
 
   const getToken = async () => {
     try {
       const value = await AsyncStorage.getItem("@storage_Key");
+      console.log(value);
 
       if (value !== null) {
-        setToken(value);
-        getCardData();
+        getCardData(value);
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  const getCardData = async () => {
+  const getCardData = async (token) => {
     try {
       const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
