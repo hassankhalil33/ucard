@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import profileData from "../../constants/profileData";
+import axios from "../../utilities/axios";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import UserContext from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 
 export default function ContactsScreen(props) {
-  const { followingData, setFollowingData } = useContext(UserContext);
+  const { followingData, setFollowingData, token } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),

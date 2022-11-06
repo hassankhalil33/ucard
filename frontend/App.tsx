@@ -8,7 +8,9 @@ import TabNavigationScreen from "./app/routes/TabNavigation";
 export default function App() {
   const [cardData, setCardData] = useState([]);
   const [followingData, setFollowingData] = useState([]);
-  const allData = { cardData, setCardData, followingData, setFollowingData };
+  const [token, setToken] = useState("");
+
+  const allData = { cardData, setCardData, followingData, setFollowingData, token, setToken };
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

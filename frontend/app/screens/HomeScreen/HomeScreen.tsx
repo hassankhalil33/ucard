@@ -28,15 +28,16 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const { cardData, setCardData } = useContext(CardContext);
+  const { cardData, setCardData, setFollowingData, setToken } = useContext(CardContext);
 
   const getToken = async () => {
     try {
       const value = await AsyncStorage.getItem("@storage_Key");
-      console.log(value);
 
       if (value !== null) {
+        setToken(value);
         getCardData(value);
+        getFollowingData(value);
       }
     } catch (e) {
       console.log(e);
@@ -51,6 +52,20 @@ export default function HomeScreen(props) {
 
       console.log(response.data);
       setCardData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getFollowingData = async (token) => {
+    try {
+      const response = await axios.get("/user/follow", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setFollowingData(response.data);
 
     } catch (err) {
       console.log(err);
