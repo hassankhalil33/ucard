@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
@@ -11,6 +11,7 @@ import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
+import CardContext from "../../utilities/CardContext";
 const background = require("../../assets/background.png");
 
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
@@ -28,7 +29,7 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 export default function HomeScreen(props) {
   const [token, setToken] = useState("");
-  const [cardData, setCardData] = useState([]);
+  const { cardData, setCardData } = useContext(CardContext);
 
   const getToken = async () => {
     try {
