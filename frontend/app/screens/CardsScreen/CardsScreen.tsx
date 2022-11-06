@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -6,9 +6,9 @@ import colors from "../../constants/pallete";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import cardData from "../../constants/cardData";
 import profData from "../../constants/profileData";
 import inputData from "../../constants/inputData";
+import CardContext from "../../utilities/CardContext";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -17,6 +17,8 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
+  const { cardData, setCardData } = useContext(CardContext);
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -30,14 +32,13 @@ export default function CardsScreen(props) {
     return (
       <View style={styles.card}>
         <CardComponent
-          color={item.color}
+          category={item.category}
           name={item.name}
           profession={item.profession}
-          description={item.description}
+          description={"hold to share"}
           width={vw100}
           height={vw60}
           normal={false}
-          logo={item.logo}
         />
       </View>
     );
