@@ -68,6 +68,7 @@ export default function HomeScreen(props) {
           height={vw60}
           normal={false}
           logo={item.logo}
+          category={item.category}
         />
       </View>
     );
