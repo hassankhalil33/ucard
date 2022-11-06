@@ -11,7 +11,7 @@ import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
-import CardContext from "../../utilities/UserContext";
+import UserContext from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 
 const vw5 = (Dimensions.get('window').width / 10) * 0.5;
@@ -28,7 +28,7 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const { cardData, setCardData, setFollowingData, setToken } = useContext(CardContext);
+  const { cardData, setCardData, setFollowingData, token, setToken } = useContext(UserContext);
 
   const getToken = async () => {
     try {
@@ -36,15 +36,13 @@ export default function HomeScreen(props) {
 
       if (value !== null) {
         setToken(value);
-        getCardData(value);
-        getFollowingData(value);
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  const getCardData = async (token) => {
+  const getCardData = async () => {
     try {
       const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
@@ -58,7 +56,7 @@ export default function HomeScreen(props) {
     }
   }
 
-  const getFollowingData = async (token) => {
+  const getFollowingData = async () => {
     try {
       const response = await axios.get("/user/follow", {
         headers: { Authorization: "Bearer " + token }
@@ -75,6 +73,11 @@ export default function HomeScreen(props) {
   useEffect(() => {
     getToken();
   }, []);
+
+  useEffect(() => {
+    getCardData();
+    getFollowingData();
+  }, [token]);
 
   const renderItems = ({ item, index }) => {
     return (
