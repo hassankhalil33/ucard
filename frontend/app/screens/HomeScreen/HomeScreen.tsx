@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
@@ -29,6 +29,7 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 export default function HomeScreen(props) {
   const [token, setToken] = useState("");
+  const [cardData, setCardData] = useState([]);
 
   const getToken = async () => {
     try {
@@ -36,7 +37,7 @@ export default function HomeScreen(props) {
 
       if (value !== null) {
         setToken(value);
-        alert(getCardData());
+        getCardData();
       }
     } catch (e) {
       console.log(e);
@@ -48,26 +49,30 @@ export default function HomeScreen(props) {
       const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
       });
+
       console.log(response.data);
+      setCardData(response.data);
+
     } catch (err) {
       console.log(err);
     }
+
   }
 
-  getToken();
+  useEffect(() => {
+    getToken();
+  }, []);
 
   const renderItems = ({ item, index }) => {
     return (
       <View style={styles.card}>
         <CardComponent
-          color={item.color}
           name={item.name}
           profession={item.profession}
-          description={item.description}
+          description={"tap to share"}
           width={vw100}
           height={vw60}
           normal={false}
-          logo={item.logo}
           category={item.category}
         />
       </View>
