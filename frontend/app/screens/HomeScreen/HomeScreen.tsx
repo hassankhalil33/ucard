@@ -28,47 +28,56 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
-  const { cardData, setCardData, setFollowingData, token, setToken } = useContext(UserContext);
+  const {
+    cardData,
+    setCardData,
+    setFollowingData,
+    token,
+    setToken,
+    getToken,
+    getCardData,
+    getFollowingData
+  } = useContext(UserContext);
 
-  const getToken = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@storage_Key");
+  // const getToken = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem("@storage_Key");
 
-      if (value !== null) {
-        setToken(value);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  //     if (value !== null) {
+  //       setToken(value);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
-  const getCardData = async () => {
-    try {
-      const response = await axios.get("/card", {
-        headers: { Authorization: "Bearer " + token }
-      });
+  // const getCardData = async () => {
+  //   try {
+  //     const response = await axios.get("/card", {
+  //       headers: { Authorization: "Bearer " + token }
+  //     });
 
-      console.log(response.data);
-      setCardData(response.data);
+  //     console.log(response.data);
+  //     setCardData(response.data);
 
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  const getFollowingData = async () => {
-    try {
-      const response = await axios.get("/user/follow", {
-        headers: { Authorization: "Bearer " + token }
-      });
+  // const getFollowingData = async () => {
+  //   try {
+  //     const response = await axios.get("/user/follow", {
+  //       headers: { Authorization: "Bearer " + token }
+  //     });
 
-      console.log(response.data);
-      setFollowingData(response.data);
+  //     console.log(response.data);
+  //     setFollowingData(response.data);
 
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   useEffect(() => {
     getToken();

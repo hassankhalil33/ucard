@@ -9,7 +9,7 @@ import UserContext from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 
 export default function ContactsScreen(props) {
-  const { followingData, setFollowingData, token } = useContext(UserContext);
+  const { followingData, setFollowingData, token, getFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -19,6 +19,10 @@ export default function ContactsScreen(props) {
   if (!fontsLoaded) {
     return null;
   }
+
+  // useEffect(() => {
+  //   getFollowingData();
+  // }, [token])
 
   const renderItems = ({ item }) => {
     return (
