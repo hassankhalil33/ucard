@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import CardContext from "./app/utilities/CardContext";
+import UserContext from "./app/utilities/UserContext";
 import WelcomeStackScreen from "./app/routes/WelcomeStack";
 import TabNavigationScreen from "./app/routes/TabNavigation";
 
 export default function App() {
   const [cardData, setCardData] = useState([]);
+  const [followingData, setFollowingData] = useState([]);
+  const allData = { cardData, setCardData, followingData, setFollowingData };
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <CardContext.Provider value={{ cardData, setCardData }}>
+      <UserContext.Provider value={allData}>
         <NavigationContainer>
           <TabNavigationScreen />
         </NavigationContainer>
-      </CardContext.Provider>
+      </UserContext.Provider>
     </GestureHandlerRootView>
   )
 }

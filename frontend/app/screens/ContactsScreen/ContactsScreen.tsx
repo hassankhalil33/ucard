@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import profileData from "../../constants/profileData";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import UserContext from "../../utilities/UserContext";
 const background = require("../../assets/background.png");
 
 export default function ContactsScreen(props) {
+  const { followingData, setFollowingData } = useContext(UserContext);
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -21,9 +24,9 @@ export default function ContactsScreen(props) {
     return (
       <View style={styles.profile}>
         <CardComponent
-          category={item.category}
-          name={item.name}
-          profession={item.profession}
+          category={item.card_id.category}
+          name={item.card_id.name}
+          profession={item.card_id.profession}
           description={"hold to share"}
         />
       </View>
@@ -41,7 +44,7 @@ export default function ContactsScreen(props) {
 
       <View style={styles.innerContainer}>
         <FlatList
-          data={profileData}
+          data={followingData}
           renderItem={renderItems}
           showsVerticalScrollIndicator={false}
         />
