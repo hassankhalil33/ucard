@@ -1,4 +1,4 @@
-import React, { useRef, FC } from 'react';
+import React, { useRef, FC, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { TextInput } from "@react-native-material/core";
@@ -28,6 +28,7 @@ interface ModalComponentProps {
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
   const { title, content, height, defHeight, cardScreen, value, label, updateCard, deleteCard } = props;
+  const [thisValue, setThisValue] = useState("Beirut");
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -118,7 +119,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Name"}
                 value={content.cardName}
-                onChange={content.setCardName}
+                onChange={(text) => content.setCardName(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -127,7 +128,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Profession"}
                 value={content.cardProf}
-                onChange={content.setCardProf}
+                onChange={(text) => content.setCardProf(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -136,7 +137,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Email"}
                 value={content.cardEmail}
-                onChange={content.setCardEmail}
+                onChange={(text) => content.setCardEmail(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -145,7 +146,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Link"}
                 value={content.cardLink}
-                onChange={content.setCardLink}
+                onChange={(text) => content.setCardLink(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -153,8 +154,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Location"}
-                value={content.cardLocation}
-                onChange={content.setCardLocation}
+                value={thisValue}
+                onChange={(text) => setThisValue(text)}
               />
             </View>
             : content.map((item, index) => {

@@ -15,6 +15,7 @@ interface UserProviderStore {
   postFollowingData: Function;
   postCreateCard: Function;
   deleteCard: Function;
+  putCard: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -94,6 +95,21 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const putCard = async (cardId, updateData) => {
+    try {
+      const response = await axios.put("/card", {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        data: updateData
+      });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const deleteCard = async (cardId) => {
     try {
       const response = await axios.delete("/card", {
@@ -123,7 +139,8 @@ export const UserProvider = ({ children }) => {
     getFollowingData,
     postFollowingData,
     postCreateCard,
-    deleteCard
+    deleteCard,
+    putCard
   };
 
   return (

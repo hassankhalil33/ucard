@@ -26,7 +26,7 @@ export default function CardsScreen(props) {
     location: string;
   }
 
-  const { token, cardData, postCreateCard, getCardData, setCardData, deleteCard } = useContext(UserContext);
+  const { token, cardData, postCreateCard, getCardData, setCardData, deleteCard, putCard } = useContext(UserContext);
   const [currentCard, setCurrentCard] = useState(cardData[0] as cardDataType);
   const [cardName, setCardName] = useState(currentCard.name);
   const [cardProf, setCardProf] = useState(currentCard.profession);
@@ -58,6 +58,14 @@ export default function CardsScreen(props) {
   }
 
   const handleUpdateButton = async () => {
+    // const data = {
+    //   name: JSON.stringify(cardName),
+    //   profession: JSON.stringify(cardProf),
+    //   email: JSON.stringify(cardEmail),
+    //   link: JSON.stringify(cardLink),
+    //   location: JSON.stringify(cardLocation)
+    // }
+
     const data = {
       name: cardName,
       profession: cardProf,
