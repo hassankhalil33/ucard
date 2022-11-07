@@ -13,6 +13,7 @@ interface UserProviderStore {
   getToken: Function;
   getCardData: Function;
   getFollowingData: Function;
+  postFollowingData: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
