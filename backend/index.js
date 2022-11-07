@@ -17,7 +17,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/card', cardRoutes);
 
-app.listen(process.env.PORT, "192.168.1.101", (err)=>{
+app.listen(process.env.PORT, "192.168.1.100", (err)=>{
   if(err) throw err;
   console.log(`server running on port ${process.env.PORT}`);
 })
