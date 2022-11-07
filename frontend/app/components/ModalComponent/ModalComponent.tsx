@@ -117,7 +117,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Name"}
-                value={content.name}
+                value={content.cardName}
+                onChange={content.setCardName}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -125,7 +126,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Profession"}
-                value={content.profession}
+                value={content.cardProf}
+                onChange={content.setCardProf}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -133,7 +135,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Email"}
-                value={content.email}
+                value={content.cardEmail}
+                onChange={content.setCardEmail}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -141,7 +144,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Link"}
-                value={content.link}
+                value={content.cardLink}
+                onChange={content.setCardLink}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -149,7 +153,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Location"}
-                value={content.location}
+                value={content.cardLocation}
+                onChange={content.setCardLocation}
               />
             </View>
             : content.map((item, index) => {

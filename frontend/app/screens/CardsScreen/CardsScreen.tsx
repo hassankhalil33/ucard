@@ -17,12 +17,30 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
-  type cardData = {
+  type cardDataType = {
     _id: string;
+    name: string;
+    profession: string;
+    email: string;
+    link: string;
+    location: string;
   }
 
   const { token, cardData, postCreateCard, getCardData, setCardData, deleteCard } = useContext(UserContext);
-  const [currentCard, setCurrentCard] = useState(cardData[0] as cardData);
+  const [currentCard, setCurrentCard] = useState(cardData[0] as cardDataType);
+  const [cardName, setCardName] = useState(currentCard.name);
+  const [cardProf, setCardProf] = useState(currentCard.profession);
+  const [cardEmail, setCardEmail] = useState(currentCard.email);
+  const [cardLink, setCardLink] = useState(currentCard.link);
+  const [cardLocation, setCardLocation] = useState(currentCard.location);
+
+  const allUseStateData = {
+    cardName, setCardName,
+    cardProf, setCardProf,
+    cardEmail, setCardEmail,
+    cardLink, setCardLink,
+    cardLocation, setCardLocation
+  }
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -40,7 +58,17 @@ export default function CardsScreen(props) {
   }
 
   const handleUpdateButton = async () => {
-    await putCard();
+    const data = {
+      name: cardName,
+      profession: cardProf,
+      email: cardEmail,
+      link: cardLink,
+      location: cardLocation
+    }
+
+    console.log(data);
+
+    await putCard(currentCard._id, data);
     getCardData();
     alert("Card Updated!");
   }
@@ -98,7 +126,7 @@ export default function CardsScreen(props) {
 
       <ModalComponent
         title={"Card Details"}
-        content={currentCard}
+        content={allUseStateData}
         defHeight={"40%"}
         cardScreen={true}
         height={vh165}
