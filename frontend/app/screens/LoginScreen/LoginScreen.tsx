@@ -47,7 +47,6 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.form}>
         <LoginForm
           title={"Sign In"}
-          arrayOfFields={["Email", "Password"]}
           buttonTitle={"LOGIN"}
           buttonColor={colors.blue}
           press={() => storeData(token)}

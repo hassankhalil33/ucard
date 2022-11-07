@@ -7,14 +7,13 @@ import InputField from "../InputField/InputField";
 
 interface LoginFormProps {
   title: string,
-  [arrayOfFields: string]: any,
   buttonTitle: string,
   buttonColor: string,
   press: Function
 }
 
 const LoginForm: FC<LoginFormProps> = (props) => {
-  const { title, arrayOfFields, buttonTitle, buttonColor, press } = props;
+  const { title, buttonTitle, buttonColor, press } = props;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -30,14 +29,13 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
 
-      {arrayOfFields.map((field, index) => {
-        return (
-          <InputField
-            key={index}
-            placeholder={field}
-          />
-        )
-      })}
+      <InputField
+        placeholder={"Email"}
+      />
+
+      <InputField
+        placeholder={"Password"}
+      />
 
       <View style={styles.button}>
         <MyButton
