@@ -1,4 +1,4 @@
-import axios from "./axios";
+import axios from "../utilities/axios";
 
 const getCardData = async () => {
   try {

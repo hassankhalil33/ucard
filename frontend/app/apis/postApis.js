@@ -1,4 +1,4 @@
-import axios from "./axios";
+import axios from "../utilities/axios";
 
 const postFollowingData = async (data) => {
   try {
