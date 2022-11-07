@@ -8,7 +8,7 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
 import inputData from "../../constants/inputData";
-import { UserContext } from "../../utilities/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
