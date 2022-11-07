@@ -1,7 +1,8 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import { StyleSheet, TextInput } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
+import { useFocusEffect } from "@react-navigation/native";
 
 interface InputFieldProps {
   placeholder: string;
@@ -10,6 +11,12 @@ interface InputFieldProps {
 }
 
 const InputField: FC<InputFieldProps> = ({ placeholder, value, setValue }) => {
+  const [thisValue, setThisValue] = useState("Lara");
+
+  useEffect(() => {
+    console.log(thisValue);
+  }, [thisValue])
+
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
   });
@@ -24,7 +31,7 @@ const InputField: FC<InputFieldProps> = ({ placeholder, value, setValue }) => {
       placeholder={placeholder}
       placeholderTextColor={"#989CA0"}
       value={value}
-      onChangeText={() => setValue()}
+      onChangeText={(text) => setValue(text)}
     />
   )
 }

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
@@ -17,6 +18,19 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [conPassword, setConPassword] = useState("");
   const [location, setLocation] = useState("");
+  const { postRegister } = useContext(UserContext);
+
+  const handleRegisterButton = async () => {
+    const data = {
+      name: name,
+      email: email,
+      password: password,
+      location: location
+    }
+
+    await postRegister(data);
+    alert("Registered Successfully!");
+  }
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -51,7 +65,7 @@ export default function RegisterScreen({ navigation }) {
             conPassword, setConPassword,
             location, setLocation
           }}
-          press={() => alert("Registered!")}
+          press={handleRegisterButton}
         />
       </View>
 
