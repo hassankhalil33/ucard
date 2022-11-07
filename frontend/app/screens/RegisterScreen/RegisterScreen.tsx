@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "rea
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
@@ -35,9 +35,8 @@ export default function RegisterScreen({ navigation }) {
       <Image style={styles.logo} source={logo} />
 
       <View style={styles.form}>
-        <LoginForm
+        <RegisterForm
           title={"Create Account"}
-          arrayOfFields={["Name", "Email", "Password", "Confirm Password", "Location"]}
           buttonTitle={"REGISTER"}
           buttonColor={colors.orange}
           press={() => alert("Registered!")}
