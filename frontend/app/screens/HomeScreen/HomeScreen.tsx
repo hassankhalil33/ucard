@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import axios from "../../utilities/axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
@@ -44,8 +42,8 @@ export default function HomeScreen(props) {
   }, []);
 
   useEffect(() => {
-    getCardData();
-    getFollowingData();
+    getCardData(token, setCardData);
+    getFollowingData(token, setFollowingData);
   }, [token]);
 
   const renderItems = ({ item, index }) => {

@@ -1,6 +1,6 @@
 import axios from "../utilities/axios";
 
-const getCardData = async () => {
+const getCardData = async (token, setCardData) => {
   try {
     const response = await axios.get("/card", {
       headers: { Authorization: "Bearer " + token }
@@ -14,7 +14,7 @@ const getCardData = async () => {
   }
 }
 
-const getFollowingData = async () => {
+const getFollowingData = async (token, setFollowingData) => {
   try {
     const response = await axios.get("/user/follow", {
       headers: { Authorization: "Bearer " + token }
