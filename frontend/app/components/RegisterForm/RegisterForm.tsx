@@ -6,14 +6,15 @@ import MyButton from "../MyButton/MyButton";
 import InputField from "../InputField/InputField";
 
 interface RegisterFormProps {
-  title: string,
-  buttonTitle: string,
-  buttonColor: string,
-  press: Function
+  title: string;
+  buttonTitle: string;
+  buttonColor: string;
+  press: Function;
+  states: object;
 }
 
 const RegisterForm: FC<RegisterFormProps> = (props) => {
-  const { title, buttonTitle, buttonColor, press } = props;
+  const { title, buttonTitle, buttonColor, press, states } = props;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),

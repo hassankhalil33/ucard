@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
@@ -12,6 +12,11 @@ const vw10 = (Dimensions.get('window').width / 10) * 1;
 const vw90 = (Dimensions.get('window').width / 10) * 9;
 
 export default function RegisterScreen({ navigation }) {
+  const [name, setName] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [conPassword, setconPassword] = useState("");
+  const [location, setlocation] = useState("");
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -39,6 +44,13 @@ export default function RegisterScreen({ navigation }) {
           title={"Create Account"}
           buttonTitle={"REGISTER"}
           buttonColor={colors.orange}
+          states={{
+            name, setName,
+            email, setemail,
+            password, setpassword,
+            conPassword, setconPassword,
+            location, setlocation
+          }}
           press={() => alert("Registered!")}
         />
       </View>
