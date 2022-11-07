@@ -7,9 +7,20 @@ const postFollowingData = async (data) => {
       {
         headers: { Authorization: "Bearer " + token }
       });
-
     console.log(response.data);
-    setFollowingData(response.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const postCreateCard = async () => {
+  try {
+    const response = await axios.post("/card",
+      {
+        headers: { Authorization: "Bearer " + token }
+      });
+    console.log(response.data);
 
   } catch (err) {
     console.log(err);
@@ -17,5 +28,6 @@ const postFollowingData = async (data) => {
 }
 
 export {
-  postFollowingData
+  postFollowingData,
+  postCreateCard
 }
