@@ -24,7 +24,7 @@ const InputField: FC<InputFieldProps> = ({ placeholder, value, setValue }) => {
       placeholder={placeholder}
       placeholderTextColor={"#989CA0"}
       value={value}
-      onChangeText={setValue}
+      onChangeText={() => setValue()}
     />
   )
 }
