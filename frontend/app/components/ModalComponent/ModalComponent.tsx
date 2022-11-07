@@ -141,6 +141,16 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           </View>
         }
 
+        {cardScreen &&
+          <View style={styles().button2}>
+            <MyButton
+              title={"Delete Card"}
+              color={colors.primary}
+              press={() => alert("Card Deleted Successfully!")}
+            />
+          </View>
+        }
+
       </Modalize>
     </>
   );
@@ -207,7 +217,14 @@ const styles = (defHeight = "12%", cardScreen = false) => StyleSheet.create({
     flex: 1,
     alignSelf: "center",
     width: "100%",
-    paddingBottom: "22%"
+    paddingBottom: "2%"
+  },
+
+  button2: {
+    flex: 1,
+    alignSelf: "center",
+    width: "100%",
+    paddingBottom: "25%"
   }
 });
 
