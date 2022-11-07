@@ -1,6 +1,6 @@
 import axios from "../utilities/axios";
 
-const postFollowingData = async (data) => {
+const postFollowingData = async (token, data) => {
   try {
     const response = await axios.post("/user/follow",
       data,
@@ -14,9 +14,12 @@ const postFollowingData = async (data) => {
   }
 }
 
-const postCreateCard = async () => {
+const postCreateCard = async (token) => {
   try {
     const response = await axios.post("/card",
+      {
+        null: null
+      },
       {
         headers: { Authorization: "Bearer " + token }
       });
