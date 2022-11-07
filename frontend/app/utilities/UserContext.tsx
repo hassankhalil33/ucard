@@ -61,11 +61,13 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  const postFollowingData = async () => {
+  const postFollowingData = async (data) => {
     try {
-      const response = await axios.post("/user/follow", {
-        headers: { Authorization: "Bearer " + token }
-      });
+      const response = await axios.post("/user/follow",
+        data,
+        {
+          headers: { Authorization: "Bearer " + token }
+        });
 
       console.log(response.data);
       setFollowingData(response.data);
