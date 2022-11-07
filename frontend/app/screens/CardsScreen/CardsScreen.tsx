@@ -28,8 +28,8 @@ export default function CardsScreen(props) {
     return null;
   }
 
-  const handleAddButton = () => {
-    postCreateCard();
+  const handleAddButton = async () => {
+    await postCreateCard();
     getCardData();
     alert("New Card Added!");
   }
