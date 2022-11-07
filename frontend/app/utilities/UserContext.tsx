@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "./axios";
+import { getCardData, getFollowingData } from "../apis/getApis";
+import { postFollowingData } from "../apis/postApis";
 
 interface UserProviderStore {
   cardData: object[];
@@ -33,22 +34,6 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  const postFollowingData = async (data) => {
-    try {
-      const response = await axios.post("/user/follow",
-        data,
-        {
-          headers: { Authorization: "Bearer " + token }
-        });
-
-      console.log(response.data);
-      setFollowingData(response.data);
-
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   const allData = {
     cardData,
     setCardData,
@@ -58,7 +43,8 @@ export const UserProvider = ({ children }) => {
     setToken,
     getToken,
     getCardData,
-    getFollowingData
+    getFollowingData,
+    postFollowingData
   };
 
   return (

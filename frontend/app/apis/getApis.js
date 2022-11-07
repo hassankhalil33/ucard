@@ -27,3 +27,8 @@ const getFollowingData = async () => {
     console.log(err);
   }
 }
+
+export {
+  getCardData,
+  getFollowingData
+}
