@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -17,7 +17,12 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
-  const { token, cardData, postCreateCard, getCardData, setCardData } = useContext(UserContext);
+  type cardData = {
+    _id: string;
+  }
+
+  const { token, cardData, postCreateCard, getCardData, setCardData, deleteCard } = useContext(UserContext);
+  const [currentCard, setCurrentCard] = useState(cardData[0] as cardData);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -36,11 +41,14 @@ export default function CardsScreen(props) {
 
   const handleUpdateButton = async () => {
     await putCard();
+    getCardData();
     alert("Card Updated!");
   }
 
   const handleDeleteButton = async () => {
-    await deleteCard();
+    console.log(currentCard._id);
+    await deleteCard(currentCard._id);
+    getCardData();
     alert("Card Deleted!");
   }
 
@@ -84,12 +92,13 @@ export default function CardsScreen(props) {
           data={cardData}
           renderItem={renderItems}
           mode={"parallax"}
+          onSnapToItem={(index) => setCurrentCard(cardData[index])}
         />
       </View>
 
       <ModalComponent
         title={"Card Details"}
-        content={inputData}
+        content={currentCard}
         defHeight={"40%"}
         cardScreen={true}
         height={vh165}

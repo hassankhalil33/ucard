@@ -109,28 +109,61 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         }
 
         <View style={{ paddingBottom: "20%", marginTop: cardScreen && "8%" }}>
-          {content.map((item, index) => {
-            return (
-              cardScreen ?
-                <TextInput
-                  key={index}
-                  style={{ marginBottom: 10 }}
-                  color={colors.blue}
-                  inputStyle={{ color: colors.primary }}
-                  variant="outlined"
-                  label={item.label}
-                  value={item.value} />
-                :
-                <ProfileComponent
-                  key={index}
-                  name={item.name}
-                  profession={item.profession}
-                  timestamp={item.timestamp}
-                  dark={true}
-                  margin={20}
-                />
-            )
-          })}
+
+          {cardScreen ?
+            <View>
+              <TextInput
+                style={{ marginBottom: 10 }}
+                color={colors.blue}
+                inputStyle={{ color: colors.primary }}
+                variant="outlined"
+                label={"Name"}
+                value={content.name}
+              />
+              <TextInput
+                style={{ marginBottom: 10 }}
+                color={colors.blue}
+                inputStyle={{ color: colors.primary }}
+                variant="outlined"
+                label={"Profession"}
+                value={content.profession}
+              />
+              <TextInput
+                style={{ marginBottom: 10 }}
+                color={colors.blue}
+                inputStyle={{ color: colors.primary }}
+                variant="outlined"
+                label={"Email"}
+                value={content.email}
+              />
+              <TextInput
+                style={{ marginBottom: 10 }}
+                color={colors.blue}
+                inputStyle={{ color: colors.primary }}
+                variant="outlined"
+                label={"Link"}
+                value={content.link}
+              />
+              <TextInput
+                style={{ marginBottom: 10 }}
+                color={colors.blue}
+                inputStyle={{ color: colors.primary }}
+                variant="outlined"
+                label={"Location"}
+                value={content.location}
+              />
+            </View>
+            :
+            content.map((item, index) => {
+              <ProfileComponent
+                key={index}
+                name={item.name}
+                profession={item.profession}
+                timestamp={item.timestamp}
+                dark={true}
+                margin={20}
+              />
+            })}
         </View>
 
         {cardScreen &&

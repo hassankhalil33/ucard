@@ -14,6 +14,7 @@ interface UserProviderStore {
   getFollowingData: Function;
   postFollowingData: Function;
   postCreateCard: Function;
+  deleteCard: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -93,6 +94,23 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const deleteCard = async (cardId) => {
+    try {
+      const response = await axios.delete("/card", {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        data: {
+          id: cardId
+        }
+      });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const allData = {
     cardData,
     setCardData,
@@ -104,7 +122,8 @@ export const UserProvider = ({ children }) => {
     getCardData,
     getFollowingData,
     postFollowingData,
-    postCreateCard
+    postCreateCard,
+    deleteCard
   };
 
   return (
