@@ -109,7 +109,6 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         }
 
         <View style={{ paddingBottom: "20%", marginTop: cardScreen && "8%" }}>
-
           {cardScreen ?
             <View>
               <TextInput
@@ -153,17 +152,19 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 value={content.location}
               />
             </View>
-            :
-            content.map((item, index) => {
-              <ProfileComponent
-                key={index}
-                name={item.name}
-                profession={item.profession}
-                timestamp={item.timestamp}
-                dark={true}
-                margin={20}
-              />
-            })}
+            : content.map((item, index) => {
+              return (
+                <ProfileComponent
+                  key={index}
+                  name={item.name}
+                  profession={item.profession}
+                  timestamp={item.timestamp}
+                  dark={true}
+                  margin={20}
+                />
+              )
+            })
+          }
         </View>
 
         {cardScreen &&
