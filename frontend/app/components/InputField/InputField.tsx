@@ -4,12 +4,12 @@ import colors from "../../constants/pallete";
 import { useFonts } from 'expo-font';
 
 interface InputFieldProps {
-  placeholder: string,
+  placeholder: string;
+  value: string;
+  setValue: Function;
 }
 
-const InputField: FC<InputFieldProps> = ({ placeholder }) => {
-  const [text, setText] = useState("");
-
+const InputField: FC<InputFieldProps> = ({ placeholder, value, setValue }) => {
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
   });
@@ -23,8 +23,8 @@ const InputField: FC<InputFieldProps> = ({ placeholder }) => {
       style={styles.field}
       placeholder={placeholder}
       placeholderTextColor={"#989CA0"}
-      value={text}
-      onChangeText={setText}
+      value={value}
+      onChangeText={setValue}
     />
   )
 }
