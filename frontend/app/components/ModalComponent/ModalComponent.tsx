@@ -15,17 +15,19 @@ const vh40 = (Dimensions.get('window').height / 10) * 4.7;
 const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 interface ModalComponentProps {
-  title?: string,
-  content: any,
-  height?: number,
-  defHeight?: string,
-  cardScreen?: boolean,
-  value?: string,
-  label?: string
+  title?: string;
+  content: any;
+  height?: number;
+  defHeight?: string;
+  cardScreen?: boolean;
+  value?: string;
+  label?: string;
+  updateCard?: Function;
+  deleteCard?: Function;
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, defHeight, cardScreen, value, label } = props;
+  const { title, content, height, defHeight, cardScreen, value, label, updateCard, deleteCard } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -136,7 +138,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
             <MyButton
               title={"Update Card"}
               color={colors.primary}
-              press={() => alert("Card Updated Successfully!")}
+              press={updateCard}
             />
           </View>
         }
@@ -146,7 +148,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
             <MyButton
               title={"Delete Card"}
               color={colors.primary}
-              press={() => alert("Card Deleted Successfully!")}
+              press={deleteCard}
             />
           </View>
         }

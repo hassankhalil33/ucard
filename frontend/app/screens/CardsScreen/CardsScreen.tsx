@@ -34,10 +34,21 @@ export default function CardsScreen(props) {
     alert("New Card Added!");
   }
 
+  const handleUpdateButton = async () => {
+    await putCard();
+    alert("Card Updated!");
+  }
+
+  const handleDeleteButton = async () => {
+    await deleteCard();
+    alert("Card Deleted!");
+  }
+
   const renderItems = ({ item, index }) => {
     return (
       <View style={styles.card}>
         <CardComponent
+          key={item._id}
           category={item.category}
           name={item.name}
           profession={item.profession}
@@ -82,6 +93,8 @@ export default function CardsScreen(props) {
         defHeight={"40%"}
         cardScreen={true}
         height={vh165}
+        updateCard={handleUpdateButton}
+        deleteCard={handleDeleteButton}
       />
 
       <StatusBar style="light" />
