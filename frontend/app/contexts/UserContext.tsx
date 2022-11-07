@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCardData, getFollowingData } from "../apis/getApis";
-import { postFollowingData } from "../apis/postApis";
+import { postFollowingData, postCreateCard } from "../apis/postApis";
 
 interface UserProviderStore {
   cardData: object[];
@@ -14,6 +14,7 @@ interface UserProviderStore {
   getCardData: Function;
   getFollowingData: Function;
   postFollowingData: Function;
+  postCreateCard: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -45,7 +46,8 @@ export const UserProvider = ({ children }) => {
     getToken,
     getCardData,
     getFollowingData,
-    postFollowingData
+    postFollowingData,
+    postCreateCard
   };
 
   return (

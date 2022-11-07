@@ -17,7 +17,7 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
-  const { cardData, setCardData } = useContext(UserContext);
+  const { cardData, postCreateCard } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
