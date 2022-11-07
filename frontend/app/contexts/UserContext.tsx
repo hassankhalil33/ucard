@@ -16,6 +16,7 @@ interface UserProviderStore {
   postCreateCard: Function;
   deleteCard: Function;
   putCard: Function;
+  postRegister: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -34,6 +35,16 @@ export const UserProvider = ({ children }) => {
       }
     } catch (e) {
       console.log(e);
+    }
+  }
+
+  const postRegister = async (data) => {
+    try {
+      const response = await axios.post("/auth/register", data);
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -140,7 +151,8 @@ export const UserProvider = ({ children }) => {
     postFollowingData,
     postCreateCard,
     deleteCard,
-    putCard
+    putCard,
+    postRegister
   };
 
   return (
