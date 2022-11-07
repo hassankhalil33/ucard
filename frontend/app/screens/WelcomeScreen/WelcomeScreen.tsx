@@ -35,10 +35,10 @@ export default function WelcomeScreen(props) {
         transform: [{ rotate: "-20.2deg" }]
       }}>
         <CardComponent
+          category={"business"}
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
-          color={colors.orange}
           height={249}
           width={417}
           normal={false}
@@ -51,10 +51,10 @@ export default function WelcomeScreen(props) {
         transform: [{ rotate: "24.64deg" }]
       }}>
         <CardComponent
+          category={"personal"}
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
-          logo={cardLogoBlue}
           height={218}
           width={365}
           normal={false}
