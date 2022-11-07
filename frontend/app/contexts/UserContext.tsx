@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getCardData, getFollowingData } from "../apis/getApis";
-import { postFollowingData, postCreateCard } from "../apis/postApis";
+import axios from "../utilities/axios";
 
 interface UserProviderStore {
   cardData: object[];
@@ -33,6 +32,64 @@ export const UserProvider = ({ children }) => {
       }
     } catch (e) {
       console.log(e);
+    }
+  }
+
+  const getCardData = async () => {
+    try {
+      const response = await axios.get("/card", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setCardData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getFollowingData = async () => {
+    try {
+      const response = await axios.get("/user/follow", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setFollowingData(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const postFollowingData = async (data) => {
+    try {
+      const response = await axios.post("/user/follow",
+        data,
+        {
+          headers: { Authorization: "Bearer " + token }
+        });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const postCreateCard = async () => {
+    try {
+      const response = await axios.post("/card",
+        {
+          null: null
+        },
+        {
+          headers: { Authorization: "Bearer " + token }
+        });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
     }
   }
 

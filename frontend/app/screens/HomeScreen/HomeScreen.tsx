@@ -42,8 +42,8 @@ export default function HomeScreen(props) {
   }, []);
 
   useEffect(() => {
-    getCardData(token, setCardData);
-    getFollowingData(token, setFollowingData);
+    getCardData();
+    getFollowingData();
   }, [token]);
 
   const renderItems = ({ item, index }) => {

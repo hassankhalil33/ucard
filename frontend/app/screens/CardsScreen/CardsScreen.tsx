@@ -17,7 +17,7 @@ const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 export default function CardsScreen(props) {
-  const { token, cardData, postCreateCard } = useContext(UserContext);
+  const { token, cardData, postCreateCard, getCardData, setCardData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -29,7 +29,8 @@ export default function CardsScreen(props) {
   }
 
   const handleAddButton = () => {
-    postCreateCard(token);
+    postCreateCard();
+    getCardData();
     alert("New Card Added!");
   }
 
