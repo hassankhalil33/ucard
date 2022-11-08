@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import colors from "../../constants/pallete";
+import { Text, View } from "react-native";
 import { useFonts } from 'expo-font';
+import styles from "./styles";
 import MyButton from "../MyButton/MyButton";
 import InputField from "../InputField/InputField";
 
@@ -35,8 +35,6 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
     location, setLocation } = states as stateType;
 
   const [fontsLoaded] = useFonts({
-    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
-    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
 
@@ -45,8 +43,8 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+    <View style={styles().container}>
+      <Text style={styles("Poppins-Bold").title}>{title}</Text>
 
       <InputField
         placeholder={"Name"}
@@ -78,7 +76,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
         setValue={setLocation}
       />
 
-      <View style={styles.button}>
+      <View style={styles().button}>
         <MyButton
           title={buttonTitle}
           color={buttonColor}
@@ -89,32 +87,5 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.white,
-    borderRadius: 25,
-    paddingTop: 30,
-    paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
-    width: "100%"
-  },
-
-  title: {
-    color: colors.primary,
-    marginBottom: 20,
-    fontFamily: "Poppins-Bold",
-    fontSize: 20,
-    lineHeight: 30,
-  },
-
-  button: {
-    width: "100%",
-    marginTop: 30
-  }
-})
 
 export default RegisterForm
