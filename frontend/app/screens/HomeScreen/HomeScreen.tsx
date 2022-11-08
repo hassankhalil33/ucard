@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
+import React, { useEffect, useContext, useState } from "react";
+import { StyleSheet, Text, View, Image, FlatList, Dimensions } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -26,6 +26,8 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen(props) {
+  const [searchText, setSearchText] = useState("");
+
   const {
     cardData,
     setCardData,
@@ -118,7 +120,11 @@ export default function HomeScreen(props) {
       <View style={styles.lowerHalf}>
 
         <View style={styles.search}>
-          <InputField placeholder={"Search"} />
+          <InputField
+            placeholder={"Search"}
+            value={searchText}
+            setValue={setSearchText}
+          />
         </View>
 
         <View style={styles.suggestedView}>

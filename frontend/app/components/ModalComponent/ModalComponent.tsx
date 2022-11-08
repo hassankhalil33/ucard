@@ -1,9 +1,10 @@
-import React, { useRef, FC, useState } from 'react';
+import React, { useRef, FC } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
 import colors from "../../constants/pallete";
+import styles from './styles';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
@@ -21,21 +22,20 @@ interface ModalComponentProps {
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, defHeight, cardScreen, updateCard, deleteCard } = props;
-  const [thisValue, setThisValue] = useState("Beirut");
+  const { title, content, height, cardScreen, updateCard, deleteCard } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
+  console.log(content);
+
   const [fontsLoaded] = useFonts({
-    "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-
-  console.log(content);
 
   const onOpen = () => {
     modalizeRef.current?.open();
@@ -45,32 +45,11 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     modalizeRef.current?.close();
   };
 
-  // const renderItems = ({ item }) => {
-  //   return (
-  //     <>
-  //       <View style={styles().default}>
-  //         <Text style={styles().header}>Inside Recents</Text>
-  //         <TouchableOpacity style={{ width: 24, height: 12 }} onPress={onClose}>
-  //           <Image source={arrowDown} style={{ width: 12, height: 6 }} />
-  //         </TouchableOpacity>
-  //       </View>
-
-  //       <View style={styles().profile}>
-  //         <ProfileComponent
-  //           name={item.name}
-  //           profession={item.profession}
-  //           dark={true}
-  //         />
-  //       </View>
-  //     </>
-  //   )
-  // }
-
   return (
     <>
-      <View style={styles(defHeight).container}>
-        <View style={styles(defHeight).default}>
-          <Text style={styles().header}>{title}</Text>
+      <View style={styles().container}>
+        <View style={styles().default}>
+          <Text style={styles("Poppins-Medium").header}>{title}</Text>
           <TouchableOpacity style={{ padding: 20 }} onPress={onOpen}>
             <Image source={arrowUp} style={{ width: 12, height: 6 }} />
           </TouchableOpacity>
@@ -81,19 +60,12 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
       <Modalize
         withHandle={false}
-        modalStyle={styles(defHeight, cardScreen).modal}
+        modalStyle={styles().modal}
         modalHeight={height}
         ref={modalizeRef}
-
-      // flatListProps={{
-      //   data: profData,
-      //   renderItem: renderItems,
-      //   keyExtractor: (item, index) => "key" + index,
-      //   showsVerticalScrollIndicator: false
-      // }}
       >
         <View style={styles().innerView}>
-          <Text style={styles().header}>{title}</Text>
+          <Text style={styles("Poppins-Medium").header}>{title}</Text>
           <TouchableOpacity style={{ padding: 20 }} onPress={onClose}>
             <Image source={arrowDown} style={{ width: 12, height: 6, }} />
           </TouchableOpacity>
@@ -150,8 +122,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 inputStyle={{ color: colors.primary }}
                 variant="outlined"
                 label={"Location"}
-                value={thisValue}
-                onChangeText={(text) => setThisValue(text)}
+                value={content.cardLocation}
+                onChangeText={(text) => content.setCardLocation(text)}
               />
             </View>
             : content.map((item, index) => {
@@ -193,77 +165,5 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     </>
   );
 };
-
-const styles = (defHeight = "12%", cardScreen = false) => StyleSheet.create({
-  container: {
-    justifyContent: "flex-start",
-    alignContent: "center",
-    paddingLeft: 40,
-    paddingRight: 40,
-    paddingBottom: "15%",
-    backgroundColor: colors.white,
-    width: "100%",
-    borderRadius: 10,
-  },
-
-  default: {
-    marginTop: "5%",
-    marginBottom: 30,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  innerView: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    backgroundColor: colors.white,
-    width: "100%",
-    height: "12%",
-    marginBottom: "-10%"
-  },
-
-  header: {
-    fontFamily: "Poppins-Medium",
-    fontSize: 20,
-    lineHeight: 30,
-    color: colors.blue
-  },
-
-  modal: {
-    backgroundColor: colors.white,
-    width: "100%",
-    paddingTop: "6%",
-    paddingLeft: 40,
-    paddingRight: 40,
-    marginBottom: "-5%"
-  },
-
-  profile: {
-    marginTop: 15
-  },
-
-  image: {
-    width: 130,
-    height: 130,
-    alignSelf: "center",
-    marginBottom: 10
-  },
-
-  button: {
-    flex: 1,
-    alignSelf: "center",
-    width: "100%",
-    paddingBottom: "2%"
-  },
-
-  button2: {
-    flex: 1,
-    alignSelf: "center",
-    width: "100%",
-    paddingBottom: "25%"
-  }
-});
 
 export default ModalComponent

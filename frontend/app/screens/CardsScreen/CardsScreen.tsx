@@ -33,7 +33,7 @@ export default function CardsScreen() {
     putCard
   } = useContext(UserContext);
 
-  const defaultCard = cardData[0] ? cardData[0] : {}
+  const defaultCard = cardData[0] ? cardData[0] : { name: null, profession: null, email: null, link: null, location: null }
 
   const [currentCard, setCurrentCard] = useState(defaultCard as cardDataType);
   const [cardName, setCardName] = useState(currentCard.name);
@@ -142,7 +142,6 @@ export default function CardsScreen() {
       <ModalComponent
         title={"Card Details"}
         content={allUseStateData}
-        defHeight={"40%"}
         cardScreen={true}
         height={vh165}
         updateCard={handleUpdateButton}
