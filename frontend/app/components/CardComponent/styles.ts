@@ -1,7 +1,14 @@
 import { StyleSheet } from "react-native";
 import colors from "../../constants/pallete";
 
-const styles = (category = "personal", height = 200, width = 330, normal = true) => StyleSheet.create({
+const styles = (
+  fontFamily?,
+  category = "personal",
+  height = 200,
+  width = 330,
+  normal = true,
+) => StyleSheet.create({
+
   container: {
     padding: 30,
     height: height,
@@ -13,13 +20,13 @@ const styles = (category = "personal", height = 200, width = 330, normal = true)
   },
 
   desc: {
-    fontFamily: "Poppins-Regular",
+    fontFamily: fontFamily,
     color: colors.white,
     fontSize: 14
   },
 
   prof: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: fontFamily,
     color: colors.white,
     fontSize: 14,
     opacity: 0.5,
@@ -27,7 +34,7 @@ const styles = (category = "personal", height = 200, width = 330, normal = true)
   },
 
   name: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: fontFamily,
     color: colors.white,
     fontSize: 22,
   },

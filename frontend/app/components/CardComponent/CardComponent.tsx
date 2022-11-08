@@ -28,10 +28,10 @@ const CardComponent: FC<CardComponentProps> = (props) => {
   }
 
   return (
-    <View style={styles(category, height, width).container}>
-      <Text style={styles().desc}>{description}</Text>
-      <Text style={styles("0", 0, 0, normal).prof}>{profession}</Text>
-      <Text style={styles().name}>{name}</Text>
+    <View style={styles("0", category, height, width).container}>
+      <Text style={styles("Poppins-Regular").desc}>{description}</Text>
+      <Text style={styles("Poppins-Medium", "0", 0, 0, normal).prof}>{profession}</Text>
+      <Text style={styles("Poppins-Medium").name}>{name}</Text>
       <Image style={styles().logo} source={category == "personal" ? cardLogoBlue : cardLogoOrange} />
     </View>
   )
