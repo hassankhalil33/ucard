@@ -52,7 +52,13 @@ export default function CardsScreen(props) {
     cardLocation, setCardLocation
   }
 
-  console.log(currentCard)
+  useEffect(() => {
+    setCardName(currentCard.name);
+    setCardProf(currentCard.profession);
+    setCardEmail(currentCard.email);
+    setCardLink(currentCard.link);
+    setCardLocation(currentCard.location);
+  }, [currentCard])
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
