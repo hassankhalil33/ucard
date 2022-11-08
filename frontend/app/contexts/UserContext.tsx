@@ -120,12 +120,11 @@ export const UserProvider = ({ children }) => {
 
   const putCard = async (cardId, updateData) => {
     try {
-      const response = await axios.put("/card", {
-        headers: {
-          Authorization: "Bearer " + token
-        },
-        data: updateData
-      });
+      const response = await axios.put("/card",
+        updateData,
+        {
+          headers: { Authorization: "Bearer " + token },
+        });
       console.log(response.data);
 
     } catch (err) {

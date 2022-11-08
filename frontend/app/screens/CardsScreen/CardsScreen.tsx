@@ -26,8 +26,19 @@ export default function CardsScreen(props) {
     location: string;
   }
 
-  const { token, cardData, postCreateCard, getCardData, setCardData, deleteCard, putCard } = useContext(UserContext);
-  const [currentCard, setCurrentCard] = useState(cardData[0] as cardDataType);
+  const {
+    token,
+    cardData,
+    postCreateCard,
+    getCardData,
+    setCardData,
+    deleteCard,
+    putCard
+  } = useContext(UserContext);
+
+  const defaultCard = cardData[0] ? cardData[0] : {}
+
+  const [currentCard, setCurrentCard] = useState(defaultCard as cardDataType);
   const [cardName, setCardName] = useState(currentCard.name);
   const [cardProf, setCardProf] = useState(currentCard.profession);
   const [cardEmail, setCardEmail] = useState(currentCard.email);
@@ -67,6 +78,7 @@ export default function CardsScreen(props) {
     // }
 
     const data = {
+      id: currentCard._id,
       name: cardName,
       profession: cardProf,
       email: cardEmail,

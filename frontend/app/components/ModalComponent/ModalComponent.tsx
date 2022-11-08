@@ -119,7 +119,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Name"}
                 value={content.cardName}
-                onChange={(text) => content.setCardName(text)}
+                onChangeText={(text) => content.setCardName(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -128,7 +128,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Profession"}
                 value={content.cardProf}
-                onChange={(text) => content.setCardProf(text)}
+                onChangeText={(text) => content.setCardProf(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -137,7 +137,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Email"}
                 value={content.cardEmail}
-                onChange={(text) => content.setCardEmail(text)}
+                onChangeText={(text) => content.setCardEmail(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -146,7 +146,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Link"}
                 value={content.cardLink}
-                onChange={(text) => content.setCardLink(text)}
+                onChangeText={(text) => content.setCardLink(text)}
               />
               <TextInput
                 style={{ marginBottom: 10 }}
@@ -155,7 +155,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 variant="outlined"
                 label={"Location"}
                 value={thisValue}
-                onChange={(text) => setThisValue(text)}
+                onChangeText={(text) => setThisValue(text)}
               />
             </View>
             : content.map((item, index) => {
