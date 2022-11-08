@@ -113,20 +113,20 @@ export default function CardsScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles().container}>
 
-      <View style={styles.background}>
-        <Image style={styles.backgroundImage} source={background} />
+      <View style={styles().background}>
+        <Image style={styles().backgroundImage} source={background} />
       </View>
 
-      <Text style={styles.header}>Cards</Text>
+      <Text style={styles("Poppins-Bold").header}>Cards</Text>
 
-      <TouchableOpacity style={styles.addButtonContainer} onPress={handleAddButton}>
-        <Image source={addButton} style={styles.addButton} />
+      <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
+        <Image source={addButton} style={styles().addButton} />
       </TouchableOpacity>
 
-      <View style={styles.upperHalf}>
-        <Text style={styles.subHeader}>Your Cards</Text>
+      <View style={styles().upperHalf}>
+        <Text style={styles("Poppins-Medium").subHeader}>Your Cards</Text>
 
         <Carousel
           style={{ marginTop: -20, marginBottom: -20 }}

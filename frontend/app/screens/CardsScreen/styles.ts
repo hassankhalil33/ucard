@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import colors from "../../constants/pallete";
 
-const styles = StyleSheet.create({
+const styles = (fontFamily?) => StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    fontFamily: "Poppins-Bold",
+    fontFamily: fontFamily,
     fontSize: 24,
     color: colors.white,
     paddingTop: 75
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
   subHeader: {
     alignSelf: "flex-start",
-    fontFamily: "Poppins-Medium",
+    fontFamily: fontFamily,
     fontSize: 16,
     lineHeight: 24,
     color: colors.white,
