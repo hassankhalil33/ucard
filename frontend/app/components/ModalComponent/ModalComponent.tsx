@@ -41,6 +41,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     return null;
   }
 
+  console.log(content);
+
   const onOpen = () => {
     modalizeRef.current?.open();
   };

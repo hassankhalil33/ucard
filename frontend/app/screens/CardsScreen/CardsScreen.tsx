@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -6,8 +6,6 @@ import colors from "../../constants/pallete";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import profData from "../../constants/profileData";
-import inputData from "../../constants/inputData";
 import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
@@ -24,6 +22,7 @@ export default function CardsScreen(props) {
     email: string;
     link: string;
     location: string;
+    SetStateAction: Function;
   }
 
   const {
@@ -53,6 +52,8 @@ export default function CardsScreen(props) {
     cardLocation, setCardLocation
   }
 
+  console.log(currentCard)
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -69,14 +70,6 @@ export default function CardsScreen(props) {
   }
 
   const handleUpdateButton = async () => {
-    // const data = {
-    //   name: JSON.stringify(cardName),
-    //   profession: JSON.stringify(cardProf),
-    //   email: JSON.stringify(cardEmail),
-    //   link: JSON.stringify(cardLink),
-    //   location: JSON.stringify(cardLocation)
-    // }
-
     const data = {
       id: currentCard._id,
       name: cardName,
@@ -85,8 +78,6 @@ export default function CardsScreen(props) {
       link: cardLink,
       location: cardLocation
     }
-
-    console.log(data);
 
     await putCard(currentCard._id, data);
     getCardData();
@@ -140,7 +131,8 @@ export default function CardsScreen(props) {
           data={cardData}
           renderItem={renderItems}
           mode={"parallax"}
-          onSnapToItem={(index) => setCurrentCard(cardData[index])}
+          onSnapToItem={async (index) => await setCurrentCard(cardData[index] as cardDataType)}
+        // onSnapToItem={(index) => alert(index)}
         />
       </View>
 

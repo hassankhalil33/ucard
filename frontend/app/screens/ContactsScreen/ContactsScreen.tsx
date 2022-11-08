@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList, Dimensions } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import axios from "../../utilities/axios";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
