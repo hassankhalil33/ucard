@@ -1,18 +1,14 @@
 import React, { useRef, FC, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
 import colors from "../../constants/pallete";
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
-import CardsScreen from '../../screens/CardsScreen/CardsScreen';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
-
-const vh40 = (Dimensions.get('window').height / 10) * 4.7;
-const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 interface ModalComponentProps {
   title?: string;
@@ -20,14 +16,12 @@ interface ModalComponentProps {
   height?: number;
   defHeight?: string;
   cardScreen?: boolean;
-  value?: string;
-  label?: string;
   updateCard?: Function;
   deleteCard?: Function;
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, defHeight, cardScreen, value, label, updateCard, deleteCard } = props;
+  const { title, content, height, defHeight, cardScreen, updateCard, deleteCard } = props;
   const [thisValue, setThisValue] = useState("Beirut");
 
   const modalizeRef = useRef<Modalize>(null);
