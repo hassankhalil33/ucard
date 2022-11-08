@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import { UserContext } from "../../contexts/UserContext";
 import colors from "../../constants/pallete";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -14,23 +14,21 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
-export default function CardsScreen(props) {
-  type cardDataType = {
-    _id: string;
-    name: string;
-    profession: string;
-    email: string;
-    link: string;
-    location: string;
-    SetStateAction: Function;
-  }
+type cardDataType = {
+  _id: string;
+  name: string;
+  profession: string;
+  email: string;
+  link: string;
+  location: string;
+  SetStateAction: Function;
+}
 
+export default function CardsScreen() {
   const {
-    token,
     cardData,
     postCreateCard,
     getCardData,
-    setCardData,
     deleteCard,
     putCard
   } = useContext(UserContext);
@@ -97,7 +95,7 @@ export default function CardsScreen(props) {
     alert("Card Deleted!");
   }
 
-  const renderItems = ({ item, index }) => {
+  const renderItems = ({ item }) => {
     return (
       <View style={styles.card}>
         <CardComponent
@@ -138,7 +136,6 @@ export default function CardsScreen(props) {
           renderItem={renderItems}
           mode={"parallax"}
           onSnapToItem={async (index) => await setCurrentCard(cardData[index] as cardDataType)}
-        // onSnapToItem={(index) => alert(index)}
         />
       </View>
 
