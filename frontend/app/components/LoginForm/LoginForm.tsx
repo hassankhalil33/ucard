@@ -6,14 +6,26 @@ import MyButton from "../MyButton/MyButton";
 import InputField from "../InputField/InputField";
 
 interface LoginFormProps {
-  title: string,
-  buttonTitle: string,
-  buttonColor: string,
-  press: Function
+  title: string;
+  buttonTitle: string;
+  buttonColor: string;
+  press: Function;
+  states: object;
+}
+
+type stateType = {
+  email: string;
+  setEmail: Function;
+  password: string;
+  setPassword: Function;
 }
 
 const LoginForm: FC<LoginFormProps> = (props) => {
-  const { title, buttonTitle, buttonColor, press } = props;
+  const { title, buttonTitle, buttonColor, press, states } = props;
+  const {
+    email, setEmail,
+    password, setPassword
+  } = states as stateType;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -31,10 +43,14 @@ const LoginForm: FC<LoginFormProps> = (props) => {
 
       <InputField
         placeholder={"Email"}
+        value={email}
+        setValue={setEmail}
       />
 
       <InputField
         placeholder={"Password"}
+        value={password}
+        setValue={setPassword}
       />
 
       <View style={styles.button}>

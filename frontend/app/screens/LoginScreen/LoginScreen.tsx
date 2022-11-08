@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
 import colors from "../../constants/pallete";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import { UserContext } from "../../contexts/UserContext";
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
@@ -23,6 +24,21 @@ const storeData = async (value) => {
 }
 
 export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { postLogin } = useContext(UserContext);
+
+  const handleLoginButton = async () => {
+    const data = {
+      email: email,
+      password: password
+    }
+
+    const token = await postLogin(data);
+    storeData(token);
+    alert("Logged In Successfully!");
+  }
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -49,7 +65,11 @@ export default function LoginScreen({ navigation }) {
           title={"Sign In"}
           buttonTitle={"LOGIN"}
           buttonColor={colors.blue}
-          press={() => storeData(token)}
+          states={{
+            email, setEmail,
+            password, setPassword
+          }}
+          press={handleLoginButton}
         />
       </View>
 
