@@ -23,16 +23,17 @@ export default function HomeScreen() {
 
   let session;
 
-  const startSession = async () => {
+  const startSession = async (id) => {
     const tag = new NFCTagType4({
       type: NFCTagType4NDEFContentType.Text,
-      content: "Hello world",
+      content: id,
       writable: false
     });
 
     session = await HCESession.getInstance();
     session.setApplication(tag);
     await session.setEnabled(true);
+    listen();
   }
 
   const stopSession = async () => {
@@ -42,16 +43,11 @@ export default function HomeScreen() {
   const listen = async () => {
     const removeListener = session.on(HCESession.Events.HCE_STATE_READ, () => {
       ToastAndroid.show("The tag has been read!", ToastAndroid.LONG);
+      stopSession();
     });
 
     removeListener();
   }
-
-  listen();
-
-  stopSession();
-
-  startSession();
 
   const {
     cardData,
@@ -81,7 +77,7 @@ export default function HomeScreen() {
           height={vw60}
           normal={false}
           category={item.category}
-          onHold={() => alert(item._id)}
+          onHold={() => startSession(item._id)}
         />
       </View>
     );
