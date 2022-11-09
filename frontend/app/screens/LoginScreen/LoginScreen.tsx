@@ -22,7 +22,7 @@ const storeData = async (value) => {
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { postLogin } = useContext(UserContext);
+  const { postLogin, setLogged } = useContext(UserContext);
 
   const handleLoginButton = async () => {
     const data = {
@@ -33,6 +33,7 @@ export default function LoginScreen({ navigation }) {
     const token = await postLogin(data);
     storeData(token);
     alert("Logged In Successfully!");
+    setLogged(true);
   }
 
   const [fontsLoaded] = useFonts({

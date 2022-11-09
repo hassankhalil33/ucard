@@ -18,6 +18,8 @@ interface UserProviderStore {
   putCard: Function;
   postRegister: Function;
   postLogin: Function;
+  logged: boolean;
+  setLogged: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -26,6 +28,7 @@ export const UserProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [followingData, setFollowingData] = useState([]);
   const [token, setToken] = useState("");
+  const [logged, setLogged] = useState(false);
 
   const getToken = async () => {
     try {
@@ -164,7 +167,9 @@ export const UserProvider = ({ children }) => {
     deleteCard,
     putCard,
     postRegister,
-    postLogin
+    postLogin,
+    logged,
+    setLogged
   };
 
   return (
