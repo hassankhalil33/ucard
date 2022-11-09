@@ -127,7 +127,7 @@ function hostApduService(appIds) {
 
 async function writeAidList(appIds) {
   const obj = hostApduService(appIds);
-  const dir = "app/main/res/xml";
+  const dir = "android/app/src/main/res/xml";
 
   mkdirSync(dir, { recursive: true });
   await XML.writeXMLAsync({ path: `${dir}/aid_list.xml`, xml: obj });
