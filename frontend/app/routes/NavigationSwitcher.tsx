@@ -7,7 +7,7 @@ const NavigationSwitcher = () => {
   const { logged } = useContext(UserContext);
 
   return (
-    logged ? TabNavigationScreen : WelcomeStackScreen
+    logged ? <TabNavigationScreen /> : <WelcomeStackScreen />
   )
 }
 
