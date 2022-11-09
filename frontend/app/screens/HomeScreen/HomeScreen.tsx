@@ -77,7 +77,7 @@ export default function HomeScreen() {
           height={vw60}
           normal={false}
           category={item.category}
-          onHold={() => startSession(item._id)}
+          onHold={() => alert("batata")}
         />
       </View>
     );
