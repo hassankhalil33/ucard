@@ -28,6 +28,30 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "./plugins/withReactNativeHce",
+        {
+          "appIds": [
+            "D2760000850101",
+            "F0010203040506",
+            "F0394148148100"
+          ]
+        }
+      ],
+      [
+        "./plugins/withAndroidColorEdgeEffect",
+        {
+          "color": "#123456"
+        }
+      ],
+      [
+        "./plugins/withAndroidApplicationAttributes",
+        {
+          "android:usesCleartextTraffic": false
+        }
+      ]
+    ]
   }
 }
