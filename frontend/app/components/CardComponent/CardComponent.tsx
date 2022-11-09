@@ -29,7 +29,7 @@ const CardComponent: FC<CardComponentProps> = (props) => {
   }
 
   return (
-    <TouchableHighlight onLongPress={() => onHold()}>
+    <TouchableHighlight onLongPress={() => onHold && onHold()}>
       <View style={styles("0", category, height, width).container}>
         <Text style={styles("Poppins-Regular").desc}>{description}</Text>
         <Text style={styles("Poppins-Medium", "0", 0, 0, normal).prof}>{profession}</Text>
