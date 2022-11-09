@@ -1,14 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import colors from "../../constants/pallete";
+import { UserContext } from "../../contexts/UserContext";
+import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import cardData from "../../constants/cardData";
-import profData from "../../constants/profileData";
-import inputData from "../../constants/inputData";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
@@ -16,7 +14,50 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
 const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
-export default function CardsScreen(props) {
+type cardDataType = {
+  _id: string;
+  name: string;
+  profession: string;
+  email: string;
+  link: string;
+  location: string;
+  SetStateAction: Function;
+}
+
+export default function CardsScreen() {
+  const {
+    cardData,
+    postCreateCard,
+    getCardData,
+    deleteCard,
+    putCard
+  } = useContext(UserContext);
+
+  const defaultCard = cardData[0] ? cardData[0] : { name: null, profession: null, email: null, link: null, location: null }
+
+  const [currentCard, setCurrentCard] = useState(defaultCard as cardDataType);
+  const [cardName, setCardName] = useState(currentCard.name);
+  const [cardProf, setCardProf] = useState(currentCard.profession);
+  const [cardEmail, setCardEmail] = useState(currentCard.email);
+  const [cardLink, setCardLink] = useState(currentCard.link);
+  const [cardLocation, setCardLocation] = useState(currentCard.location);
+
+  const allUseStateData = {
+    cardName, setCardName,
+    cardProf, setCardProf,
+    cardEmail, setCardEmail,
+    cardLink, setCardLink,
+    cardLocation, setCardLocation
+  }
+
+  useEffect(() => {
+    setCardName(currentCard.name);
+    setCardProf(currentCard.profession);
+    setCardEmail(currentCard.email);
+    setCardLink(currentCard.link);
+    setCardLocation(currentCard.location);
+  }, [currentCard])
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -26,38 +67,66 @@ export default function CardsScreen(props) {
     return null;
   }
 
-  const renderItems = ({ item, index }) => {
+  const handleAddButton = async () => {
+    await postCreateCard();
+    getCardData();
+    alert("New Card Added!");
+  }
+
+  const handleUpdateButton = async () => {
+    const data = {
+      id: currentCard._id,
+      name: cardName,
+      profession: cardProf,
+      email: cardEmail,
+      link: cardLink,
+      location: cardLocation
+    }
+
+    await putCard(currentCard._id, data);
+    getCardData();
+    alert("Card Updated!");
+  }
+
+  const handleDeleteButton = async () => {
+    console.log(currentCard._id);
+    await deleteCard(currentCard._id);
+    getCardData();
+    alert("Card Deleted!");
+  }
+
+  const renderItems = ({ item }) => {
     return (
-      <View style={styles.card}>
+      <View>
         <CardComponent
-          color={item.color}
+          key={item._id}
+          category={item.category}
           name={item.name}
           profession={item.profession}
-          description={item.description}
+          description={"hold to share"}
           width={vw100}
           height={vw60}
           normal={false}
-          logo={item.logo}
         />
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles().container}>
 
-      <View style={styles.background}>
-        <Image style={styles.backgroundImage} source={background} />
+      <View style={styles().background}>
+        <Image style={styles().backgroundImage} source={background} />
       </View>
 
-      <Text style={styles.header}>Cards</Text>
+      <Text style={styles("Poppins-Bold").header}>Cards</Text>
 
-      <TouchableOpacity style={styles.addButtonContainer} onPress={() => alert("New Card Added!")}>
-        <Image source={addButton} style={styles.addButton} />
+      <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
+        <Image source={addButton} style={styles().addButton} />
       </TouchableOpacity>
 
-      <View style={styles.upperHalf}>
-        <Text style={styles.subHeader}>Your Cards</Text>
+      <View style={styles().upperHalf}>
+        <Text style={styles("Poppins-Medium").subHeader}>Your Cards</Text>
 
         <Carousel
           style={{ marginTop: -20, marginBottom: -20 }}
@@ -66,15 +135,17 @@ export default function CardsScreen(props) {
           data={cardData}
           renderItem={renderItems}
           mode={"parallax"}
+          onSnapToItem={async (index) => await setCurrentCard(cardData[index] as cardDataType)}
         />
       </View>
 
       <ModalComponent
         title={"Card Details"}
-        content={inputData}
-        defHeight={"40%"}
+        content={allUseStateData}
         cardScreen={true}
         height={vh165}
+        updateCard={handleUpdateButton}
+        deleteCard={handleDeleteButton}
       />
 
       <StatusBar style="light" />
@@ -82,66 +153,3 @@ export default function CardsScreen(props) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    flexDirection: "column"
-  },
-
-  upperHalf: {
-    width: "100%",
-    height: "50%",
-    alignItems: "center",
-  },
-
-  background: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  backgroundImage: {
-    height: 1000,
-    width: 450,
-  },
-
-  header: {
-    fontFamily: "Poppins-Bold",
-    fontSize: 24,
-    color: colors.white,
-    paddingTop: 75
-  },
-
-  addButtonContainer: {
-    position: "absolute",
-    top: "10%",
-    right: 40
-  },
-
-  addButton: {
-    width: 30,
-    height: 30.5,
-  },
-
-  card: {
-
-  },
-
-  subHeader: {
-    alignSelf: "flex-start",
-    fontFamily: "Poppins-Medium",
-    fontSize: 16,
-    lineHeight: 24,
-    color: colors.white,
-    marginLeft: 30,
-    marginTop: "20%",
-  },
-})

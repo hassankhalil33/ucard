@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
-import colors from "../../constants/pallete";
+import { Text, View, Image } from "react-native";
 import { useFonts } from 'expo-font';
+import styles from "./styles";
 const darkPhoto = require("../../assets/profile_dark.png");
 const lightPhoto = require("../../assets/profile_light.png");
 
@@ -20,7 +20,6 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
-    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
 
@@ -36,62 +35,15 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
 
       <View style={styles().content}>
         <View style={{}}>
-          <Text style={styles(width, dark).name}>{name}</Text>
+          <Text style={styles(width, dark, 0, "0", "Poppins-Bold").name}>{name}</Text>
         </View>
         <View style={styles().lowerText}>
-          <Text style={styles(width, dark).prof}>{profession}</Text>
-          <Text style={styles(width, dark).time}>{timestamp}</Text>
+          <Text style={styles(width, dark, 0, "Poppins-Regular").prof}>{profession}</Text>
+          <Text style={styles(width, dark, 0, "Poppins-Regular").time}>{timestamp}</Text>
         </View>
       </View>
     </View>
   )
 }
-
-const styles = (width = 370, dark = false, margin = 0) => StyleSheet.create({
-  container: {
-    height: 60,
-    width: width,
-    flexDirection: "row",
-    marginTop: margin
-  },
-
-  image: {
-    width: 60,
-    height: 60
-  },
-
-  content: {
-    marginLeft: "5%",
-    justifyContent: "center",
-    height: 60
-  },
-
-  lowerText: {
-    width: "65%",
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-
-  name: {
-    fontFamily: "Poppins-Bold",
-    fontSize: 16,
-    lineHeight: 24,
-    color: dark ? colors.primary : colors.white
-  },
-
-  prof: {
-    fontFamily: "Poppins-Regular",
-    fontSize: 12,
-    lineHeight: 18,
-    color: dark ? colors.primary : colors.white
-  },
-
-  time: {
-    fontFamily: "Poppins-Regular",
-    fontSize: 12,
-    lineHeight: 18,
-    color: dark ? colors.primary : colors.white
-  }
-})
 
 export default ProfileComponent

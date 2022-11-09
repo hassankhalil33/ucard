@@ -5,7 +5,7 @@ import styles from "./styles";
 import MyButton from "../MyButton/MyButton";
 import InputField from "../InputField/InputField";
 
-interface LoginFormProps {
+interface RegisterFormProps {
   title: string;
   buttonTitle: string;
   buttonColor: string;
@@ -14,22 +14,28 @@ interface LoginFormProps {
 }
 
 type stateType = {
+  name: string;
+  setName: Function;
   email: string;
   setEmail: Function;
   password: string;
   setPassword: Function;
+  conPassword: string;
+  setConPassword: Function;
+  location: string;
+  setLocation: Function;
 }
 
-const LoginForm: FC<LoginFormProps> = (props) => {
+const RegisterForm: FC<RegisterFormProps> = (props) => {
   const { title, buttonTitle, buttonColor, press, states } = props;
-
-  const {
+  const { name, setName,
     email, setEmail,
-    password, setPassword
-  } = states as stateType;
+    password, setPassword,
+    conPassword, setConPassword,
+    location, setLocation } = states as stateType;
 
   const [fontsLoaded] = useFonts({
-    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf")
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -41,6 +47,12 @@ const LoginForm: FC<LoginFormProps> = (props) => {
       <Text style={styles("Poppins-Bold").title}>{title}</Text>
 
       <InputField
+        placeholder={"Name"}
+        value={name}
+        setValue={setName}
+      />
+
+      <InputField
         placeholder={"Email"}
         value={email}
         setValue={setEmail}
@@ -50,6 +62,18 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         placeholder={"Password"}
         value={password}
         setValue={setPassword}
+      />
+
+      <InputField
+        placeholder={"Confirm Password"}
+        value={conPassword}
+        setValue={setConPassword}
+      />
+
+      <InputField
+        placeholder={"Location"}
+        value={location}
+        setValue={setLocation}
       />
 
       <View style={styles().button}>
@@ -64,4 +88,4 @@ const LoginForm: FC<LoginFormProps> = (props) => {
   )
 }
 
-export default LoginForm
+export default RegisterForm
