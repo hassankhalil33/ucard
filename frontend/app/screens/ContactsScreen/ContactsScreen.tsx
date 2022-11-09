@@ -7,8 +7,8 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 const background = require("../../assets/background.png");
 
-export default function ContactsScreen(props) {
-  const { followingData, setFollowingData, token, getFollowingData } = useContext(UserContext);
+export default function ContactsScreen() {
+  const { followingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),

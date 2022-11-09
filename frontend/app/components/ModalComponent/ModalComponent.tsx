@@ -63,6 +63,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         modalStyle={styles().modal}
         modalHeight={height}
         ref={modalizeRef}
+        scrollViewProps={{ showsVerticalScrollIndicator: false }}
       >
         <View style={styles().innerView}>
           <Text style={styles("Poppins-Medium").header}>{title}</Text>
