@@ -3,6 +3,7 @@ import { Text, View, Image, FlatList, Dimensions, ToastAndroid } from "react-nat
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import { HCESession, NFCTagType4NDEFContentType, NFCTagType4 } from 'react-native-hce';
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
@@ -19,6 +20,38 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 export default function HomeScreen() {
   const [searchText, setSearchText] = useState("");
+
+  let session;
+
+  const startSession = async () => {
+    const tag = new NFCTagType4({
+      type: NFCTagType4NDEFContentType.Text,
+      content: "Hello world",
+      writable: false
+    });
+
+    session = await HCESession.getInstance();
+    session.setApplication(tag);
+    await session.setEnabled(true);
+  }
+
+  const stopSession = async () => {
+    await session.setEnabled(false);
+  }
+
+  const listen = async () => {
+    const removeListener = session.on(HCESession.Events.HCE_STATE_READ, () => {
+      ToastAndroid.show("The tag has been read!", ToastAndroid.LONG);
+    });
+
+    removeListener();
+  }
+
+  listen();
+
+  stopSession();
+
+  startSession();
 
   const {
     cardData,
