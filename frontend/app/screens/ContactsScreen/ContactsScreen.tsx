@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -7,6 +7,7 @@ import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 const background = require("../../assets/background.png");
+const addButton = require("../../assets/buttons/add-button.png");
 
 export default function ContactsScreen() {
   const { followingData } = useContext(UserContext);
@@ -17,6 +18,10 @@ export default function ContactsScreen() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  const handleAddButton = () => {
+    readNdef();
   }
 
   NfcManager.start();
@@ -55,6 +60,10 @@ export default function ContactsScreen() {
       </View>
 
       <Text style={styles("Poppins-Bold").header}>Contacts</Text>
+
+      <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
+        <Image source={addButton} style={styles().addButton} />
+      </TouchableOpacity>
 
       <View style={styles().innerContainer}>
         <FlatList

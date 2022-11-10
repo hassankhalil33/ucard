@@ -32,6 +32,17 @@ const styles = (fontFamily?) => StyleSheet.create({
     paddingTop: 75
   },
 
+  addButtonContainer: {
+    position: "absolute",
+    top: "10%",
+    right: 40
+  },
+
+  addButton: {
+    width: 30,
+    height: 30.5,
+  },
+
   innerContainer: {
     paddingBottom: "35%",
     marginTop: "10%",
