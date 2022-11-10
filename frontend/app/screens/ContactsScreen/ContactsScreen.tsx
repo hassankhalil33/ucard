@@ -10,7 +10,7 @@ const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
 export default function ContactsScreen() {
-  const { followingData } = useContext(UserContext);
+  const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -32,6 +32,14 @@ export default function ContactsScreen() {
 
       alert("Started NFC Read");
       const tag = await NfcManager.getTag();
+
+      const data = {
+        id: tag
+      }
+
+      await postFollowingData(data);
+      await getFollowingData();
+
       alert(tag);
     } catch (ex) {
       alert(ex);
