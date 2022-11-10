@@ -26,9 +26,9 @@ export default function ContactsScreen() {
       await NfcManager.requestTechnology(NfcTech.Ndef);
 
       const tag = await NfcManager.getTag();
-      console.log("Read Successfull!", tag);
+      alert(tag);
     } catch (ex) {
-      console.log("Error: ", ex);
+      alert(ex);
     } finally {
       NfcManager.cancelTechnologyRequest();
     }

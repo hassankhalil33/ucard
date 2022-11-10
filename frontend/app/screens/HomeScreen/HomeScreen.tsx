@@ -52,12 +52,12 @@ export default function HomeScreen() {
         result = true;
       }
     } catch (ex) {
-      console.log("Error: ", ex);
+      alert(ex);
     } finally {
       NfcManager.cancelTechnologyRequest();
     }
 
-    console.log(result);
+    alert(result);
   }
 
   const renderItems = ({ item }) => {
