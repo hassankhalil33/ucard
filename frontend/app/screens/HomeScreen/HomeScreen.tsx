@@ -45,6 +45,7 @@ export default function HomeScreen() {
       await NfcManager.requestTechnology(NfcTech.Ndef);
 
       const bytes = Ndef.encodeMessage([Ndef.textRecord(value)]);
+      alert("Started NFC Write");
 
       if (bytes) {
         await NfcManager.ndefHandler

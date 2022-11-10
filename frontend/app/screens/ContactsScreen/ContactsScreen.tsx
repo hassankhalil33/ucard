@@ -30,6 +30,7 @@ export default function ContactsScreen() {
     try {
       await NfcManager.requestTechnology(NfcTech.Ndef);
 
+      alert("Started NFC Read");
       const tag = await NfcManager.getTag();
       alert(tag);
     } catch (ex) {
