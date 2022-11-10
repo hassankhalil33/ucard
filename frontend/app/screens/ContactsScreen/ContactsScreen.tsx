@@ -3,6 +3,7 @@ import { Text, View, Image, FlatList } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 const background = require("../../assets/background.png");
@@ -16,6 +17,21 @@ export default function ContactsScreen() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  NfcManager.start();
+
+  async function readNdef() {
+    try {
+      await NfcManager.requestTechnology(NfcTech.Ndef);
+
+      const tag = await NfcManager.getTag();
+      console.log("Read Successfull!", tag);
+    } catch (ex) {
+      console.log("Error: ", ex);
+    } finally {
+      NfcManager.cancelTechnologyRequest();
+    }
   }
 
   const renderItems = ({ item }) => {

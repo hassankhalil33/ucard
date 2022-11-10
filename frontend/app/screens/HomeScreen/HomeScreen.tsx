@@ -3,6 +3,7 @@ import { Text, View, Image, FlatList, Dimensions, ToastAndroid } from "react-nat
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
@@ -37,6 +38,28 @@ export default function HomeScreen() {
     getFollowingData();
   }, [token]);
 
+  async function writeNdef(value) {
+    let result = false;
+
+    try {
+      await NfcManager.requestTechnology(NfcTech.Ndef);
+
+      const bytes = Ndef.encodeMessage([Ndef.textRecord(value)]);
+
+      if (bytes) {
+        await NfcManager.ndefHandler
+          .writeNdefMessage(bytes);
+        result = true;
+      }
+    } catch (ex) {
+      console.log("Error: ", ex);
+    } finally {
+      NfcManager.cancelTechnologyRequest();
+    }
+
+    console.log(result);
+  }
+
   const renderItems = ({ item }) => {
     return (
       <View>
@@ -48,7 +71,7 @@ export default function HomeScreen() {
           height={vw60}
           normal={false}
           category={item.category}
-          onHold={() => alert(item._id)}
+          onHold={() => writeNdef(item._id)}
         />
       </View>
     );
