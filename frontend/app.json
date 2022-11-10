@@ -25,24 +25,23 @@
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.lambdatiger.frontend"
+      "package": "com.lambdatiger.frontend",
+      "permissions": [
+        "android.permission.NFC"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       [
-        "react-native-nfc-manager",
-        {
-          "nfcPermission": "Custom permission message",
-          "selectIdentifiers": [
-            "A0000002471001"
-          ],
-          "systemCodes": [
-            "8008"
-          ]
-        }
+        "react-native-nfc-manager"
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1e2c4944-c8fe-487f-89d2-24deb09a6793"
+      }
+    }
   }
 }
