@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ToastAndroid, Modal } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -8,10 +8,10 @@ import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 const background = require("../../assets/background.png");
-const addButton = require("../../assets/buttons/add-button.png");
+const nfcButton = require("../../assets/buttons/nfc-button.png");
+const qrButton = require("../../assets/buttons/qr-button.png");
 
 export default function ContactsScreen() {
-  const [scanned, setScanned] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
@@ -23,10 +23,15 @@ export default function ContactsScreen() {
     return null;
   }
 
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(data);
+  const handleBarCodeScanned = async ({ type, data }) => {
+    const ApiData = {
+      id: data
+    }
+
+    await postFollowingData(ApiData);
+    await getFollowingData();
     setOpenModal(false);
+    ToastAndroid.show("Card Followed Successfully!", ToastAndroid.SHORT);
   };
 
   const handleScanButton = () => {
@@ -85,11 +90,11 @@ export default function ContactsScreen() {
       <Text style={styles("Poppins-Bold").header}>Contacts</Text>
 
       <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
-        <Image source={addButton} style={styles().addButton} />
+        <Image source={nfcButton} style={styles().addButton} />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles().scanButtonContainer} onPress={handleScanButton}>
-        <Image source={addButton} style={styles().scanButton} />
+        <Image source={qrButton} style={styles().scanButton} />
       </TouchableOpacity>
 
       <View style={styles().innerContainer}>
