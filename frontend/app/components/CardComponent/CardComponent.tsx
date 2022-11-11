@@ -13,11 +13,21 @@ interface CardComponentProps {
   profession: string,
   description: string,
   category: string,
-  onHold?: Function,
+  onPress?: Function,
+  onHold?: Function
 }
 
 const CardComponent: FC<CardComponentProps> = (props) => {
-  const { height, width, name, profession, description, normal, onHold, category = "personal" } = props;
+  const { height,
+    width,
+    name,
+    profession,
+    description,
+    normal,
+    onHold,
+    onPress,
+    category = "personal"
+  } = props;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -29,12 +39,18 @@ const CardComponent: FC<CardComponentProps> = (props) => {
   }
 
   return (
-    <TouchableHighlight onLongPress={() => onHold && onHold()}>
+    <TouchableHighlight
+      onPress={() => onPress && onPress}
+      onLongPress={() => onHold && onHold()}
+    >
       <View style={styles("0", category, height, width).container}>
         <Text style={styles("Poppins-Regular").desc}>{description}</Text>
         <Text style={styles("Poppins-Medium", "0", 0, 0, normal).prof}>{profession}</Text>
         <Text style={styles("Poppins-Medium").name}>{name}</Text>
-        <Image style={styles().logo} source={category == "personal" ? cardLogoBlue : cardLogoOrange} />
+        <Image
+          style={styles().logo}
+          source={category == "personal" ? cardLogoBlue : cardLogoOrange}
+        />
       </View>
     </TouchableHighlight>
   )
