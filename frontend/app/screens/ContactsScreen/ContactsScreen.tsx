@@ -7,6 +7,8 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
+import MyButton from "../../components/MyButton/MyButton";
+import colors from "../../constants/pallete";
 const background = require("../../assets/background.png");
 const nfcButton = require("../../assets/buttons/nfc-button.png");
 const qrButton = require("../../assets/buttons/qr-button.png");
@@ -105,11 +107,28 @@ export default function ContactsScreen() {
         />
       </View>
 
-      <Modal style={styles().container} visible={openModal}>
-        <BarCodeScanner
-          onBarCodeScanned={handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-        />
+      <Modal visible={openModal}>
+        <View style={styles().modal}>
+          <BarCodeScanner
+            onBarCodeScanned={handleBarCodeScanned}
+            style={StyleSheet.absoluteFillObject}
+          />
+          {/* <TouchableOpacity
+            style={styles().cancelButton}
+            onPress={() => setOpenModal(false)}
+          >
+            <Text>Cancel</Text>
+          </TouchableOpacity> */}
+
+          <View style={styles().cancelButton}>
+            <MyButton
+              title={"Cancel"}
+              color={colors.primary}
+              press={() => setOpenModal(false)}
+            />
+          </View>
+
+        </View>
       </Modal>
 
       <StatusBar style="light" />

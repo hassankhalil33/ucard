@@ -10,6 +10,13 @@ const styles = (fontFamily?) => StyleSheet.create({
     flexDirection: "column"
   },
 
+  modal: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   background: {
     position: "absolute",
     top: 0,
@@ -52,6 +59,12 @@ const styles = (fontFamily?) => StyleSheet.create({
   scanButton: {
     width: 30,
     height: 30.5,
+  },
+
+  cancelButton: {
+    width: "80%",
+    alignSelf: "flex-end",
+    marginBottom: "8%"
   },
 
   innerContainer: {
