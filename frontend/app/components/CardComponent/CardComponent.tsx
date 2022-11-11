@@ -40,7 +40,7 @@ const CardComponent: FC<CardComponentProps> = (props) => {
 
   return (
     <TouchableHighlight
-      onPress={() => onPress && onPress}
+      onPress={() => onPress && onPress()}
       onLongPress={() => onHold && onHold()}
     >
       <View style={styles("0", category, height, width).container}>
