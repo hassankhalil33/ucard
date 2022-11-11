@@ -4,14 +4,14 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/ucard#-project-philosophy) • [WIREFRAMES](https://github.com/hassankhalil33/ucard#-wireframes) • [TECH STACK](https://github.com/hassankhalil33/ucard#-tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/ucard#-impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/ucard#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/ucard#project-philosophy) • [PROTOTYPES](https://github.com/hassankhalil33/ucard#wireframes) • [TECH STACK](https://github.com/hassankhalil33/ucard#tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/ucard#impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/ucard#how-to-run)**
 
 </div>
 
 <br><br>
 
 
-<img src="./readme/title2.svg"/>
+<img id="project-philosophy" src="./readme/title2.svg"/>
 
 > Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone.
 > 
@@ -28,7 +28,7 @@ Then Ucard is for you!
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img id="wireframes" src="./readme/title3.svg"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
@@ -47,7 +47,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img id="tech-stack" src="./readme/title4.svg"/>
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
@@ -59,7 +59,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img id="impplementation" src="./readme/title5.svg"/>
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
@@ -69,7 +69,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img id="how-to-run" src="./readme/title6.svg"/>
 
 
 > This is an example of how you may give instructions on setting up your project locally.
