@@ -96,23 +96,22 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    cd frontend/
    ```
-2. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
    🚨 you might need to run `npm install --force`  if you face any dependency conflicts.
-   
-3. Install Expo CLI
+4. Install Expo CLI
   ```sh
   npm install --global expo-cli
   ```
-4. Install Expo Go app for Android (Optional)
+5. Install Expo Go app for Android (Optional)
   > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-5. Run the Start-Up Command
+6. Run the Start-Up Command
   ```sh
   npx expo start -c
   ```
-6. Scan the QR Code with Expo Go App.
+7. Scan the QR Code with Expo Go App.
     -or-
    Press 'a' to run locally on Android Emulator (Requires an Active Android Emulator [Android Studio](https://developer.android.com/studio/install)).
    
