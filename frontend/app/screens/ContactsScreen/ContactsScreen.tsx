@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 const background = require("../../assets/background.png");
+const addButton = require("../../assets/buttons/add-button.png");
 
 export default function ContactsScreen() {
-  const { followingData } = useContext(UserContext);
+  const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -16,6 +18,34 @@ export default function ContactsScreen() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  const handleAddButton = () => {
+    readNdef();
+  }
+
+  NfcManager.start();
+
+  async function readNdef() {
+    try {
+      await NfcManager.requestTechnology(NfcTech.Ndef);
+
+      alert("Started NFC Read");
+      const tag = await NfcManager.getTag();
+
+      const data = {
+        id: tag
+      }
+
+      await postFollowingData(data);
+      await getFollowingData();
+
+      alert(tag);
+    } catch (ex) {
+      alert(ex);
+    } finally {
+      NfcManager.cancelTechnologyRequest();
+    }
   }
 
   const renderItems = ({ item }) => {
@@ -39,6 +69,10 @@ export default function ContactsScreen() {
       </View>
 
       <Text style={styles("Poppins-Bold").header}>Contacts</Text>
+
+      <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
+        <Image source={addButton} style={styles().addButton} />
+      </TouchableOpacity>
 
       <View style={styles().innerContainer}>
         <FlatList

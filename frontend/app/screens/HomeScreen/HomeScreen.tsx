@@ -1,8 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Dimensions } from "react-native";
+import { Text, View, Image, FlatList, Dimensions, ToastAndroid } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
@@ -37,6 +38,29 @@ export default function HomeScreen() {
     getFollowingData();
   }, [token]);
 
+  async function writeNdef(value) {
+    let result = false;
+
+    try {
+      await NfcManager.requestTechnology(NfcTech.Ndef);
+
+      const bytes = Ndef.encodeMessage([Ndef.textRecord(value)]);
+      alert("Started NFC Write");
+
+      if (bytes) {
+        await NfcManager.ndefHandler
+          .writeNdefMessage(bytes);
+        result = true;
+      }
+    } catch (ex) {
+      alert(ex);
+    } finally {
+      NfcManager.cancelTechnologyRequest();
+    }
+
+    alert(result);
+  }
+
   const renderItems = ({ item }) => {
     return (
       <View>
@@ -48,6 +72,7 @@ export default function HomeScreen() {
           height={vw60}
           normal={false}
           category={item.category}
+          onHold={() => writeNdef(item._id)}
         />
       </View>
     );
