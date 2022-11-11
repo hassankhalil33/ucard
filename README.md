@@ -2,9 +2,9 @@
 
 <div align="center">
 
-> Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
+> Hello World! Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone.  
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/hassankhalil33/well_app#-wireframes) • [TECH STACK](https://github.com/hassankhalil33/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/well_app#-impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/well_app#-how-to-run)**
 
 </div>
 
