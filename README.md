@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/hassankhalil33/well_app#-wireframes) • [TECH STACK](https://github.com/hassankhalil33/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/well_app#-impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/ucard#-project-philosophy) • [WIREFRAMES](https://github.com/hassankhalil33/ucard#-wireframes) • [TECH STACK](https://github.com/hassankhalil33/ucard#-tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/ucard#-impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/ucard#-how-to-run)**
 
 </div>
 
