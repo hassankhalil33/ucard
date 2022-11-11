@@ -3,6 +3,7 @@ import { Text, View, Image, FlatList, Dimensions, ToastAndroid } from "react-nat
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
@@ -20,6 +21,7 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 export default function HomeScreen() {
   const [searchText, setSearchText] = useState("");
+  const [hasPermission, setHasPermission] = useState(null);
 
   const {
     cardData,
@@ -29,8 +31,14 @@ export default function HomeScreen() {
     getFollowingData
   } = useContext(UserContext);
 
+  const getBarCodePermissions = async () => {
+    const { status } = await BarCodeScanner.requestPermissionsAsync();
+    setHasPermission(status === 'granted');
+  };
+
   useEffect(() => {
     getToken();
+    getBarCodePermissions();
   }, []);
 
   useEffect(() => {

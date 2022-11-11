@@ -43,6 +43,17 @@ const styles = (fontFamily?) => StyleSheet.create({
     height: 30.5,
   },
 
+  scanButtonContainer: {
+    position: "absolute",
+    top: "10%",
+    left: 40
+  },
+
+  scanButton: {
+    width: 30,
+    height: 30.5,
+  },
+
   innerContainer: {
     paddingBottom: "35%",
     marginTop: "10%",

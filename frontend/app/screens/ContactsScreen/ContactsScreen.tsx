@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
@@ -10,6 +11,7 @@ const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
 export default function ContactsScreen() {
+  const [scanned, setScanned] = useState(false);
   const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
@@ -18,6 +20,22 @@ export default function ContactsScreen() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    alert(data);
+    return (<ContactsScreen />)
+  };
+
+  const handleScanButton = () => {
+    return (
+      <View>
+        <BarCodeScanner
+          onBarCodeScanned={handleBarCodeScanned}
+        />
+      </View>
+    )
   }
 
   const handleAddButton = () => {
@@ -72,6 +90,10 @@ export default function ContactsScreen() {
 
       <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
         <Image source={addButton} style={styles().addButton} />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles().scanButtonContainer} onPress={handleScanButton}>
+        <Image source={addButton} style={styles().scanButton} />
       </TouchableOpacity>
 
       <View style={styles().innerContainer}>
