@@ -52,7 +52,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
 - This project uses [React Native EXPO](https://expo.dev/) for the Frontend. Expo is a bundle of tools created around React Native to help you start an app very fast. Coupled with [TypeScript](https://www.typescriptlang.org/). TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
-- This project uses [ExpressJS](https://expressjs.com/) for the Backend. Fast, unopinionated, minimalist web framework for [Node.js](https://nodejs.org/en/).
+- This project uses [ExpressJS](https://expressjs.com/) for the Backend. Fast, unopinionated, minimalist web framework for [NodeJS](https://nodejs.org/en/).
 - For persistent storage (database), the app uses the [Mongoose ODM](https://mongoosejs.com) package which allows the app to create a custom storage schema and save it to [MongoDB](https://www.mongodb.com).
 - To send push notifications, the app uses [FireBase FCM](https://firebase.google.com/docs/cloud-messaging) package which supports Android and iOS.
 
@@ -87,18 +87,47 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+~~ Frontend:
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/hassankhalil33/ucard.git
    ```
-3. Install NPM packages
+2. Navigate to the frontend folder
+   ```sh
+   cd frontend/
+   ```
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   🚨 you might need to run `npm install --force`  if you face any dependency conflicts.
+   
+3. Install Expo CLI
+  ```sh
+  npm install --global expo-cli
+  ```
+4. Install Expo Go app for Android (Optional)
+  > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+5. Run the Start-Up Command
+  ```sh
+  npx expo start -c
+  ```
+6. Scan the QR Code with Expo Go App.
+    -or-
+   Press 'a' to run locally on Android Emulator (Requires an Active Android Emulator [Android Studio](https://developer.android.com/studio/install)).
+   
+~~ Backend:
+1. Navigate to the backend folder (from root folder)
+  ```sh
+   cd backend/
    ```
-
+2. Install NPM packages
+  ```sh
+   npm install
+   ```
+3. Rename `.env.example` to `.env` then set your credentials.
+4. Run the Start-Up Command
+  ```sh
+   npm start
+   ```
 
