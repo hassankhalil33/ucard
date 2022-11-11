@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Modal } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -12,6 +12,7 @@ const addButton = require("../../assets/buttons/add-button.png");
 
 export default function ContactsScreen() {
   const [scanned, setScanned] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
@@ -25,17 +26,12 @@ export default function ContactsScreen() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(data);
-    return (<ContactsScreen />)
+    setOpenModal(false);
   };
 
   const handleScanButton = () => {
-    return (
-      <View>
-        <BarCodeScanner
-          onBarCodeScanned={handleBarCodeScanned}
-        />
-      </View>
-    )
+    console.log("Im Here");
+    setOpenModal(true);
   }
 
   const handleAddButton = () => {
@@ -103,6 +99,13 @@ export default function ContactsScreen() {
           showsVerticalScrollIndicator={false}
         />
       </View>
+
+      <Modal style={styles().container} visible={openModal}>
+        <BarCodeScanner
+          onBarCodeScanned={handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+      </Modal>
 
       <StatusBar style="light" />
 
