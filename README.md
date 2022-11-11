@@ -102,31 +102,31 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
    🚨 you might need to run `npm install --force`  if you face any dependency conflicts.
 4. Install Expo CLI
-  ```sh
-  npm install --global expo-cli
-  ```
+   ```sh
+   npm install --global expo-cli
+   ```
 5. Install Expo Go app for Android (Optional)
-  > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+   > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
 6. Run the Start-Up Command
-  ```sh
-  npx expo start -c
-  ```
+   ```sh
+   npx expo start -c
+   ```
 7. Scan the QR Code with Expo Go App.
     -or-
    Press 'a' to run locally on Android Emulator (Requires an Active Android Emulator [Android Studio](https://developer.android.com/studio/install)).
    
 ~~ Backend:
 1. Navigate to the backend folder (from root folder)
-  ```sh
+   ```sh
    cd backend/
    ```
 2. Install NPM packages
-  ```sh
+   ```sh
    npm install
    ```
 3. Rename `.env.example` to `.env` then set your credentials.
 4. Run the Start-Up Command
-  ```sh
+   ```sh
    npm start
    ```
 
