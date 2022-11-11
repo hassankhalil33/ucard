@@ -113,13 +113,6 @@ export default function ContactsScreen() {
             onBarCodeScanned={handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
           />
-          {/* <TouchableOpacity
-            style={styles().cancelButton}
-            onPress={() => setOpenModal(false)}
-          >
-            <Text>Cancel</Text>
-          </TouchableOpacity> */}
-
           <View style={styles().cancelButton}>
             <MyButton
               title={"Cancel"}
@@ -127,7 +120,6 @@ export default function ContactsScreen() {
               press={() => setOpenModal(false)}
             />
           </View>
-
         </View>
       </Modal>
 

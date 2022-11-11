@@ -13,6 +13,7 @@ import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
+import colors from "../../constants/pallete";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
 
@@ -165,7 +166,6 @@ export default function HomeScreen() {
         height={vh53}
       />
 
-
       <Modal visible={openModal}>
         <View style={styles().modal}>
           <QRCode
@@ -173,14 +173,17 @@ export default function HomeScreen() {
             logo={appLogo}
             size={200}
           />
-          <TouchableOpacity style={styles().cancelButton} onPress={() => setOpenModal(false)}>
-            <Text>Cancel</Text>
+          <TouchableOpacity
+            style={styles().cancelButton}
+            onPress={() => setOpenModal(false)}
+          >
+            <Text style={{ color: colors.white }}>Cancel</Text>
           </TouchableOpacity>
-
         </View>
       </Modal>
 
       <StatusBar style="light" />
+
     </View>
   )
 }
