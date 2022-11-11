@@ -2,7 +2,7 @@
 
 <div align="center">
 
-> Hello World! Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone.  
+> Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
 **[PROJECT PHILOSOPHY](https://github.com/hassankhalil33/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/hassankhalil33/well_app#-wireframes) • [TECH STACK](https://github.com/hassankhalil33/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/hassankhalil33/well_app#-impplementation) • [HOW TO RUN?](https://github.com/hassankhalil33/well_app#-how-to-run)**
 
@@ -13,14 +13,18 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone.
 > 
-> There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
+> Ever been to an event and wanted to exchange cards with peers? Ever got bored of carrying multiple plastic/paper cards? 
+Then Ucard is for you!
 
 ### User Stories
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
+- As a user, I want to create custom personal cards.
+- As a user, I want to edit my cards, so that I can update my info.
+- As a user, I want to create different category cards (personal / business / gaming), so that I can own multiple cards.
+- As a user, I want to share my card with others (NFC), so that we can exchange info.
+- As a user, I want to get matched with others, so I find people with similar interests.
+- As a user, I want to receive notifications, so that I stay upto date.
 
 <br><br>
 
@@ -29,14 +33,17 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing  | Home/Search  |
-| -----------------| -----|
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Welcome  | Login  | Register  |
+| -----------------| -----| -----|
+| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/Welcome.png) | ![Login](https://github.com/hassankhalil33/ucard/blob/master/readme/Login.png) | ![Register](https://github.com/hassankhalil33/ucard/blob/master/readme/Sign_Up.png)
 
-| Artists results  | Artist's Albums  |
-| -----------------| -----|
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+| Home Page  | Home Page Continued  | Notifications Page
+| -----------------| -----| -----|
+| ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Home_Page.png) | ![Home Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/Home_Page_Continued.png) | ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/NOtifications_Page.png)
 
+| Contacts Page  | Cards Page  | Cards Page Continued
+| -----------------| -----| -----|
+| ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Contacts_Page.png) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Cards_Page.png) | ![Cards Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/Cards_Page_Continued.png)
 
 <br><br>
 
