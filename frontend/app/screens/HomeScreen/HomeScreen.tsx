@@ -1,10 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity } from "react-native";
+import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
+import Notifications from "expo-notifications";
+import Device from "expo-device";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import QRCode from "react-native-qrcode-svg";
@@ -87,6 +89,34 @@ export default function HomeScreen() {
 
     alert(result);
   }
+
+  const registerPushNotifications = async () => {
+    if (Device.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      const token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(token);
+    } else {
+      alert('Must use physical device for Push Notifications');
+    }
+
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+  };
 
   const renderItems = ({ item }) => {
     return (
