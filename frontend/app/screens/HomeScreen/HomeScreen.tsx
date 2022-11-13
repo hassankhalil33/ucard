@@ -1,17 +1,21 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Dimensions, ToastAndroid } from "react-native";
+import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
+import QRCode from "react-native-qrcode-svg";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import profData from "../../constants/profileData";
+import colors from "../../constants/pallete";
 const background = require("../../assets/background.png");
+const appLogo = require("../../assets/icon.png");
 
 const vh53 = (Dimensions.get('window').height / 10) * 5.3;
 const vw60 = (Dimensions.get('window').width / 10) * 6;
@@ -19,7 +23,10 @@ const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen() {
+  const [cardId, setCardId] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [hasPermission, setHasPermission] = useState(null);
 
   const {
     cardData,
@@ -29,14 +36,34 @@ export default function HomeScreen() {
     getFollowingData
   } = useContext(UserContext);
 
+  const getBarCodePermissions = async () => {
+    const { status } = await BarCodeScanner.requestPermissionsAsync();
+    setHasPermission(status === 'granted');
+  };
+
   useEffect(() => {
     getToken();
+    getBarCodePermissions();
   }, []);
 
   useEffect(() => {
     getCardData();
     getFollowingData();
   }, [token]);
+
+  const [fontsLoaded] = useFonts({
+    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  const handleOpenQr = (id) => {
+    setCardId(id);
+    setOpenModal(true);
+  }
 
   async function writeNdef(value) {
     let result = false;
@@ -67,24 +94,16 @@ export default function HomeScreen() {
         <CardComponent
           name={item.name}
           profession={item.profession}
-          description={"hold for NFC share"}
+          description={"tap for QR | hold for NFC"}
           width={vw100}
           height={vw60}
           normal={false}
           category={item.category}
+          onPress={() => handleOpenQr(item._id)}
           onHold={() => writeNdef(item._id)}
         />
       </View>
     );
-  }
-
-  const [fontsLoaded] = useFonts({
-    "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
-    "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
   }
 
   return (
@@ -147,7 +166,24 @@ export default function HomeScreen() {
         height={vh53}
       />
 
+      <Modal visible={openModal}>
+        <View style={styles().modal}>
+          <QRCode
+            value={cardId}
+            logo={appLogo}
+            size={200}
+          />
+          <TouchableOpacity
+            style={styles().cancelButton}
+            onPress={() => setOpenModal(false)}
+          >
+            <Text style={{ color: colors.white }}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
       <StatusBar style="light" />
+
     </View>
   )
 }

@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
-import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ToastAndroid, Modal } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
+import MyButton from "../../components/MyButton/MyButton";
+import colors from "../../constants/pallete";
 const background = require("../../assets/background.png");
-const addButton = require("../../assets/buttons/add-button.png");
+const nfcButton = require("../../assets/buttons/nfc-button.png");
+const qrButton = require("../../assets/buttons/qr-button.png");
 
 export default function ContactsScreen() {
+  const [openModal, setOpenModal] = useState(false);
   const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
@@ -18,6 +23,22 @@ export default function ContactsScreen() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  const handleBarCodeScanned = async ({ type, data }) => {
+    const ApiData = {
+      id: data
+    }
+
+    await postFollowingData(ApiData);
+    await getFollowingData();
+    setOpenModal(false);
+    ToastAndroid.show("Card Followed Successfully!", ToastAndroid.SHORT);
+  };
+
+  const handleScanButton = () => {
+    console.log("Im Here");
+    setOpenModal(true);
   }
 
   const handleAddButton = () => {
@@ -71,7 +92,11 @@ export default function ContactsScreen() {
       <Text style={styles("Poppins-Bold").header}>Contacts</Text>
 
       <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
-        <Image source={addButton} style={styles().addButton} />
+        <Image source={nfcButton} style={styles().addButton} />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles().scanButtonContainer} onPress={handleScanButton}>
+        <Image source={qrButton} style={styles().scanButton} />
       </TouchableOpacity>
 
       <View style={styles().innerContainer}>
@@ -81,6 +106,22 @@ export default function ContactsScreen() {
           showsVerticalScrollIndicator={false}
         />
       </View>
+
+      <Modal visible={openModal}>
+        <View style={styles().modal}>
+          <BarCodeScanner
+            onBarCodeScanned={handleBarCodeScanned}
+            style={StyleSheet.absoluteFillObject}
+          />
+          <View style={styles().cancelButton}>
+            <MyButton
+              title={"Cancel"}
+              color={colors.primary}
+              press={() => setOpenModal(false)}
+            />
+          </View>
+        </View>
+      </Modal>
 
       <StatusBar style="light" />
 
