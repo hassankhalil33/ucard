@@ -10,7 +10,6 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
   let allTokens = [];
-  let check = 0;
 
   const matchUserCards = async () => {
     for await (const user of data) {
@@ -118,9 +117,10 @@ const unfollowCard = async (req, res) => {
 }
 
 const getNotifications = async (req, res) => {
-  const {notifications} = req.user;
+  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const user = await User.findById(id).populate("notifications");
 
-  res.json(notifications)
+  res.json(user.suggested)
 }
 
 const postNotificationToken = async (req, res) => {
