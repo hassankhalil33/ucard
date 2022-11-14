@@ -26,8 +26,10 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
           (!user.suggested.includes(card2._id)) &&
           (card2.is_public)) {
             const newSuggested = [card2._id, ...user.suggested];
+            const newNotifications = [card2._id, ...user.notifications]
             await User.findByIdAndUpdate(user._id, {
-              suggested: newSuggested
+              suggested: newSuggested,
+              notifications: newNotifications
             })
   
             //Save Tokens of Users to send Notification
