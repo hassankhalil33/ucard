@@ -12,6 +12,18 @@ const followingSchema = new mongoose.Schema({
   }
 }, { _id:  false })
 
+const notificationsSchema = new mongoose.Schema({
+  card_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Card'
+  },
+
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
+}, { _id:  false })
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -58,9 +70,9 @@ const userSchema = new mongoose.Schema({
     ref: 'Card'
   }],
 
-  notifications: {
-    type: Array
-  },
+  notifications: [
+    notificationsSchema
+  ],
 
   notification_token: {
     tyoe: String
