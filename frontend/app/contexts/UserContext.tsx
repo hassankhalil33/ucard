@@ -24,6 +24,7 @@ interface UserProviderStore {
   getNotifications: Function;
   notifications: object[];
   setNotifications: Function;
+  deleteNotifications: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -187,6 +188,20 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const deleteNotifications = async () => {
+    try {
+      const response = await axios.delete("/user/notifications", {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const allData = {
     cardData,
     setCardData,
@@ -208,7 +223,8 @@ export const UserProvider = ({ children }) => {
     postNotificationToken,
     getNotifications,
     notifications,
-    setNotifications
+    setNotifications,
+    deleteNotifications
   };
 
   return (
