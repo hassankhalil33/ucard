@@ -36,7 +36,8 @@ export default function HomeScreen() {
     getToken,
     getCardData,
     getFollowingData,
-    postNotificationToken
+    postNotificationToken,
+    getNotifications
   } = useContext(UserContext);
 
   const getBarCodePermissions = async () => {
@@ -87,6 +88,7 @@ export default function HomeScreen() {
   useEffect(() => {
     getCardData();
     getFollowingData();
+    getNotifications();
     registerForPushPushNotifications();
   }, [token]);
 

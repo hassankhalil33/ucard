@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, View, Image, FlatList } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import { UserContext } from "../../contexts/UserContext";
 import colors from "../../constants/pallete";
 import styles from "./styles";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
-import profileData from "../../constants/profileData";
 import MyButton from "../../components/MyButton/MyButton";
 const background = require("../../assets/background.png");
 
 export default function NotificationsScreen() {
+  const { notifications } = useContext(UserContext);
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
@@ -18,12 +20,14 @@ export default function NotificationsScreen() {
     return null;
   }
 
+  console.log(notifications);
+
   const renderItems = ({ item }) => {
     return (
       <View style={styles().profile}>
         <ProfileComponent
           name={item.name}
-          profession={item.profession}
+          profession={"You Matched!"}
           dark={true}
           timestamp={"19:54"}
         />
@@ -42,7 +46,7 @@ export default function NotificationsScreen() {
 
       <View style={styles().innerContainer}>
         <FlatList
-          data={profileData}
+          data={notifications}
           renderItem={renderItems}
         />
 
