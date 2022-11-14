@@ -25,7 +25,7 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
           (!user.suggested.includes(card2._id)) &&
           (card2.is_public)) {
             const newSuggested = [card2._id, ...user.suggested];
-            const newNotifications = [card2._id, ...user.notifications]
+            const newNotifications = [{card_id: card2._id}, ...user.notifications]
             await User.findByIdAndUpdate(user._id, {
               suggested: newSuggested,
               notifications: newNotifications
@@ -118,9 +118,10 @@ const unfollowCard = async (req, res) => {
 
 const getNotifications = async (req, res) => {
   const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
-  const user = await User.findById(id).populate("notifications");
+  const user = await User.findById(id).populate({path: "notifications", populate: { path:  "card_id"}});
+  console.log(user);
 
-  res.json(user.suggested)
+  res.json(user.notifications)
 }
 
 const postNotificationToken = async (req, res) => {
