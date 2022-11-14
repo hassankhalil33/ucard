@@ -13,7 +13,7 @@ for (let pushToken of somePushTokens) {
     to: pushToken,
     sound: 'default',
     title: 'Ucard',
-    body: 'Hello from NodeJS'
+    body: 'You Have Been Matched!'
   })
 }
 

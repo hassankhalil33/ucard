@@ -4,11 +4,12 @@ const schedule = require("node-schedule");
 const { myNotifications } = require("../utility/notifications.utility");
 
 
-// Will Run Every 15 Mins
+//Will Run Every 15 Mins
 const scheduledJob = schedule.scheduleJob("*/20 * * * * *", async () => {
-  // Update Suggested Every 15 mins
+  //Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
+  let allTokens = [];
 
   data.forEach(async user => {
     user.cards.forEach(card => {
@@ -26,13 +27,20 @@ const scheduledJob = schedule.scheduleJob("*/20 * * * * *", async () => {
           await User.findByIdAndUpdate(user._id, {
             suggested: newSuggested
           })
+
+          //Save Tokens of Users to send Notification
+          allTokens = [...allTokens, user.notification_token];
         }
       });
     });
   });
 
+  //Send Notifications for Updated Users
+  if(allTokens) {
+    myNotifications(allTokens)
+  }
+  
   console.log("Im Running");
-  //myNotifications(["ExponentPushToken[PdnML6Bl5ji9HM4qYzfdAD]"])
 })
 
 const getUser = (req, res) => {
