@@ -57,7 +57,7 @@ export default function HomeScreen() {
         return;
       }
       const notToken = (await Notifications.getExpoPushTokenAsync()).data;
-      await postNotificationToken(notToken);
+      postNotificationToken(notToken);
     } else {
       alert('Must use physical device for Push Notifications');
     }
