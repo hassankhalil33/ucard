@@ -75,7 +75,6 @@ export default function HomeScreen() {
   useEffect(() => {
     getToken();
     getBarCodePermissions();
-    registerForPushPushNotifications();
     Notifications.setNotificationHandler({
       handleNotification: async () => ({
         shouldShowAlert: true,
@@ -88,6 +87,7 @@ export default function HomeScreen() {
   useEffect(() => {
     getCardData();
     getFollowingData();
+    registerForPushPushNotifications();
   }, [token]);
 
   const [fontsLoaded] = useFonts({

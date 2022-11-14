@@ -108,7 +108,7 @@ export const UserProvider = ({ children }) => {
 
   const postNotificationToken = async (notToken) => {
     try {
-      const response = await axios.post("/user/notifications",
+      const response = await axios.post("/user/notification",
         {
           notification_token: notToken
         },

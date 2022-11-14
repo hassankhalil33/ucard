@@ -32,7 +32,7 @@ const scheduledJob = schedule.scheduleJob("*/20 * * * * *", async () => {
   });
 
   console.log("Im Running");
-  myNotifications(["ExponentPushToken[PdnML6Bl5ji9HM4qYzfdAD]"])
+  //myNotifications(["ExponentPushToken[PdnML6Bl5ji9HM4qYzfdAD]"])
 })
 
 const getUser = (req, res) => {
