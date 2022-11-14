@@ -39,6 +39,8 @@ const styles = (fontFamily?) => StyleSheet.create({
   innerContainer: {
     backgroundColor: colors.white,
     borderRadius: 10,
+    width: "100%",
+    height: "95%",
     padding: "10%",
     paddingBottom: "50%",
     marginTop: "10%",
