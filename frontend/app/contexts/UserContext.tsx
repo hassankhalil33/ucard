@@ -20,6 +20,11 @@ interface UserProviderStore {
   postLogin: Function;
   logged: boolean;
   setLogged: Function;
+  postNotificationToken: Function;
+  getNotifications: Function;
+  notifications: object[];
+  setNotifications: Function;
+  deleteNotifications: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -27,6 +32,7 @@ export const UserContext = createContext({} as UserProviderStore);
 export const UserProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [followingData, setFollowingData] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   const [token, setToken] = useState("");
   const [logged, setLogged] = useState(false);
 
@@ -91,10 +97,40 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const getNotifications = async () => {
+    try {
+      const response = await axios.get("/user/notification", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setNotifications(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const postFollowingData = async (data) => {
     try {
       const response = await axios.post("/user/follow",
         data,
+        {
+          headers: { Authorization: "Bearer " + token }
+        });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const postNotificationToken = async (notToken) => {
+    try {
+      const response = await axios.post("/user/notification",
+        {
+          notification_token: notToken
+        },
         {
           headers: { Authorization: "Bearer " + token }
         });
@@ -152,6 +188,23 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const deleteNotifications = async () => {
+    try {
+      const response = await axios.delete("/user/notification", {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        data: {
+          null: null
+        }
+      });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const allData = {
     cardData,
     setCardData,
@@ -169,7 +222,12 @@ export const UserProvider = ({ children }) => {
     postRegister,
     postLogin,
     logged,
-    setLogged
+    setLogged,
+    postNotificationToken,
+    getNotifications,
+    notifications,
+    setNotifications,
+    deleteNotifications
   };
 
   return (

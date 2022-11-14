@@ -1,35 +1,53 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
 const schedule = require("node-schedule");
+const { myNotifications } = require("../utility/notifications.utility");
 
 
-// Will Run Every 15 Mins
+//Will Run Every 15 Mins
 const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
-  // Update Suggested Every 15 mins
+  //Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
+  let allTokens = [];
 
-  data.forEach(async user => {
-    user.cards.forEach(card => {
-      const location = card.location;
-      const profession = card.profession;
-      const user_id = card.user_id
+  const matchUserCards = async () => {
+    for await (const user of data) {
+      for await (const card of user.cards) {
+        const location = card.location;
+        const profession = card.profession;
+        const user_id = card.user_id
+  
+        for await (const card2 of allCards) {
+          if ((card2.location === location) &&
+          (card2.profession === profession) &&
+          (card2.user_id.toString() != user_id.toString()) &&
+          (!user.suggested.includes(card2._id)) &&
+          (card2.is_public)) {
+            const newSuggested = [card2._id, ...user.suggested];
+            const newNotifications = [{card_id: card2._id}, ...user.notifications]
+            await User.findByIdAndUpdate(user._id, {
+              suggested: newSuggested,
+              notifications: newNotifications
+            })
+  
+            //Save Tokens of Users to send Notification
+            allTokens = [...allTokens, user.notification_token.toString()];
+            console.log(allTokens);
+          }
+        };
+      };
+    };
 
-      allCards.forEach(async card2 => {
-        if ((card2.location === location) &&
-        (card2.profession === profession) &&
-        (card2.user_id.toString() != user_id.toString()) &&
-        (!user.suggested.includes(card2._id)) &&
-        (card2.is_public)) {
-          const newSuggested = [card2._id, ...user.suggested];
-          await User.findByIdAndUpdate(user._id, {
-            suggested: newSuggested
-          })
-        }
-      });
-    });
-  });
+    return allTokens;
+  }
 
+  const allUserTokens = await matchUserCards();
+  //Send Notifications for Updated Users
+  if (allUserTokens) {
+    myNotifications(allUserTokens);
+  }
+  
   console.log("Im Running");
 })
 
@@ -99,9 +117,22 @@ const unfollowCard = async (req, res) => {
 }
 
 const getNotifications = async (req, res) => {
-  const {notifications} = req.user;
+  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const user = await User.findById(id).populate({path: "notifications", populate: { path:  "card_id"}});
+  console.log(user);
 
-  res.json(notifications)
+  res.json(user.notifications)
+}
+
+const postNotificationToken = async (req, res) => {
+  const {_id: id} = req.user;
+  const {notification_token: notToken} = req.body;
+
+  await User.findByIdAndUpdate(id, {
+    notification_token: notToken
+  })
+
+  res.json({message: "success"})
 }
 
 const deleteNotifications = async (req, res) => {
@@ -128,5 +159,6 @@ module.exports = {
   followCard,
   unfollowCard,
   getNotifications,
-  deleteNotifications
+  deleteNotifications,
+  postNotificationToken
 }

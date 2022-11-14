@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "com.hassankhalil.ucard",
     "splash": {
       "image": "./app/assets/splash.png",
       "resizeMode": "contain",
@@ -25,7 +26,8 @@
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.lambdatiger.frontend",
+      "package": "com.hassankhalil.ucard",
+      "googleServicesFile": "./google-services.json",
       "permissions": [
         "android.permission.NFC"
       ]

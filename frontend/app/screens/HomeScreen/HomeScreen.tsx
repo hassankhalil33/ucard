@@ -1,10 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity } from "react-native";
+import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
+import * as Notifications from "expo-notifications";
+import * as Device from "expo-device";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import QRCode from "react-native-qrcode-svg";
@@ -33,7 +35,9 @@ export default function HomeScreen() {
     token,
     getToken,
     getCardData,
-    getFollowingData
+    getFollowingData,
+    postNotificationToken,
+    getNotifications
   } = useContext(UserContext);
 
   const getBarCodePermissions = async () => {
@@ -41,14 +45,51 @@ export default function HomeScreen() {
     setHasPermission(status === 'granted');
   };
 
+  const registerForPushPushNotifications = async () => {
+    if (Device.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      const notToken = (await Notifications.getExpoPushTokenAsync()).data;
+      postNotificationToken(notToken);
+    } else {
+      alert('Must use physical device for Push Notifications');
+    }
+
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+  };
+
   useEffect(() => {
     getToken();
     getBarCodePermissions();
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
   }, []);
 
   useEffect(() => {
     getCardData();
     getFollowingData();
+    getNotifications();
+    registerForPushPushNotifications();
   }, [token]);
 
   const [fontsLoaded] = useFonts({
@@ -86,6 +127,16 @@ export default function HomeScreen() {
     }
 
     alert(result);
+  }
+
+  //foregrounded notifications
+  const handleNotification = (notification: Notifications.Notification) => {
+
+  }
+
+  //response after tap
+  const handleNotificationResponse = (notification: Notifications.Notification) => {
+
   }
 
   const renderItems = ({ item }) => {
