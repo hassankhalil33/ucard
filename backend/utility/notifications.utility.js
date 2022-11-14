@@ -1,6 +1,7 @@
 const { Expo } = require("expo-server-sdk");
 
-let expo = new Expo({});
+const myNotifications = (somePushTokens) => {
+  let expo = new Expo({});
 let messages = [];
 for (let pushToken of somePushTokens) {
   if (!Expo.isExpoPushToken(pushToken)) {
@@ -27,3 +28,6 @@ let chunks = expo.chunkPushNotifications(messages);
     }
   }
 })();
+}
+
+export default myNotifications;
