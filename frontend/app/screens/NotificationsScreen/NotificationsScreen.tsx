@@ -48,10 +48,14 @@ export default function NotificationsScreen() {
       <Text style={styles("Poppins-Bold").header}>Notifications</Text>
 
       <View style={styles().innerContainer}>
-        <FlatList
-          data={notifications}
-          renderItem={renderItems}
-        />
+        {notifications.length != 0 ?
+          <FlatList
+            data={notifications}
+            renderItem={renderItems}
+          />
+          :
+          <Text style={styles("Poppins-Bold").text}>No New Notifications</Text>
+        }
 
         <View style={styles().button}>
           <MyButton

@@ -46,6 +46,13 @@ const styles = (fontFamily?) => StyleSheet.create({
     marginTop: "10%",
   },
 
+  text: {
+    fontFamily: fontFamily,
+    fontSize: 16,
+    color: colors.primary,
+    alignSelf: "center"
+  },
+
   button: {
     flex: 1,
     alignSelf: "center",
