@@ -190,9 +190,12 @@ export const UserProvider = ({ children }) => {
 
   const deleteNotifications = async () => {
     try {
-      const response = await axios.delete("/user/notifications", {
+      const response = await axios.delete("/user/notification", {
         headers: {
           Authorization: "Bearer " + token
+        },
+        data: {
+          null: null
         }
       });
       console.log(response.data);

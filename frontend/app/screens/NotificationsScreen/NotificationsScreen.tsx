@@ -10,7 +10,7 @@ import MyButton from "../../components/MyButton/MyButton";
 const background = require("../../assets/background.png");
 
 export default function NotificationsScreen() {
-  const { notifications } = useContext(UserContext);
+  const { notifications, deleteNotifications, getNotifications } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -20,7 +20,10 @@ export default function NotificationsScreen() {
     return null;
   }
 
-  console.log(notifications);
+  const handleDeleteNotifications = async () => {
+    await deleteNotifications();
+    getNotifications();
+  }
 
   const renderItems = ({ item }) => {
     return (
@@ -54,7 +57,7 @@ export default function NotificationsScreen() {
           <MyButton
             title={"Delete Notifications"}
             color={colors.primary}
-            press={() => alert("Notifications Deleted!")}
+            press={handleDeleteNotifications}
           />
         </View>
 
