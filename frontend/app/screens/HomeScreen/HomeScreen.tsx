@@ -35,7 +35,8 @@ export default function HomeScreen() {
     token,
     getToken,
     getCardData,
-    getFollowingData
+    getFollowingData,
+    postNotificationToken
   } = useContext(UserContext);
 
   const getBarCodePermissions = async () => {
@@ -55,8 +56,8 @@ export default function HomeScreen() {
         alert('Failed to get push token for push notification!');
         return;
       }
-      const token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log("token:", token);
+      const notToken = (await Notifications.getExpoPushTokenAsync()).data;
+      await postNotificationToken(notToken);
     } else {
       alert('Must use physical device for Push Notifications');
     }

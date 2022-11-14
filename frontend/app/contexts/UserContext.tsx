@@ -20,6 +20,7 @@ interface UserProviderStore {
   postLogin: Function;
   logged: boolean;
   setLogged: Function;
+  postNotificationToken: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -105,7 +106,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  const postNotificationsToken = async (notToken) => {
+  const postNotificationToken = async (notToken) => {
     try {
       const response = await axios.post("/user/notifications",
         {
@@ -186,7 +187,7 @@ export const UserProvider = ({ children }) => {
     postLogin,
     logged,
     setLogged,
-    postNotificationsToken
+    postNotificationToken
   };
 
   return (
