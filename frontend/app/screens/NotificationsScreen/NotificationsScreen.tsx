@@ -26,10 +26,10 @@ export default function NotificationsScreen() {
     return (
       <View style={styles().profile}>
         <ProfileComponent
-          name={item.name}
+          name={item.card_id.name}
           profession={"You Matched!"}
           dark={true}
-          timestamp={"19:54"}
+          timestamp={item.timestamp.slice(11, 16)}
         />
       </View>
     )
