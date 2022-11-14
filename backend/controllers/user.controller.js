@@ -107,7 +107,14 @@ const getNotifications = async (req, res) => {
 }
 
 const postNotificationToken = async (req, res) => {
+  const {_id: id} = req.user;
+  const {notification_token: notToken} = req.body;
 
+  await User.findByIdAndUpdate(id, {
+    notification_token: notToken
+  })
+
+  res.json({message: "success"})
 }
 
 const deleteNotifications = async (req, res) => {
