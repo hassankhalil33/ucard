@@ -1,10 +1,11 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
 const schedule = require("node-schedule");
+const { myNotifications } = require("../utility/notifications.utility");
 
 
 // Will Run Every 15 Mins
-const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
+const scheduledJob = schedule.scheduleJob("*/20 * * * * *", async () => {
   // Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
@@ -31,6 +32,7 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
   });
 
   console.log("Im Running");
+  myNotifications(["ExponentPushToken[PdnML6Bl5ji9HM4qYzfdAD]"])
 })
 
 const getUser = (req, res) => {
