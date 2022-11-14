@@ -105,6 +105,22 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const postNotificationsToken = async (notToken) => {
+    try {
+      const response = await axios.post("/user/notifications",
+        {
+          notification_token: notToken
+        },
+        {
+          headers: { Authorization: "Bearer " + token }
+        });
+      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const postCreateCard = async () => {
     try {
       const response = await axios.post("/card",
@@ -169,7 +185,8 @@ export const UserProvider = ({ children }) => {
     postRegister,
     postLogin,
     logged,
-    setLogged
+    setLogged,
+    postNotificationsToken
   };
 
   return (
