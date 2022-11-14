@@ -106,6 +106,10 @@ const getNotifications = async (req, res) => {
   res.json(notifications)
 }
 
+const postNotificationToken = async (req, res) => {
+
+}
+
 const deleteNotifications = async (req, res) => {
   const {_id: id} = req.user;
 
@@ -130,5 +134,6 @@ module.exports = {
   followCard,
   unfollowCard,
   getNotifications,
-  deleteNotifications
+  deleteNotifications,
+  postNotificationToken
 }

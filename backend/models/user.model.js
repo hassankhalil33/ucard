@@ -62,6 +62,10 @@ const userSchema = new mongoose.Schema({
     type: Array
   },
 
+  notification_token: {
+    tyoe: String
+  },
+
   timestamp: {
     type: Date,
     default: Date.now
