@@ -5,40 +5,46 @@ const { myNotifications } = require("../utility/notifications.utility");
 
 
 //Will Run Every 15 Mins
-const scheduledJob = schedule.scheduleJob("*/20 * * * * *", async () => {
+const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
   //Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
   let allTokens = [];
+  let check = 0;
 
-  data.forEach(async user => {
-    user.cards.forEach(card => {
-      const location = card.location;
-      const profession = card.profession;
-      const user_id = card.user_id
+  const matchUserCards = async () => {
+    for await (const user of data) {
+      for await (const card of user.cards) {
+        const location = card.location;
+        const profession = card.profession;
+        const user_id = card.user_id
+  
+        for await (const card2 of allCards) {
+          if ((card2.location === location) &&
+          (card2.profession === profession) &&
+          (card2.user_id.toString() != user_id.toString()) &&
+          (!user.suggested.includes(card2._id)) &&
+          (card2.is_public)) {
+            const newSuggested = [card2._id, ...user.suggested];
+            await User.findByIdAndUpdate(user._id, {
+              suggested: newSuggested
+            })
+  
+            //Save Tokens of Users to send Notification
+            allTokens = [...allTokens, user.notification_token];
+            console.log(allTokens);
+          }
+        };
+      };
+    };
 
-      allCards.forEach(async card2 => {
-        if ((card2.location === location) &&
-        (card2.profession === profession) &&
-        (card2.user_id.toString() != user_id.toString()) &&
-        (!user.suggested.includes(card2._id)) &&
-        (card2.is_public)) {
-          const newSuggested = [card2._id, ...user.suggested];
-          await User.findByIdAndUpdate(user._id, {
-            suggested: newSuggested
-          })
-
-          //Save Tokens of Users to send Notification
-          allTokens = [...allTokens, user.notification_token];
-        }
-      });
-    });
-  });
-
-  //Send Notifications for Updated Users
-  if(allTokens) {
-    myNotifications(allTokens)
+    return allTokens;
   }
+
+  const allUserTokens = await matchUserCards();
+  //Send Notifications for Updated Users
+  console.log(allUserTokens);
+  myNotifications(allUserTokens);
   
   console.log("Im Running");
 })
