@@ -31,7 +31,7 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
             })
   
             //Save Tokens of Users to send Notification
-            allTokens = [...allTokens, user.notification_token];
+            allTokens = [...allTokens, user.notification_token.toString()];
             console.log(allTokens);
           }
         };
@@ -43,8 +43,9 @@ const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
 
   const allUserTokens = await matchUserCards();
   //Send Notifications for Updated Users
-  console.log(allUserTokens);
-  myNotifications(allUserTokens);
+  if (allUserTokens) {
+    myNotifications(allUserTokens);
+  }
   
   console.log("Im Running");
 })
