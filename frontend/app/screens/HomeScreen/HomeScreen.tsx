@@ -39,7 +39,8 @@ export default function HomeScreen() {
     postNotificationToken,
     getNotifications,
     getSuggested,
-    suggested
+    suggested,
+    followingData
   } = useContext(UserContext);
 
   const getBarCodePermissions = async () => {
@@ -142,6 +143,8 @@ export default function HomeScreen() {
 
   }
 
+  console.log(followingData);
+
   const renderCards = ({ item }) => {
     return (
       <View>
@@ -224,7 +227,7 @@ export default function HomeScreen() {
 
       <ModalComponent
         title={"Recents"}
-        content={profData}
+        content={followingData}
         height={vh53}
       />
 

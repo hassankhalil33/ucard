@@ -55,7 +55,6 @@ export const UserProvider = ({ children }) => {
   const postRegister = async (data) => {
     try {
       const response = await axios.post("/auth/register", data);
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -65,7 +64,6 @@ export const UserProvider = ({ children }) => {
   const postLogin = async (data) => {
     try {
       const response = await axios.post("/auth/login", data);
-      console.log(response.data);
       return response.data;
 
     } catch (err) {
@@ -78,8 +76,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setCardData(response.data);
 
     } catch (err) {
@@ -92,8 +88,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/user/follow", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setFollowingData(response.data);
 
     } catch (err) {
@@ -106,8 +100,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/user/notification", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setNotifications(response.data);
 
     } catch (err) {
@@ -120,8 +112,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/user/suggested", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setSuggested(response.data);
 
     } catch (err) {
@@ -136,7 +126,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -152,7 +141,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -168,7 +156,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -182,7 +169,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token },
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -199,7 +185,6 @@ export const UserProvider = ({ children }) => {
           id: cardId
         }
       });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -216,7 +201,6 @@ export const UserProvider = ({ children }) => {
           null: null
         }
       });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);

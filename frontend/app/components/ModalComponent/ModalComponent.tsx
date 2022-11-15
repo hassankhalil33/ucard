@@ -26,8 +26,6 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
   const modalizeRef = useRef<Modalize>(null);
 
-  console.log(content);
-
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -131,9 +129,9 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
               return (
                 <ProfileComponent
                   key={index}
-                  name={item.name}
-                  profession={item.profession}
-                  timestamp={item.timestamp}
+                  name={item.card_id.name}
+                  profession={"Followed On:"}
+                  timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
                   dark={true}
                   margin={20}
                 />
