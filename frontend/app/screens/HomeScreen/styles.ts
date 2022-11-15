@@ -28,6 +28,14 @@ const styles = (fontMedium?, fontBold?) => StyleSheet.create({
     borderRadius: 10,
   },
 
+  text: {
+    fontFamily: fontMedium,
+    fontSize: 14,
+    color: colors.white,
+    alignSelf: "center",
+    marginTop: 20
+  },
+
   upperHalf: {
     width: "100%",
     height: "47%",

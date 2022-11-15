@@ -208,12 +208,16 @@ export default function HomeScreen() {
         <View style={styles().suggestedView}>
           <Text style={styles("Poppins-Medium").suggestedHeader}>Suggested</Text>
 
-          <View style={styles().profiles}>
-            <FlatList
-              data={suggested}
-              renderItem={renderSuggested}
-            />
-          </View>
+          {suggested.length != 0 ?
+            <View style={styles().profiles}>
+              <FlatList
+                data={suggested}
+                renderItem={renderSuggested}
+              />
+            </View>
+            :
+            <Text style={styles("Poppins-Medium").text}>No New Suggested Cards</Text>
+          }
         </View>
 
       </View>
