@@ -100,11 +100,16 @@ export default function ContactsScreen() {
       </TouchableOpacity>
 
       <View style={styles().innerContainer}>
-        <FlatList
-          data={followingData}
-          renderItem={renderItems}
-          showsVerticalScrollIndicator={false}
-        />
+        {followingData.length != 0 ?
+          <FlatList
+            data={followingData}
+            renderItem={renderItems}
+            showsVerticalScrollIndicator={false}
+          />
+          :
+          <Text style={styles("Poppins-Bold").text}>No Cards in Contacts</Text>
+        }
+
       </View>
 
       <Modal visible={openModal}>

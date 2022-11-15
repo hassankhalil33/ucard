@@ -39,6 +39,13 @@ const styles = (fontFamily?) => StyleSheet.create({
     paddingTop: 75
   },
 
+  text: {
+    fontFamily: fontFamily,
+    fontSize: 16,
+    color: colors.white,
+    alignSelf: "center"
+  },
+
   addButtonContainer: {
     position: "absolute",
     top: "10%",
