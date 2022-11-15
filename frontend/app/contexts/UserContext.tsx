@@ -25,6 +25,7 @@ interface UserProviderStore {
   notifications: object[];
   setNotifications: Function;
   deleteNotifications: Function;
+  getSuggested: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -100,6 +101,20 @@ export const UserProvider = ({ children }) => {
   const getNotifications = async () => {
     try {
       const response = await axios.get("/user/notification", {
+        headers: { Authorization: "Bearer " + token }
+      });
+
+      console.log(response.data);
+      setNotifications(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getSuggested = async () => {
+    try {
+      const response = await axios.get("/user/suggested", {
         headers: { Authorization: "Bearer " + token }
       });
 
@@ -227,7 +242,8 @@ export const UserProvider = ({ children }) => {
     getNotifications,
     notifications,
     setNotifications,
-    deleteNotifications
+    deleteNotifications,
+    getSuggested
   };
 
   return (
