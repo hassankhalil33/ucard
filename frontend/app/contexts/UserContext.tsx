@@ -26,6 +26,8 @@ interface UserProviderStore {
   setNotifications: Function;
   deleteNotifications: Function;
   getSuggested: Function;
+  suggested: object[];
+  setSuggested: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -34,6 +36,7 @@ export const UserProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [followingData, setFollowingData] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const [suggested, setSuggested] = useState([]);
   const [token, setToken] = useState("");
   const [logged, setLogged] = useState(false);
 
@@ -119,7 +122,7 @@ export const UserProvider = ({ children }) => {
       });
 
       console.log(response.data);
-      setNotifications(response.data);
+      setSuggested(response.data);
 
     } catch (err) {
       console.log(err);
@@ -243,7 +246,9 @@ export const UserProvider = ({ children }) => {
     notifications,
     setNotifications,
     deleteNotifications,
-    getSuggested
+    getSuggested,
+    suggested,
+    setSuggested
   };
 
   return (

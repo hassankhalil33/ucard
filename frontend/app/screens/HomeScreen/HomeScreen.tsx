@@ -37,7 +37,9 @@ export default function HomeScreen() {
     getCardData,
     getFollowingData,
     postNotificationToken,
-    getNotifications
+    getNotifications,
+    getSuggested,
+    suggested
   } = useContext(UserContext);
 
   const getBarCodePermissions = async () => {
@@ -89,6 +91,7 @@ export default function HomeScreen() {
     getCardData();
     getFollowingData();
     getNotifications();
+    getSuggested();
     registerForPushPushNotifications();
   }, [token]);
 
@@ -139,7 +142,7 @@ export default function HomeScreen() {
 
   }
 
-  const renderItems = ({ item }) => {
+  const renderCards = ({ item }) => {
     return (
       <View>
         <CardComponent
@@ -152,6 +155,18 @@ export default function HomeScreen() {
           category={item.category}
           onPress={() => handleOpenQr(item._id)}
           onHold={() => writeNdef(item._id)}
+        />
+      </View>
+    );
+  }
+
+  const renderSuggested = ({ item }) => {
+    return (
+      <View style={styles().profile}>
+        <ProfileComponent
+          name={item.name}
+          profession={item.profession}
+          dark={false}
         />
       </View>
     );
@@ -175,7 +190,7 @@ export default function HomeScreen() {
           loop={false}
           width={vw100}
           data={cardData}
-          renderItem={renderItems}
+          renderItem={renderCards}
           mode={"parallax"}
         />
 
@@ -195,16 +210,8 @@ export default function HomeScreen() {
 
           <View style={styles().profiles}>
             <FlatList
-              data={profData}
-              renderItem={({ item }) =>
-                <View style={styles().profile}>
-                  <ProfileComponent
-                    name={item.name}
-                    profession={item.profession}
-                    dark={false}
-                  />
-                </View>
-              }
+              data={suggested}
+              renderItem={renderSuggested}
             />
           </View>
         </View>
