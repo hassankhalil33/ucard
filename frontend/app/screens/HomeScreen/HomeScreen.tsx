@@ -14,7 +14,6 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import profData from "../../constants/profileData";
 import colors from "../../constants/pallete";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
