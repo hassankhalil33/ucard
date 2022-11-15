@@ -125,18 +125,21 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                 onChangeText={(text) => content.setCardLocation(text)}
               />
             </View>
-            : content.map((item, index) => {
-              return (
-                <ProfileComponent
-                  key={index}
-                  name={item.card_id.name}
-                  profession={"Followed On:"}
-                  timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
-                  dark={true}
-                  margin={20}
-                />
-              )
-            })
+            :
+            <View style={{ marginTop: "10%" }}>
+              {content.map((item, index) => {
+                return (
+                  <ProfileComponent
+                    key={index}
+                    name={item.card_id.name}
+                    profession={"Followed On:"}
+                    timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
+                    dark={true}
+                    margin={20}
+                  />
+                )
+              })}
+            </View>
           }
         </View>
 
