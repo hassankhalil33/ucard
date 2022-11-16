@@ -3,7 +3,6 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { writeNdef } from "../../utilities/nfc";
-import { registerForPushPushNotifications, setNotificationHandler } from "../../utilities/notifications";
 import { getBarCodePermissions } from "../../utilities/qrcode";
 import {
   Text,
@@ -12,6 +11,10 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
+import {
+  registerForPushPushNotifications,
+  setNotificationHandler
+} from "../../utilities/notifications";
 
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
@@ -36,13 +39,15 @@ export default function HomeScreen() {
     cardData,
     token,
     getToken,
+    deleteToken,
     getCardData,
     getFollowingData,
     postNotificationToken,
     getNotifications,
     getSuggested,
     suggested,
-    followingData
+    followingData,
+    setLogged
   } = useContext(UserContext);
 
   const sendNotificationToken = async () => {
@@ -81,7 +86,8 @@ export default function HomeScreen() {
   }
 
   const handleLogout = () => {
-
+    deleteToken();
+    setLogged(false);
   }
 
   const [fontsLoaded] = useFonts({

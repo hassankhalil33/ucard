@@ -10,6 +10,7 @@ interface UserProviderStore {
   token: string;
   setToken: Function;
   getToken: Function;
+  deleteToken: Function;
   getCardData: Function;
   getFollowingData: Function;
   postFollowingData: Function;
@@ -48,8 +49,17 @@ export const UserProvider = ({ children }) => {
       if (value !== null) {
         setToken(value);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const deleteToken = async () => {
+    try {
+      await AsyncStorage.removeItem("@storage_Key");
+
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -250,7 +260,8 @@ export const UserProvider = ({ children }) => {
     getSuggested,
     suggested,
     setSuggested,
-    deleteFollowCard
+    deleteFollowCard,
+    deleteToken
   };
 
   return (
