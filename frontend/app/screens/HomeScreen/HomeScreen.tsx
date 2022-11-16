@@ -9,6 +9,7 @@ import { getBarCodePermissions } from "../../utilities/qrcode";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import QRCodeModal from "../../components/QRCodeModal/QRCodeModal";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
@@ -165,21 +166,12 @@ export default function HomeScreen() {
         height={viewPort.vh53}
       />
 
-      <Modal visible={openModal}>
-        <View style={styles().modal}>
-          <QRCode
-            value={cardId}
-            logo={appLogo}
-            size={200}
-          />
-          <TouchableOpacity
-            style={styles().cancelButton}
-            onPress={() => setOpenModal(false)}
-          >
-            <Text style={{ color: colors.white }}>Cancel</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      <QRCodeModal
+        visibility={openModal}
+        cardId={cardId}
+        logo={appLogo}
+        onCancel={() => setOpenModal(false)}
+      />
 
       <StatusBar style="light" />
 

@@ -1,24 +1,31 @@
-import React from "react";
+import React, { FC } from "react";
 import { Modal, View, TouchableOpacity, Text } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import colors from "../../constants/pallete";
 import styles from "./styles";
 
 
-const QRCodeComponent = (props) => {
-  const { openModal, cardId, appLogo, onPress } = props;
+interface QRCodeModalProps {
+  visibility: boolean;
+  cardId: string;
+  logo: any;
+  onCancel: Function;
+}
+
+const QRCodeModal: FC<QRCodeModalProps> = (props) => {
+  const { visibility, cardId, logo, onCancel } = props;
 
   return (
-    <Modal visible={openModal}>
+    <Modal visible={visibility}>
       <View style={styles().modal}>
         <QRCode
           value={cardId}
-          logo={appLogo}
+          logo={logo}
           size={200}
         />
         <TouchableOpacity
           style={styles().cancelButton}
-          onPress={() => onPress()}
+          onPress={() => onCancel()}
         >
           <Text style={{ color: colors.white }}>Cancel</Text>
         </TouchableOpacity>
@@ -27,4 +34,4 @@ const QRCodeComponent = (props) => {
   )
 }
 
-export default QRCodeComponent
+export default QRCodeModal
