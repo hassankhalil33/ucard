@@ -37,6 +37,13 @@ export default function HomeScreen() {
     followingData
   } = useContext(UserContext);
 
+  const sendNotificationToken = async () => {
+    const notToken = await registerForPushPushNotifications();
+    if (notToken) {
+      postNotificationToken(notToken);
+    }
+  }
+
   const getBarCodePermissions = async () => {
     await BarCodeScanner.requestPermissionsAsync();
   };
@@ -52,7 +59,7 @@ export default function HomeScreen() {
     getFollowingData();
     getNotifications();
     getSuggested();
-    postNotificationToken(registerForPushPushNotifications());
+    sendNotificationToken();
   }, [token]);
 
   const [fontsLoaded] = useFonts({
