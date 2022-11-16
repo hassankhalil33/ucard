@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity, Platform } from "react-native";
+import { Text, View, Image, FlatList, Modal, TouchableOpacity, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -15,12 +15,9 @@ import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import colors from "../../constants/pallete";
+import viewPort from "../../constants/viewPortConstants";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
-
-const vh53 = (Dimensions.get('window').height / 10) * 5.3;
-const vw60 = (Dimensions.get('window').width / 10) * 6;
-const vw100 = (Dimensions.get('window').width / 10) * 10;
 
 
 export default function HomeScreen() {
@@ -109,8 +106,6 @@ export default function HomeScreen() {
     setOpenModal(true);
   }
 
-
-
   const renderCards = ({ item }) => {
     return (
       <View>
@@ -118,8 +113,8 @@ export default function HomeScreen() {
           name={item.name}
           profession={item.profession}
           description={"tap for QR | hold for NFC"}
-          width={vw100}
-          height={vw60}
+          width={viewPort.vw100}
+          height={viewPort.vw60}
           normal={false}
           category={item.category}
           onPress={() => handleOpenQr(item._id)}
@@ -151,13 +146,12 @@ export default function HomeScreen() {
       <View style={styles().upperHalf}>
 
         <Text style={styles("0", "Poppins-Bold").header}>Home</Text>
-
         <Text style={styles("Poppins-Medium").subHeader}>Your Cards</Text>
 
         <Carousel
           style={{ marginTop: -20, marginBottom: -20 }}
           loop={false}
-          width={vw100}
+          width={viewPort.vw100}
           data={cardData}
           renderItem={renderCards}
           mode={"parallax"}
@@ -194,7 +188,7 @@ export default function HomeScreen() {
       <ModalComponent
         title={"Recents"}
         content={followingData}
-        height={vh53}
+        height={viewPort.vh53}
       />
 
       <Modal visible={openModal}>
