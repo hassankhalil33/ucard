@@ -44,6 +44,15 @@ export default function HomeScreen() {
     }
   }
 
+  const searchSuggested = () => {
+    const filteredArray = suggested.filter((item) => {
+      const re = new RegExp(searchText.toString());
+      return item.name.toLowerCase().match(re) && item
+    })
+
+    return filteredArray
+  }
+
   useEffect(() => {
     getToken();
     getBarCodePermissions();
@@ -58,7 +67,7 @@ export default function HomeScreen() {
     sendNotificationToken();
   }, [token]);
 
-  const handleOpenQr = (id) => {
+  const handleOpenQrButton = (id) => {
     setCardId(id);
     setOpenModal(true);
   }
@@ -83,7 +92,7 @@ export default function HomeScreen() {
           height={viewPort.vw60}
           normal={false}
           category={item.category}
-          onPress={() => handleOpenQr(item._id)}
+          onPress={() => handleOpenQrButton(item._id)}
           onHold={() => writeNdef(item._id)}
         />
       </View>
@@ -140,7 +149,7 @@ export default function HomeScreen() {
           {suggested.length != 0 ?
             <View style={styles().profiles}>
               <FlatList
-                data={suggested}
+                data={searchText ? searchSuggested() : suggested}
                 renderItem={renderSuggested}
               />
             </View>

@@ -26,7 +26,7 @@ interface UserProviderStore {
   setNotifications: Function;
   deleteNotifications: Function;
   getSuggested: Function;
-  suggested: object[];
+  suggested: { name: String }[];
   setSuggested: Function;
 }
 
