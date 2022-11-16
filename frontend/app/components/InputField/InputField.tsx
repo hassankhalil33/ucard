@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { FC } from "react";
 import { TextInput } from "react-native";
 import { useFonts } from "expo-font";
 import styles from "./styles";
@@ -10,12 +10,6 @@ interface InputFieldProps {
 }
 
 const InputField: FC<InputFieldProps> = ({ placeholder, value, setValue }) => {
-  const [thisValue, setThisValue] = useState("Lara");
-
-  useEffect(() => {
-    console.log(thisValue);
-  }, [thisValue])
-
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
   });
