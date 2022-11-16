@@ -3,9 +3,9 @@ import { Text, View, Image, FlatList, Modal, TouchableOpacity, Platform } from "
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
-import { BarCodeScanner } from "expo-barcode-scanner";
 import { writeNdef } from "../../utilities/nfc";
 import { registerForPushPushNotifications, setNotificationHandler } from "../../utilities/notifications";
+import { getBarCodePermissions } from "../../utilities/qrcode";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import QRCode from "react-native-qrcode-svg";
@@ -44,10 +44,6 @@ export default function HomeScreen() {
     }
   }
 
-  const getBarCodePermissions = async () => {
-    await BarCodeScanner.requestPermissionsAsync();
-  };
-
   useEffect(() => {
     getToken();
     getBarCodePermissions();
@@ -62,6 +58,11 @@ export default function HomeScreen() {
     sendNotificationToken();
   }, [token]);
 
+  const handleOpenQr = (id) => {
+    setCardId(id);
+    setOpenModal(true);
+  }
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -69,11 +70,6 @@ export default function HomeScreen() {
 
   if (!fontsLoaded) {
     return null;
-  }
-
-  const handleOpenQr = (id) => {
-    setCardId(id);
-    setOpenModal(true);
   }
 
   const renderCards = ({ item }) => {
