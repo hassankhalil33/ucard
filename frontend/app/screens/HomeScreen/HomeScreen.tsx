@@ -3,8 +3,8 @@ import { Text, View, Image, FlatList, Dimensions, Modal, TouchableOpacity, Platf
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { writeNdef } from "../../utilities/nfc";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import styles from "./styles";
@@ -109,40 +109,7 @@ export default function HomeScreen() {
     setOpenModal(true);
   }
 
-  async function writeNdef(value) {
-    let result = false;
 
-    try {
-      await NfcManager.requestTechnology(NfcTech.Ndef);
-
-      const bytes = Ndef.encodeMessage([Ndef.textRecord(value)]);
-      alert("Started NFC Write");
-
-      if (bytes) {
-        await NfcManager.ndefHandler
-          .writeNdefMessage(bytes);
-        result = true;
-      }
-    } catch (ex) {
-      alert(ex);
-    } finally {
-      NfcManager.cancelTechnologyRequest();
-    }
-
-    alert(result);
-  }
-
-  //foregrounded notifications
-  const handleNotification = (notification: Notifications.Notification) => {
-
-  }
-
-  //response after tap
-  const handleNotificationResponse = (notification: Notifications.Notification) => {
-
-  }
-
-  console.log(followingData);
 
   const renderCards = ({ item }) => {
     return (
