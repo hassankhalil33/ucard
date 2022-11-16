@@ -4,7 +4,8 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import NfcManager, { NfcTech } from "react-native-nfc-manager";
+import { readNdef } from "../../utilities/nfc";
+import NfcManager from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import styles from "./styles";
 import MyButton from "../../components/MyButton/MyButton";
@@ -25,6 +26,8 @@ export default function ContactsScreen() {
     return null;
   }
 
+  NfcManager.start();
+
   const handleBarCodeScanned = async ({ type, data }) => {
     const ApiData = {
       id: data
@@ -41,32 +44,8 @@ export default function ContactsScreen() {
     setOpenModal(true);
   }
 
-  const handleAddButton = () => {
+  const handleAddButton = async () => {
     readNdef();
-  }
-
-  NfcManager.start();
-
-  async function readNdef() {
-    try {
-      await NfcManager.requestTechnology(NfcTech.Ndef);
-
-      alert("Started NFC Read");
-      const tag = await NfcManager.getTag();
-
-      const data = {
-        id: tag
-      }
-
-      await postFollowingData(data);
-      await getFollowingData();
-
-      alert(tag);
-    } catch (ex) {
-      alert(ex);
-    } finally {
-      NfcManager.cancelTechnologyRequest();
-    }
   }
 
   const renderItems = ({ item }) => {

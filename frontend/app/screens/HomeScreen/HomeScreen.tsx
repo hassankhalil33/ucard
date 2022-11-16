@@ -8,7 +8,6 @@ import { registerForPushPushNotifications, setNotificationHandler } from "../../
 import { getBarCodePermissions } from "../../utilities/qrcode";
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
-import QRCode from "react-native-qrcode-svg";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
