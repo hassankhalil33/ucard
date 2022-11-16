@@ -94,6 +94,17 @@ const styles = (fontMedium?, fontBold?) => StyleSheet.create({
   profile: {
     marginTop: 15,
   },
+
+  addButtonContainer: {
+    position: "absolute",
+    top: "10%",
+    left: 40
+  },
+
+  addButton: {
+    width: 30,
+    height: 30.5,
+  }
 });
 
 export default styles

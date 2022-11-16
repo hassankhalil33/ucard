@@ -1,11 +1,18 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Text, View, Image, FlatList, Modal, TouchableOpacity, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { writeNdef } from "../../utilities/nfc";
 import { registerForPushPushNotifications, setNotificationHandler } from "../../utilities/notifications";
 import { getBarCodePermissions } from "../../utilities/qrcode";
+import {
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
+
 import styles from "./styles";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
@@ -14,8 +21,10 @@ import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import viewPort from "../../constants/viewPortConstants";
+
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
+const logoutButton = require("../../assets/buttons/logout-button.png");
 
 
 export default function HomeScreen() {
@@ -71,6 +80,10 @@ export default function HomeScreen() {
     setOpenModal(true);
   }
 
+  const handleLogout = () => {
+
+  }
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
@@ -116,6 +129,10 @@ export default function HomeScreen() {
       <View style={styles().background}>
         <Image style={styles().backgroundImage} source={background} />
       </View>
+
+      <TouchableOpacity style={styles().addButtonContainer} onPress={handleLogout}>
+        <Image source={logoutButton} style={styles().addButton} />
+      </TouchableOpacity>
 
       <View style={styles().upperHalf}>
 
