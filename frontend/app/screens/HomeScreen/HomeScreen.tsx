@@ -85,8 +85,8 @@ export default function HomeScreen() {
     setOpenModal(true);
   }
 
-  const handleLogout = () => {
-    deleteToken();
+  const handleLogout = async () => {
+    await deleteToken();
     setLogged(false);
   }
 
