@@ -13,7 +13,6 @@ import QRCodeModal from "../../components/QRCodeModal/QRCodeModal";
 import InputField from "../../components/InputField/InputField";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import colors from "../../constants/pallete";
 import viewPort from "../../constants/viewPortConstants";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");

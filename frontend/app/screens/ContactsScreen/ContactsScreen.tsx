@@ -1,21 +1,37 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ToastAndroid, Modal } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { readNdef } from "../../utilities/nfc";
+import {
+  StyleSheet,
+  Text,
+  View, Image,
+  FlatList,
+  TouchableOpacity,
+  ToastAndroid,
+  Modal,
+  Alert
+} from "react-native";
+
 import NfcManager from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import QRCodeModal from "../../components/QRCodeModal/QRCodeModal";
 import styles from "./styles";
 import MyButton from "../../components/MyButton/MyButton";
 import colors from "../../constants/pallete";
+
 const background = require("../../assets/background.png");
 const nfcButton = require("../../assets/buttons/nfc-button.png");
 const qrButton = require("../../assets/buttons/qr-button.png");
+const appLogo = require("../../assets/icon.png");
+
 
 export default function ContactsScreen() {
-  const [openModal, setOpenModal] = useState(false);
+  const [cardId, setCardId] = useState("");
+  const [openScanModal, setOpenScanModal] = useState(false);
+  const [openQRModal, setOpenQRModal] = useState(false);
   const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
@@ -35,17 +51,43 @@ export default function ContactsScreen() {
 
     await postFollowingData(ApiData);
     await getFollowingData();
-    setOpenModal(false);
+    setOpenScanModal(false);
     ToastAndroid.show("Card Followed Successfully!", ToastAndroid.SHORT);
   };
 
   const handleScanButton = () => {
     console.log("Im Here");
-    setOpenModal(true);
+    setOpenScanModal(true);
   }
 
   const handleAddButton = async () => {
     readNdef();
+  }
+
+  const handleOpenQrButton = (id) => {
+    setCardId(id);
+    setOpenQRModal(true);
+  }
+
+  const handleDeleteCardButton = (id) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are You Sure You Want to Delete?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+
+        {
+          text: "Delete",
+          onPress: async () => {
+            await postUnfollowCard(id);
+            getFollowingData();
+          }
+        }
+      ]
+    );
   }
 
   const renderItems = ({ item }) => {
@@ -55,7 +97,9 @@ export default function ContactsScreen() {
           category={item.card_id.category}
           name={item.card_id.name}
           profession={item.card_id.profession}
-          description={"hold to share"}
+          description={"tap to share | hold to delete"}
+          onPress={() => handleOpenQrButton(item.card_id._id)}
+          onHold={() => handleDeleteCardButton(item.card_id._id)}
         />
       </View>
     )
@@ -91,7 +135,7 @@ export default function ContactsScreen() {
 
       </View>
 
-      <Modal visible={openModal}>
+      <Modal visible={openScanModal}>
         <View style={styles().modal}>
           <BarCodeScanner
             onBarCodeScanned={handleBarCodeScanned}
@@ -101,11 +145,18 @@ export default function ContactsScreen() {
             <MyButton
               title={"Cancel"}
               color={colors.primary}
-              press={() => setOpenModal(false)}
+              press={() => setOpenScanModal(false)}
             />
           </View>
         </View>
       </Modal>
+
+      <QRCodeModal
+        visibility={openQRModal}
+        cardId={cardId}
+        logo={appLogo}
+        onCancel={() => setOpenQRModal(false)}
+      />
 
       <StatusBar style="light" />
 
