@@ -28,6 +28,7 @@ interface UserProviderStore {
   getSuggested: Function;
   suggested: { name: String }[];
   setSuggested: Function;
+  deleteFollowCard: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -207,6 +208,22 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const deleteFollowCard = async (cardId) => {
+    try {
+      const response = await axios.delete("/user/follow", {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        data: {
+          id: cardId
+        }
+      });
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const allData = {
     cardData,
     setCardData,
@@ -232,7 +249,8 @@ export const UserProvider = ({ children }) => {
     deleteNotifications,
     getSuggested,
     suggested,
-    setSuggested
+    setSuggested,
+    deleteFollowCard
   };
 
   return (

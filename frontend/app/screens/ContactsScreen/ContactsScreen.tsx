@@ -32,7 +32,12 @@ export default function ContactsScreen() {
   const [cardId, setCardId] = useState("");
   const [openScanModal, setOpenScanModal] = useState(false);
   const [openQRModal, setOpenQRModal] = useState(false);
-  const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
+  const {
+    followingData,
+    getFollowingData,
+    postFollowingData,
+    deleteFollowCard
+  } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -82,8 +87,9 @@ export default function ContactsScreen() {
         {
           text: "Delete",
           onPress: async () => {
-            await postUnfollowCard(id);
-            getFollowingData();
+            await deleteFollowCard(id);
+            await getFollowingData();
+            ToastAndroid.show("Card Deleted!", ToastAndroid.SHORT);
           }
         }
       ]
