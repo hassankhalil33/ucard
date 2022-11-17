@@ -18,8 +18,6 @@ import ModalComponent from "../../components/ModalComponent/ModalComponent";
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
-
-
 type cardDataType = {
   _id: string;
   name: string;
