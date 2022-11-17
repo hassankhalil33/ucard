@@ -1,18 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image
+} from "react-native";
+
 import styles from "./styles";
+import viewPort from "../../constants/viewPortConstants";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
 
-const vw100 = (Dimensions.get('window').width / 10) * 10;
-const vw60 = (Dimensions.get('window').width / 10) * 6;
-const vh165 = (Dimensions.get('window').width / 10) * 16.5;
+
 
 type cardDataType = {
   _id: string;
@@ -23,6 +29,7 @@ type cardDataType = {
   location: string;
   SetStateAction: Function;
 }
+
 
 export default function CardsScreen() {
   const {
@@ -104,8 +111,8 @@ export default function CardsScreen() {
           name={item.name}
           profession={item.profession}
           description={"hold to share"}
-          width={vw100}
-          height={vw60}
+          width={viewPort.vw100}
+          height={viewPort.vw60}
           normal={false}
         />
       </View>
@@ -131,7 +138,7 @@ export default function CardsScreen() {
         <Carousel
           style={{ marginTop: -20, marginBottom: -20 }}
           loop={false}
-          width={vw100}
+          width={viewPort.vw100}
           data={cardData}
           renderItem={renderItems}
           mode={"parallax"}
@@ -143,7 +150,7 @@ export default function CardsScreen() {
         title={"Card Details"}
         content={allUseStateData}
         cardScreen={true}
-        height={vh165}
+        height={viewPort.vh165}
         updateCard={handleUpdateButton}
         deleteCard={handleDeleteButton}
       />
