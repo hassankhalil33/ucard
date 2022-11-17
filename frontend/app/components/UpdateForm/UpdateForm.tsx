@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import { TextInput } from "@react-native-material/core";
 import SelectDropdown from "react-native-select-dropdown";
 import colors from "../../constants/pallete";
 import styles from "./styles";
+const arrowDown = require("../../assets/arrows/arrow-down.png");
 
 
 interface UpdateFormProps {
@@ -13,11 +14,15 @@ interface UpdateFormProps {
     cardEmail: string;
     cardLink: string;
     cardLocation: string;
+    cardType: string;
+    cardPublic: boolean;
     setCardName: Function;
     setCardProf: Function;
     setCardEmail: Function;
     setCardLink: Function;
     setCardLocation: Function;
+    setCardType: Function;
+    setCardPublic: Function;
   };
 }
 
@@ -70,22 +75,28 @@ const UpdateForm: FC<UpdateFormProps> = ({ content }) => {
         onChangeText={(text) => content.setCardLocation(text)}
       />
       <SelectDropdown
-        data={["Personal", "Business", "Gaminig", "Other"]}
+        data={["personal", "business", "gaminig", "other"]}
         onSelect={(selectedItem) => console.log(selectedItem)}
-        defaultButtonText={"Type"}
-        buttonTextAfterSelection={(selectedItem) => selectedItem}
+        defaultButtonText={content.cardType.toLowerCase()}
         rowTextForSelection={(item) => item}
         buttonStyle={styles().field}
         buttonTextStyle={{ fontSize: 16 }}
+        buttonTextAfterSelection={(selectedItem) => {
+          content.setCardType(selectedItem);
+          return selectedItem
+        }}
       />
       <SelectDropdown
         data={["Public Card", "Private Card"]}
         onSelect={(selectedItem) => console.log(selectedItem)}
-        defaultButtonText={"Type"}
-        buttonTextAfterSelection={(selectedItem) => selectedItem}
+        defaultButtonText={content.cardPublic ? "Public Card" : "Private Card"}
         rowTextForSelection={(item) => item}
         buttonStyle={styles().field}
         buttonTextStyle={{ fontSize: 16 }}
+        buttonTextAfterSelection={(selectedItem) => {
+          content.setCardPublic(selectedItem == "Public Card" ? true : false)
+          return selectedItem
+        }}
       />
     </View>
   )
