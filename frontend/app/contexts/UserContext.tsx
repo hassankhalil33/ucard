@@ -56,7 +56,7 @@ export const UserProvider = ({ children }) => {
 
   const deleteToken = async () => {
     try {
-      await AsyncStorage.removeItem("@storage_Key");
+      const value = await AsyncStorage.removeItem("@storage_Key");
 
     } catch (err) {
       console.log(err);

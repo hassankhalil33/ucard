@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image, ToastAndroid } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -26,14 +26,19 @@ export default function LoginScreen({ navigation }) {
 
   const handleLoginButton = async () => {
     const data = {
-      email: email,
+      email: email.toLowerCase(),
       password: password
     }
 
     const token = await postLogin(data);
-    storeData(token);
-    alert("Logged In Successfully!");
-    setLogged(true);
+
+    if (token) {
+      storeData(token);
+      ToastAndroid.show("Logged In Successfully!", ToastAndroid.LONG);
+      setTimeout(() => setLogged(true), 2000);
+    } else {
+      ToastAndroid.show("Incorrect Credentials!", ToastAndroid.SHORT);
+    }
   }
 
   const [fontsLoaded] = useFonts({
