@@ -106,6 +106,9 @@ export default function ContactsScreen() {
           description={"tap to share | hold to delete"}
           onPress={() => handleOpenQrButton(item.card_id._id)}
           onHold={() => handleDeleteCardButton(item.card_id._id)}
+          email={item.card_id.email}
+          link={item.card_id.link}
+          extraInfo={true}
         />
       </View>
     )

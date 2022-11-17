@@ -129,7 +129,6 @@ export default function CardsScreen() {
           description={"hold to share"}
           width={viewPort.vw100}
           height={viewPort.vw60}
-          normal={false}
         />
       </View>
     );

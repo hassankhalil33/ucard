@@ -108,7 +108,6 @@ export default function HomeScreen() {
           description={"tap for QR | hold for NFC"}
           width={viewPort.vw100}
           height={viewPort.vw60}
-          normal={false}
           category={item.category}
           onPress={() => handleOpenQrButton(item._id)}
           onHold={() => writeNdef(item._id)}

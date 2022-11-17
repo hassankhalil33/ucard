@@ -6,7 +6,7 @@ const styles = (
   category = "personal",
   height = 200,
   width = 330,
-  normal = true,
+  extraInfo = false,
 ) => StyleSheet.create({
 
   container: {
@@ -30,7 +30,7 @@ const styles = (
     color: colors.white,
     fontSize: 14,
     opacity: 0.5,
-    marginTop: normal ? 75 : "28%"
+    marginTop: extraInfo ? 6 : "28%"
   },
 
   name: {
