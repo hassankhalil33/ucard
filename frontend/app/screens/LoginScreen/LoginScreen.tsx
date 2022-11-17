@@ -1,28 +1,28 @@
 import React, { useState, useContext } from "react";
-import { Text, View, TouchableOpacity, Image, ToastAndroid } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ToastAndroid
+} from "react-native";
+
 import colors from "../../constants/pallete";
 import styles from "./styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginForm from "../../components/LoginForm/LoginForm";
+
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
 
-const storeData = async (value) => {
-  try {
-    await AsyncStorage.setItem("@storage_Key", value);
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { postLogin, setLogged } = useContext(UserContext);
+  const { postLogin, setLogged, storeToken } = useContext(UserContext);
 
   const handleLoginButton = async () => {
     const data = {
@@ -33,7 +33,7 @@ export default function LoginScreen({ navigation }) {
     const token = await postLogin(data);
 
     if (token) {
-      storeData(token);
+      storeToken(token);
       ToastAndroid.show("Logged In Successfully!", ToastAndroid.LONG);
       setTimeout(() => setLogged(true), 2000);
     } else {
