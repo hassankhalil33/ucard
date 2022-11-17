@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 import { View } from "react-native";
 import { TextInput } from "@react-native-material/core";
+import SelectDropdown from "react-native-select-dropdown";
 import colors from "../../constants/pallete";
+import styles from "./styles";
 
 
 interface UpdateFormProps {
@@ -66,6 +68,24 @@ const UpdateForm: FC<UpdateFormProps> = ({ content }) => {
         label={"Location"}
         value={content.cardLocation}
         onChangeText={(text) => content.setCardLocation(text)}
+      />
+      <SelectDropdown
+        data={["Personal", "Business", "Gaminig", "Other"]}
+        onSelect={(selectedItem) => console.log(selectedItem)}
+        defaultButtonText={"Type"}
+        buttonTextAfterSelection={(selectedItem) => selectedItem}
+        rowTextForSelection={(item) => item}
+        buttonStyle={styles().field}
+        buttonTextStyle={{ fontSize: 16 }}
+      />
+      <SelectDropdown
+        data={["Public Card", "Private Card"]}
+        onSelect={(selectedItem) => console.log(selectedItem)}
+        defaultButtonText={"Type"}
+        buttonTextAfterSelection={(selectedItem) => selectedItem}
+        rowTextForSelection={(item) => item}
+        buttonStyle={styles().field}
+        buttonTextStyle={{ fontSize: 16 }}
       />
     </View>
   )
