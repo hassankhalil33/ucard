@@ -75,6 +75,8 @@ export default function CardsScreen() {
     setCardEmail(currentCard.email);
     setCardLink(currentCard.link);
     setCardLocation(currentCard.location);
+    setCardType(currentCard.category);
+    setCardPublic(currentCard.is_public);
   }, [currentCard])
 
   const [fontsLoaded] = useFonts({

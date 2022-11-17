@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { View, Image } from "react-native";
+import { View } from "react-native";
 import { TextInput } from "@react-native-material/core";
 import SelectDropdown from "react-native-select-dropdown";
 import colors from "../../constants/pallete";
 import styles from "./styles";
-const arrowDown = require("../../assets/arrows/arrow-down.png");
 
 
 interface UpdateFormProps {
@@ -75,7 +74,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ content }) => {
         onChangeText={(text) => content.setCardLocation(text)}
       />
       <SelectDropdown
-        data={["personal", "business", "gaminig", "other"]}
+        data={["personal", "business", "gaming", "other"]}
         onSelect={(selectedItem) => console.log(selectedItem)}
         defaultButtonText={content.cardType.toLowerCase()}
         rowTextForSelection={(item) => item}
