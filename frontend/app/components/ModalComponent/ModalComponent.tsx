@@ -1,5 +1,5 @@
 import React, { useRef, FC } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
@@ -126,7 +126,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
               />
             </View>
             :
-            <View style={{ marginTop: "10%" }}>
+            <View style={{ marginTop: "-20%" }}>
               {content.map((item, index) => {
                 return (
                   <ProfileComponent
