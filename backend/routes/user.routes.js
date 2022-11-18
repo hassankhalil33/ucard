@@ -1,5 +1,4 @@
 const {Router} = require('express');
-const userMiddleware = require('../middlewares/user.middleware');
 const router = Router();
 const {
   getUser,
@@ -15,20 +14,17 @@ const {
 } = require('../controllers/user.controller');
 
 
-router.get('/', userMiddleware, getUser);
-router.put('/', userMiddleware, updateUser);
-router.delete('/', userMiddleware, deleteUser);
+router.get('/', getUser);
+router.put('/', updateUser);
+router.delete('/', deleteUser);
 
-// CREATE ALGOS FOR SUGGESTED AND NOTIFICATIONS
-// SUGGESTED AND NOTIFICATIONS EVERY 15 MINS (node-schedule)
-// USE FCM (FireBase) TO SEND PUSH NOTIFICATIONS
-router.get('/suggested', userMiddleware, getSuggested);
-router.get('/notification', userMiddleware, getNotifications);
-router.delete('/notification', userMiddleware, deleteNotifications);
-router.post('/notification', userMiddleware, postNotificationToken);
+router.get('/suggested', getSuggested);
+router.get('/notification', getNotifications);
+router.delete('/notification', deleteNotifications);
+router.post('/notification', postNotificationToken);
 
-router.get('/follow', userMiddleware, getFollowing);
-router.post('/follow', userMiddleware, followCard);
-router.delete('/follow', userMiddleware, unfollowCard);
+router.get('/follow', getFollowing);
+router.post('/follow', followCard);
+router.delete('/follow', unfollowCard);
 
 module.exports = router;
