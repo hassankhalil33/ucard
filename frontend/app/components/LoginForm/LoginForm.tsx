@@ -50,6 +50,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         placeholder={"Password"}
         value={password}
         setValue={setPassword}
+        password={true}
       />
 
       <View style={styles().button}>
