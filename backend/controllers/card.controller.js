@@ -47,15 +47,19 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
-  const {id, category, name, profession, photo, email, link, is_public, location} = req.body;
+  const {id, category, name, profession, email, link, is_public, location} = req.body;
 
   if (!id) {
     res.status(400).json({message: "no id"});
     return
   }
 
+  if (req.file) {
+    console.log(req.file);
+  }
+
   await Card.findByIdAndUpdate(id, {
-    category, name, profession, photo, email, link, is_public, location
+    category, name, profession, email, link, is_public, location
   });
 
   res.json({message: "success"})
