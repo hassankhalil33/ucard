@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import { launchImageLibrary } from "react-native-image-picker"
 import { UserContext } from "../../contexts/UserContext";
 import {
   Text,
@@ -59,6 +58,7 @@ export default function CardsScreen() {
   const [cardLocation, setCardLocation] = useState(currentCard.location);
   const [cardType, setCardType] = useState(currentCard.category);
   const [cardPublic, setCardPublic] = useState(currentCard.is_public);
+  const [photo, setPhoto] = useState(null);
 
   const allUseStateData = {
     cardName, setCardName,
@@ -119,10 +119,6 @@ export default function CardsScreen() {
     alert("Card Deleted!");
   }
 
-  const handleChoosePhoto = async () => {
-    alert("Batata");
-  }
-
   const renderItems = ({ item }) => {
     return (
       <View>
@@ -148,7 +144,7 @@ export default function CardsScreen() {
 
       <Text style={styles("Poppins-Bold").header}>Cards</Text>
 
-      <TouchableOpacity style={styles().addButtonContainer} onPress={handleAddButton}>
+      <TouchableOpacity style={styles().addButtonContainer}>
         <Image source={addButton} style={styles().addButton} />
       </TouchableOpacity>
 
@@ -173,7 +169,6 @@ export default function CardsScreen() {
         height={viewPort.vh165}
         updateCard={handleUpdateButton}
         deleteCard={handleDeleteButton}
-        updatePhoto={handleChoosePhoto}
       />
 
       <StatusBar style="light" />

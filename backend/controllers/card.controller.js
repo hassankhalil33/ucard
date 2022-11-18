@@ -54,10 +54,6 @@ const updateCard = async (req, res) => {
     return
   }
 
-  if (req.file) {
-    console.log(req.file);
-  }
-
   await Card.findByIdAndUpdate(id, {
     category, name, profession, email, link, is_public, location
   });

@@ -1,6 +1,4 @@
 const {Router} = require('express');
-const multer  = require('multer')
-const storage = multer({ dest: '../storage/public_images' })
 const router = Router();
 const {
   getAllCards,
@@ -13,7 +11,7 @@ const {
 
 router.get('/', getAllCards);
 router.get('/:id', getCard);
-router.post('/', storage.single('photo'), createCard);
+router.post('/', createCard);
 router.put('/', updateCard);
 router.delete('/', deleteCard);
 
