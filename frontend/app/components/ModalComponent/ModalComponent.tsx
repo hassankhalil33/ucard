@@ -26,10 +26,11 @@ interface ModalComponentProps {
   cardScreen?: boolean;
   updateCard?: Function;
   deleteCard?: Function;
+  updatePhoto?: Function;
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, cardScreen, updateCard, deleteCard } = props;
+  const { title, content, height, cardScreen, updateCard, deleteCard, updatePhoto } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -78,7 +79,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity onPress={() => alert("Photo Updated!")}>
+          <TouchableOpacity onPress={() => updatePhoto()}>
             <Image style={styles().image} source={profileBig} />
           </TouchableOpacity>
         }
