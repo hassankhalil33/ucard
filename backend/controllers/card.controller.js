@@ -32,7 +32,7 @@ const createCard = async (req, res) => {
   const card = new Card;
 
   card.user_id = id;
-  card.category = "personal";
+  card.category = "PERSONAL";
   card.name = name;
   card.location = location;
 
