@@ -74,9 +74,9 @@ const UpdateForm: FC<UpdateFormProps> = ({ content }) => {
         onChangeText={(text) => content.setCardLocation(text)}
       />
       <SelectDropdown
-        data={["personal", "business", "gaming", "other"]}
+        data={["PERSONAL", "BUSINESS", "GAMING", "OTHER"]}
         onSelect={(selectedItem) => console.log(selectedItem)}
-        defaultButtonText={content.cardType.toLowerCase()}
+        defaultButtonText={content.cardType}
         rowTextForSelection={(item) => item}
         buttonStyle={styles().field}
         buttonTextStyle={{ fontSize: 16 }}
