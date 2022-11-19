@@ -5,7 +5,7 @@ const { myNotifications } = require("../utility/notifications.utility");
 
 
 //Will Run Every 15 Mins
-const scheduledJob = schedule.scheduleJob("*/10 * * * * *", async () => {
+const scheduledJob = schedule.scheduleJob("*/15 * * * *", async () => {
   //Update Suggested Every 15 mins
   const data = await User.find().populate("cards");
   const allCards = await Card.find();
@@ -74,19 +74,17 @@ const deleteUser = async (req, res) => {
   await User.findByIdAndDelete(id);
 
   res.json({message: "success"})
-  // ALSO DELETE ALL HIS CARDS
-  // OR INSTEAD DISABLE ACCOUNT (TO SELL DATA LATER)
 }
 
 const getSuggested = async (req, res) => {
-  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const {_id: id} = req.user;
   const user = await User.findById(id).populate("suggested");
 
   res.json(user.suggested)
 }
 
 const getFollowing = async (req, res) => {
-  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const {_id: id} = req.user;
   const user = await User.findById(id).populate({path: "following", populate: { path:  "card_id"}});
 
   res.json(user.following)
@@ -117,7 +115,7 @@ const unfollowCard = async (req, res) => {
 }
 
 const getNotifications = async (req, res) => {
-  const {_id: id} = req.user; //maybe de8ri use the req.user instead of sending new req
+  const {_id: id} = req.user;
   const user = await User.findById(id).populate({path: "notifications", populate: { path:  "card_id"}});
   console.log(user);
 
