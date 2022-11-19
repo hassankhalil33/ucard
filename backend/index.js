@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const userMiddleware = require('./middlewares/user.middleware');
+
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const cardRoutes = require('./routes/card.routes');
+
 require('dotenv').config();
 require('./config/db.config');
 
