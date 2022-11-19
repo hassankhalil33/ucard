@@ -33,7 +33,6 @@ const scheduledJob = schedule.scheduleJob("*/15 * * * *", async () => {
   
             //Save Tokens of Users to send Notification
             allTokens = [...allTokens, user.notification_token.toString()];
-            console.log(allTokens);
           }
         };
       };
@@ -47,8 +46,6 @@ const scheduledJob = schedule.scheduleJob("*/15 * * * *", async () => {
   if (allUserTokens) {
     myNotifications(allUserTokens);
   }
-  
-  console.log("Im Running");
 })
 
 const getUser = (req, res) => {
@@ -117,7 +114,6 @@ const unfollowCard = async (req, res) => {
 const getNotifications = async (req, res) => {
   const {_id: id} = req.user;
   const user = await User.findById(id).populate({path: "notifications", populate: { path:  "card_id"}});
-  console.log(user);
 
   res.json(user.notifications)
 }
