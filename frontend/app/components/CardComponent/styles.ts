@@ -3,7 +3,7 @@ import colors from "../../constants/pallete";
 
 const styles = (
   fontFamily?,
-  category = "personal",
+  category = "PERSONAL",
   height = 200,
   width = 330,
   extraInfo = false,
@@ -13,7 +13,7 @@ const styles = (
     padding: 30,
     height: height,
     width: width,
-    backgroundColor: category == "personal" ? colors.blue : colors.orange,
+    backgroundColor: category == "PERSONAL" ? colors.blue : colors.orange,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.17)",
     borderRadius: 20,

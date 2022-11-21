@@ -32,13 +32,12 @@ export default function WelcomeScreen({ navigation }) {
         transform: [{ rotate: "-20.2deg" }]
       }}>
         <CardComponent
-          category={"business"}
+          category={"BUSINESS"}
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
           height={249}
           width={417}
-          normal={false}
         />
       </View>
       <View style={{
@@ -48,13 +47,12 @@ export default function WelcomeScreen({ navigation }) {
         transform: [{ rotate: "24.64deg" }]
       }}>
         <CardComponent
-          category={"personal"}
+          category={"PERSONAL"}
           name={"Hassan Khalil"}
           profession={"Web Developer"}
           description={"Tap to Share"}
           height={218}
           width={365}
-          normal={false}
         />
       </View>
 

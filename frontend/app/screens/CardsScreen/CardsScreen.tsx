@@ -108,7 +108,7 @@ export default function CardsScreen() {
       email: cardEmail,
       link: cardLink,
       location: cardLocation,
-      category: cardType.toLowerCase(),
+      category: cardType,
       is_public: cardPublic,
       photo: cardPhoto
     }
