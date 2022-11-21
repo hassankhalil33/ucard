@@ -60,7 +60,7 @@ export default function CardsScreen() {
   const [cardLocation, setCardLocation] = useState(currentCard.location);
   const [cardType, setCardType] = useState(currentCard.category);
   const [cardPublic, setCardPublic] = useState(currentCard.is_public);
-  const [cardPhoto, setCardPhoto] = useState({});
+  const [cardPhoto, setCardPhoto] = useState(null);
 
   const allUseStateData = {
     cardName, setCardName,
@@ -81,6 +81,8 @@ export default function CardsScreen() {
     setCardLocation(currentCard.location);
     setCardType(currentCard.category);
     setCardPublic(currentCard.is_public);
+    setCardPhoto(currentCard.photo);
+    console.log(cardPhoto);
   }, [currentCard])
 
   const [fontsLoaded] = useFonts({

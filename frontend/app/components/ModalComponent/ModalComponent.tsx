@@ -14,7 +14,6 @@ import styles from './styles';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
 import UpdateForm from '../UpdateForm/UpdateForm';
-import { ListItem } from '@react-native-material/core';
 
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
@@ -82,7 +81,10 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
         {cardScreen &&
           <TouchableOpacity onPress={() => content.setCardPhoto(pickImage())}>
-            <Image style={styles().image} source={profileBig} />
+            <Image
+              style={styles().image}
+              source={content.cardPhoto.uri ? { uri: content.cardPhoto.uri } : profileBig}
+            />
           </TouchableOpacity>
         }
 

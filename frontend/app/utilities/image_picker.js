@@ -5,10 +5,10 @@ const pickImage = async () => {
     mediaTypes: ImagePicker.MediaTypeOptions.All,
     allowsEditing: true,
     aspect: [1, 1],
-    quality: 1,
+    quality: 1
   });
 
-  return result.uri
+  return result
 };
 
 export default pickImage
