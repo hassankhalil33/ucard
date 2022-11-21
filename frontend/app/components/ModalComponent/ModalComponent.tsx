@@ -1,6 +1,7 @@
 import React, { useRef, FC } from 'react';
 import { Modalize } from 'react-native-modalize';
 import { useFonts } from 'expo-font';
+import pickImage from '../../utilities/image_picker';
 import {
   View,
   Text,
@@ -13,6 +14,7 @@ import styles from './styles';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
 import UpdateForm from '../UpdateForm/UpdateForm';
+import { ListItem } from '@react-native-material/core';
 
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
@@ -30,7 +32,7 @@ interface ModalComponentProps {
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
-  const { title, content, height, cardScreen, updateCard, deleteCard, updatePhoto } = props;
+  const { title, content, height, cardScreen, updateCard, deleteCard } = props;
 
   const modalizeRef = useRef<Modalize>(null);
 
@@ -79,7 +81,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity onPress={() => updatePhoto()}>
+          <TouchableOpacity onPress={content.setCardPhoto(pickImage())}>
             <Image style={styles().image} source={profileBig} />
           </TouchableOpacity>
         }

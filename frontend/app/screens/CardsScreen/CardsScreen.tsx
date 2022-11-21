@@ -28,6 +28,7 @@ type cardDataType = {
   SetStateAction: Function;
   category: string;
   is_public: boolean;
+  photo: string;
 }
 
 
@@ -47,7 +48,8 @@ export default function CardsScreen() {
     link: null,
     location: null,
     category: "personal",
-    is_public: false
+    is_public: false,
+    photo: null
   }
 
   const [currentCard, setCurrentCard] = useState(defaultCard as cardDataType);
@@ -58,6 +60,7 @@ export default function CardsScreen() {
   const [cardLocation, setCardLocation] = useState(currentCard.location);
   const [cardType, setCardType] = useState(currentCard.category);
   const [cardPublic, setCardPublic] = useState(currentCard.is_public);
+  const [cardPhoto, setCardPhoto] = useState({});
 
   const allUseStateData = {
     cardName, setCardName,
@@ -66,7 +69,8 @@ export default function CardsScreen() {
     cardLink, setCardLink,
     cardLocation, setCardLocation,
     cardType, setCardType,
-    cardPublic, setCardPublic
+    cardPublic, setCardPublic,
+    cardPhoto, setCardPhoto
   }
 
   useEffect(() => {
@@ -103,7 +107,8 @@ export default function CardsScreen() {
       link: cardLink,
       location: cardLocation,
       category: cardType.toLowerCase(),
-      is_public: cardPublic
+      is_public: cardPublic,
+      photo: cardPhoto
     }
 
     await putCard(currentCard._id, data);
