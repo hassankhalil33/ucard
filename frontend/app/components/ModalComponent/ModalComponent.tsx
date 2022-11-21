@@ -81,7 +81,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity onPress={content.setCardPhoto(pickImage())}>
+          <TouchableOpacity onPress={() => content.setCardPhoto(pickImage())}>
             <Image style={styles().image} source={profileBig} />
           </TouchableOpacity>
         }
