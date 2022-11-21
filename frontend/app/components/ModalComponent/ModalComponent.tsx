@@ -1,7 +1,6 @@
 import React, { useRef, FC } from 'react';
 import { Modalize } from 'react-native-modalize';
 import { useFonts } from 'expo-font';
-import * as ImagePicker from 'expo-image-picker';
 import {
   View,
   Text,
@@ -14,6 +13,7 @@ import styles from './styles';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
 import UpdateForm from '../UpdateForm/UpdateForm';
+import * as ImagePicker from 'expo-image-picker';
 
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
@@ -75,7 +75,10 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           </TouchableOpacity>
         </View>
 
-        <Image style={styles().image} source={profileBig} />
+        <Image
+          style={styles().image}
+          source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+        />
       </View>
 
       <Modalize
@@ -96,7 +99,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           <TouchableOpacity onPress={() => pickImage(content)}>
             <Image
               style={styles().image}
-              source={{ uri: content.cardPhoto.uri }}
+              source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
             />
           </TouchableOpacity>
         }

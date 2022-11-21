@@ -55,7 +55,8 @@ const styles = (fontFamily?) => StyleSheet.create({
     width: 130,
     height: 130,
     alignSelf: "center",
-    marginBottom: 10
+    marginBottom: 10,
+    borderRadius: 65
   },
 
   button: {
