@@ -1,13 +1,21 @@
 import React, { useContext } from "react";
-import { Text, View, Image, FlatList } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import {
+  Text,
+  View,
+  Image,
+  FlatList
+} from "react-native";
+
 import colors from "../../constants/pallete";
 import styles from "./styles";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import MyButton from "../../components/MyButton/MyButton";
+
 const background = require("../../assets/background.png");
+
 
 export default function NotificationsScreen() {
   const { notifications, deleteNotifications, getNotifications } = useContext(UserContext);

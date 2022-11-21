@@ -1,12 +1,20 @@
 import React, { useRef, FC } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Modalize } from 'react-native-modalize';
-import { TextInput } from "@react-native-material/core";
 import { useFonts } from 'expo-font';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image
+} from 'react-native';
+
 import colors from "../../constants/pallete";
 import styles from './styles';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
 import MyButton from '../MyButton/MyButton';
+import UpdateForm from '../UpdateForm/UpdateForm';
+import * as ImagePicker from 'expo-image-picker';
+
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
@@ -19,14 +27,13 @@ interface ModalComponentProps {
   cardScreen?: boolean;
   updateCard?: Function;
   deleteCard?: Function;
+  updatePhoto?: Function;
 }
 
 const ModalComponent: FC<ModalComponentProps> = (props) => {
   const { title, content, height, cardScreen, updateCard, deleteCard } = props;
 
   const modalizeRef = useRef<Modalize>(null);
-
-  console.log(content);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -45,6 +52,19 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     modalizeRef.current?.close();
   };
 
+  const pickImage = async (content) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      content.setCardPhoto(result);
+    }
+  };
+
   return (
     <>
       <View style={styles().container}>
@@ -55,7 +75,10 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           </TouchableOpacity>
         </View>
 
-        <Image style={styles().image} source={profileBig} />
+        <Image
+          style={styles().image}
+          source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+        />
       </View>
 
       <Modalize
@@ -73,72 +96,34 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity onPress={() => alert("Photo Updated!")}>
-            <Image style={styles().image} source={profileBig} />
+          <TouchableOpacity onPress={() => pickImage(content)}>
+            <Image
+              style={styles().image}
+              source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+            />
           </TouchableOpacity>
         }
 
         <View style={{ paddingBottom: "20%", marginTop: cardScreen && "8%" }}>
           {cardScreen ?
-            <View>
-              <TextInput
-                style={{ marginBottom: 10 }}
-                color={colors.blue}
-                inputStyle={{ color: colors.primary }}
-                variant="outlined"
-                label={"Name"}
-                value={content.cardName}
-                onChangeText={(text) => content.setCardName(text)}
-              />
-              <TextInput
-                style={{ marginBottom: 10 }}
-                color={colors.blue}
-                inputStyle={{ color: colors.primary }}
-                variant="outlined"
-                label={"Profession"}
-                value={content.cardProf}
-                onChangeText={(text) => content.setCardProf(text)}
-              />
-              <TextInput
-                style={{ marginBottom: 10 }}
-                color={colors.blue}
-                inputStyle={{ color: colors.primary }}
-                variant="outlined"
-                label={"Email"}
-                value={content.cardEmail}
-                onChangeText={(text) => content.setCardEmail(text)}
-              />
-              <TextInput
-                style={{ marginBottom: 10 }}
-                color={colors.blue}
-                inputStyle={{ color: colors.primary }}
-                variant="outlined"
-                label={"Link"}
-                value={content.cardLink}
-                onChangeText={(text) => content.setCardLink(text)}
-              />
-              <TextInput
-                style={{ marginBottom: 10 }}
-                color={colors.blue}
-                inputStyle={{ color: colors.primary }}
-                variant="outlined"
-                label={"Location"}
-                value={content.cardLocation}
-                onChangeText={(text) => content.setCardLocation(text)}
-              />
+            <UpdateForm
+              content={content}
+            />
+            :
+            <View style={{ marginTop: "-20%" }}>
+              {content.map((item, index) => {
+                return (
+                  <ProfileComponent
+                    key={index}
+                    name={item.card_id.name}
+                    profession={"Followed On:"}
+                    timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
+                    dark={true}
+                    margin={20}
+                  />
+                )
+              })}
             </View>
-            : content.map((item, index) => {
-              return (
-                <ProfileComponent
-                  key={index}
-                  name={item.name}
-                  profession={item.profession}
-                  timestamp={item.timestamp}
-                  dark={true}
-                  margin={20}
-                />
-              )
-            })
           }
         </View>
 

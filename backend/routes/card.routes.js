@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const userMiddleware = require('../middlewares/user.middleware');
+const { upload } = require("../utility/upload.utility");
 const router = Router();
 const {
   getAllCards,
@@ -10,10 +10,10 @@ const {
 } = require('../controllers/card.controller')
 
 
-router.get('/', userMiddleware, getAllCards);
-router.get('/:id', userMiddleware, getCard);
-router.post('/', userMiddleware, createCard);
-router.put('/', userMiddleware, updateCard);
-router.delete('/', userMiddleware, deleteCard);
+router.get('/', getAllCards);
+router.get('/:id', getCard);
+router.post('/', createCard);
+router.put('/', upload.single("photo"), updateCard);
+router.delete('/', deleteCard);
 
 module.exports = router;

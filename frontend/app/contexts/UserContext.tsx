@@ -9,7 +9,9 @@ interface UserProviderStore {
   setFollowingData: Function;
   token: string;
   setToken: Function;
+  storeToken: Function;
   getToken: Function;
+  deleteToken: Function;
   getCardData: Function;
   getFollowingData: Function;
   postFollowingData: Function;
@@ -25,6 +27,10 @@ interface UserProviderStore {
   notifications: object[];
   setNotifications: Function;
   deleteNotifications: Function;
+  getSuggested: Function;
+  suggested: { name: String }[];
+  setSuggested: Function;
+  deleteFollowCard: Function;
 }
 
 export const UserContext = createContext({} as UserProviderStore);
@@ -33,8 +39,17 @@ export const UserProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [followingData, setFollowingData] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const [suggested, setSuggested] = useState([]);
   const [token, setToken] = useState("");
   const [logged, setLogged] = useState(false);
+
+  const storeToken = async (value) => {
+    try {
+      await AsyncStorage.setItem("@storage_Key", value);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   const getToken = async () => {
     try {
@@ -43,15 +58,23 @@ export const UserProvider = ({ children }) => {
       if (value !== null) {
         setToken(value);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const deleteToken = async () => {
+    try {
+      const value = await AsyncStorage.removeItem("@storage_Key");
+
+    } catch (err) {
+      console.log(err);
     }
   }
 
   const postRegister = async (data) => {
     try {
       const response = await axios.post("/auth/register", data);
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -61,7 +84,6 @@ export const UserProvider = ({ children }) => {
   const postLogin = async (data) => {
     try {
       const response = await axios.post("/auth/login", data);
-      console.log(response.data);
       return response.data;
 
     } catch (err) {
@@ -74,8 +96,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/card", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setCardData(response.data);
 
     } catch (err) {
@@ -88,8 +108,6 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/user/follow", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setFollowingData(response.data);
 
     } catch (err) {
@@ -102,9 +120,19 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("/user/notification", {
         headers: { Authorization: "Bearer " + token }
       });
-
-      console.log(response.data);
       setNotifications(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getSuggested = async () => {
+    try {
+      const response = await axios.get("/user/suggested", {
+        headers: { Authorization: "Bearer " + token }
+      });
+      setSuggested(response.data);
 
     } catch (err) {
       console.log(err);
@@ -118,7 +146,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -134,7 +161,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -150,7 +176,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token }
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -164,7 +189,6 @@ export const UserProvider = ({ children }) => {
         {
           headers: { Authorization: "Bearer " + token },
         });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -181,7 +205,6 @@ export const UserProvider = ({ children }) => {
           id: cardId
         }
       });
-      console.log(response.data);
 
     } catch (err) {
       console.log(err);
@@ -198,7 +221,22 @@ export const UserProvider = ({ children }) => {
           null: null
         }
       });
-      console.log(response.data);
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const deleteFollowCard = async (cardId) => {
+    try {
+      const response = await axios.delete("/user/follow", {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        data: {
+          id: cardId
+        }
+      });
 
     } catch (err) {
       console.log(err);
@@ -227,7 +265,13 @@ export const UserProvider = ({ children }) => {
     getNotifications,
     notifications,
     setNotifications,
-    deleteNotifications
+    deleteNotifications,
+    getSuggested,
+    suggested,
+    setSuggested,
+    deleteFollowCard,
+    deleteToken,
+    storeToken
   };
 
   return (

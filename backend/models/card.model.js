@@ -9,7 +9,7 @@ const cardSchema = new mongoose.Schema({
   category: {
     type: String,
     required: 'category is required',
-    enum: ["personal", "business", "gaming", "other"]
+    enum: ["PERSONAL", "BUSINESS", "GAMING", "OTHER"]
   },
 
   name: {

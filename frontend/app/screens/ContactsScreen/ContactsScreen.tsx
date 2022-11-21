@@ -1,21 +1,43 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ToastAndroid, Modal } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import NfcManager, { NfcTech } from "react-native-nfc-manager";
+import { readNdef } from "../../utilities/nfc";
+import {
+  StyleSheet,
+  Text,
+  View, Image,
+  FlatList,
+  TouchableOpacity,
+  ToastAndroid,
+  Modal,
+  Alert
+} from "react-native";
+
+import NfcManager from "react-native-nfc-manager";
 import CardComponent from "../../components/CardComponent/CardComponent";
+import QRCodeModal from "../../components/QRCodeModal/QRCodeModal";
 import styles from "./styles";
 import MyButton from "../../components/MyButton/MyButton";
 import colors from "../../constants/pallete";
+
 const background = require("../../assets/background.png");
 const nfcButton = require("../../assets/buttons/nfc-button.png");
 const qrButton = require("../../assets/buttons/qr-button.png");
+const appLogo = require("../../assets/icon.png");
+
 
 export default function ContactsScreen() {
-  const [openModal, setOpenModal] = useState(false);
-  const { followingData, getFollowingData, postFollowingData } = useContext(UserContext);
+  const [cardId, setCardId] = useState("");
+  const [openScanModal, setOpenScanModal] = useState(false);
+  const [openQRModal, setOpenQRModal] = useState(false);
+  const {
+    followingData,
+    getFollowingData,
+    postFollowingData,
+    deleteFollowCard
+  } = useContext(UserContext);
 
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -25,6 +47,8 @@ export default function ContactsScreen() {
     return null;
   }
 
+  NfcManager.start();
+
   const handleBarCodeScanned = async ({ type, data }) => {
     const ApiData = {
       id: data
@@ -32,41 +56,44 @@ export default function ContactsScreen() {
 
     await postFollowingData(ApiData);
     await getFollowingData();
-    setOpenModal(false);
+    setOpenScanModal(false);
     ToastAndroid.show("Card Followed Successfully!", ToastAndroid.SHORT);
   };
 
   const handleScanButton = () => {
     console.log("Im Here");
-    setOpenModal(true);
+    setOpenScanModal(true);
   }
 
-  const handleAddButton = () => {
+  const handleAddButton = async () => {
     readNdef();
   }
 
-  NfcManager.start();
+  const handleOpenQrButton = (id) => {
+    setCardId(id);
+    setOpenQRModal(true);
+  }
 
-  async function readNdef() {
-    try {
-      await NfcManager.requestTechnology(NfcTech.Ndef);
+  const handleDeleteCardButton = (id) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are You Sure You Want to Delete?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
 
-      alert("Started NFC Read");
-      const tag = await NfcManager.getTag();
-
-      const data = {
-        id: tag
-      }
-
-      await postFollowingData(data);
-      await getFollowingData();
-
-      alert(tag);
-    } catch (ex) {
-      alert(ex);
-    } finally {
-      NfcManager.cancelTechnologyRequest();
-    }
+        {
+          text: "Delete",
+          onPress: async () => {
+            await deleteFollowCard(id);
+            await getFollowingData();
+            ToastAndroid.show("Card Deleted!", ToastAndroid.SHORT);
+          }
+        }
+      ]
+    );
   }
 
   const renderItems = ({ item }) => {
@@ -76,7 +103,12 @@ export default function ContactsScreen() {
           category={item.card_id.category}
           name={item.card_id.name}
           profession={item.card_id.profession}
-          description={"hold to share"}
+          description={"tap to share | hold to delete"}
+          onPress={() => handleOpenQrButton(item.card_id._id)}
+          onHold={() => handleDeleteCardButton(item.card_id._id)}
+          email={item.card_id.email}
+          link={item.card_id.link}
+          extraInfo={true}
         />
       </View>
     )
@@ -100,14 +132,19 @@ export default function ContactsScreen() {
       </TouchableOpacity>
 
       <View style={styles().innerContainer}>
-        <FlatList
-          data={followingData}
-          renderItem={renderItems}
-          showsVerticalScrollIndicator={false}
-        />
+        {followingData.length != 0 ?
+          <FlatList
+            data={followingData}
+            renderItem={renderItems}
+            showsVerticalScrollIndicator={false}
+          />
+          :
+          <Text style={styles("Poppins-Bold").text}>No Cards in Contacts</Text>
+        }
+
       </View>
 
-      <Modal visible={openModal}>
+      <Modal visible={openScanModal}>
         <View style={styles().modal}>
           <BarCodeScanner
             onBarCodeScanned={handleBarCodeScanned}
@@ -117,11 +154,18 @@ export default function ContactsScreen() {
             <MyButton
               title={"Cancel"}
               color={colors.primary}
-              press={() => setOpenModal(false)}
+              press={() => setOpenScanModal(false)}
             />
           </View>
         </View>
       </Modal>
+
+      <QRCodeModal
+        visibility={openQRModal}
+        cardId={cardId}
+        logo={appLogo}
+        onCancel={() => setOpenQRModal(false)}
+      />
 
       <StatusBar style="light" />
 

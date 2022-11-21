@@ -1,18 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image
+} from "react-native";
+
 import styles from "./styles";
+import viewPort from "../../constants/viewPortConstants";
 import Carousel from "react-native-reanimated-carousel";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
-
-const vw100 = (Dimensions.get('window').width / 10) * 10;
-const vw60 = (Dimensions.get('window').width / 10) * 6;
-const vh165 = (Dimensions.get('window').width / 10) * 16.5;
 
 type cardDataType = {
   _id: string;
@@ -22,7 +26,11 @@ type cardDataType = {
   link: string;
   location: string;
   SetStateAction: Function;
+  category: string;
+  is_public: boolean;
+  photo: string;
 }
+
 
 export default function CardsScreen() {
   const {
@@ -33,7 +41,16 @@ export default function CardsScreen() {
     putCard
   } = useContext(UserContext);
 
-  const defaultCard = cardData[0] ? cardData[0] : { name: null, profession: null, email: null, link: null, location: null }
+  const defaultCard = cardData[0] ? cardData[0] : {
+    name: null,
+    profession: null,
+    email: null,
+    link: null,
+    location: null,
+    category: "personal",
+    is_public: false,
+    photo: null
+  }
 
   const [currentCard, setCurrentCard] = useState(defaultCard as cardDataType);
   const [cardName, setCardName] = useState(currentCard.name);
@@ -41,13 +58,19 @@ export default function CardsScreen() {
   const [cardEmail, setCardEmail] = useState(currentCard.email);
   const [cardLink, setCardLink] = useState(currentCard.link);
   const [cardLocation, setCardLocation] = useState(currentCard.location);
+  const [cardType, setCardType] = useState(currentCard.category);
+  const [cardPublic, setCardPublic] = useState(currentCard.is_public);
+  const [cardPhoto, setCardPhoto] = useState(null);
 
   const allUseStateData = {
     cardName, setCardName,
     cardProf, setCardProf,
     cardEmail, setCardEmail,
     cardLink, setCardLink,
-    cardLocation, setCardLocation
+    cardLocation, setCardLocation,
+    cardType, setCardType,
+    cardPublic, setCardPublic,
+    cardPhoto, setCardPhoto
   }
 
   useEffect(() => {
@@ -56,6 +79,10 @@ export default function CardsScreen() {
     setCardEmail(currentCard.email);
     setCardLink(currentCard.link);
     setCardLocation(currentCard.location);
+    setCardType(currentCard.category);
+    setCardPublic(currentCard.is_public);
+    setCardPhoto(currentCard.photo);
+    console.log(cardPhoto);
   }, [currentCard])
 
   const [fontsLoaded] = useFonts({
@@ -80,7 +107,10 @@ export default function CardsScreen() {
       profession: cardProf,
       email: cardEmail,
       link: cardLink,
-      location: cardLocation
+      location: cardLocation,
+      category: cardType.toLowerCase(),
+      is_public: cardPublic,
+      photo: cardPhoto
     }
 
     await putCard(currentCard._id, data);
@@ -104,9 +134,8 @@ export default function CardsScreen() {
           name={item.name}
           profession={item.profession}
           description={"hold to share"}
-          width={vw100}
-          height={vw60}
-          normal={false}
+          width={viewPort.vw100}
+          height={viewPort.vw60}
         />
       </View>
     );
@@ -131,7 +160,7 @@ export default function CardsScreen() {
         <Carousel
           style={{ marginTop: -20, marginBottom: -20 }}
           loop={false}
-          width={vw100}
+          width={viewPort.vw100}
           data={cardData}
           renderItem={renderItems}
           mode={"parallax"}
@@ -143,7 +172,7 @@ export default function CardsScreen() {
         title={"Card Details"}
         content={allUseStateData}
         cardScreen={true}
-        height={vh165}
+        height={viewPort.vh165}
         updateCard={handleUpdateButton}
         deleteCard={handleDeleteButton}
       />

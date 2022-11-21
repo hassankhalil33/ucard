@@ -6,15 +6,17 @@ const cardLogoBlue = require("../../assets/icons/IconWhiteonBlue.png");
 const cardLogoOrange = require("../../assets/icons/IconWhiteonOrange.png");
 
 interface CardComponentProps {
-  height?: number,
-  width?: number,
-  normal?: boolean,
-  name: string,
-  profession: string,
-  description: string,
-  category: string,
-  onPress?: Function,
-  onHold?: Function
+  height?: number;
+  width?: number;
+  extraInfo?: boolean;
+  name: string;
+  link?: string;
+  email?: string;
+  profession: string;
+  description: string;
+  category: string;
+  onPress?: Function;
+  onHold?: Function;
 }
 
 const CardComponent: FC<CardComponentProps> = (props) => {
@@ -23,10 +25,12 @@ const CardComponent: FC<CardComponentProps> = (props) => {
     name,
     profession,
     description,
-    normal,
+    link,
+    email,
+    extraInfo = false,
     onHold,
     onPress,
-    category = "personal"
+    category = "personal",
   } = props;
 
   const [fontsLoaded] = useFonts({
@@ -45,7 +49,15 @@ const CardComponent: FC<CardComponentProps> = (props) => {
     >
       <View style={styles("0", category, height, width).container}>
         <Text style={styles("Poppins-Regular").desc}>{description}</Text>
-        <Text style={styles("Poppins-Medium", "0", 0, 0, normal).prof}>{profession}</Text>
+
+        {extraInfo &&
+          <Text style={styles("Poppins-Medium", "0", 0, 0, extraInfo).prof}>{email}</Text>
+        }
+        {extraInfo &&
+          <Text style={styles("Poppins-Medium", "0", 0, 0, extraInfo).prof}>{link}</Text>
+        }
+
+        <Text style={styles("Poppins-Medium", "0", 0, 0, extraInfo).prof}>{profession}</Text>
         <Text style={styles("Poppins-Medium").name}>{name}</Text>
         <Image
           style={styles().logo}

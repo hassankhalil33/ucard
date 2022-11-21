@@ -62,12 +62,14 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
         placeholder={"Password"}
         value={password}
         setValue={setPassword}
+        password={true}
       />
 
       <InputField
         placeholder={"Confirm Password"}
         value={conPassword}
         setValue={setConPassword}
+        password={true}
       />
 
       <InputField

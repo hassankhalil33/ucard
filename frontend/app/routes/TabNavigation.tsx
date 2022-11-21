@@ -20,6 +20,7 @@ const TabNavigationScreen = () => {
   return (
     <TabNavigation.Navigator
       screenOptions={({ route }) => ({
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {

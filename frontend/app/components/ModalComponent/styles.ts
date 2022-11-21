@@ -27,15 +27,15 @@ const styles = (fontFamily?) => StyleSheet.create({
     alignItems: "flex-start",
     backgroundColor: colors.white,
     width: "100%",
-    height: "12%",
-    marginBottom: "-10%"
+    marginBottom: "20%"
   },
 
   header: {
     fontFamily: fontFamily,
     fontSize: 20,
     lineHeight: 30,
-    color: colors.blue
+    color: colors.blue,
+    marginTop: "3%",
   },
 
   modal: {
@@ -55,7 +55,8 @@ const styles = (fontFamily?) => StyleSheet.create({
     width: 130,
     height: 130,
     alignSelf: "center",
-    marginBottom: 10
+    marginBottom: 10,
+    borderRadius: 65
   },
 
   button: {

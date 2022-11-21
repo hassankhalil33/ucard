@@ -12,20 +12,12 @@ const styles = (fontMedium?, fontBold?) => StyleSheet.create({
     flexDirection: "column"
   },
 
-  modal: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  cancelButton: {
-    backgroundColor: colors.blue,
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "50%",
-    height: 30,
-    borderRadius: 10,
+  text: {
+    fontFamily: fontMedium,
+    fontSize: 14,
+    color: colors.white,
+    alignSelf: "center",
+    marginTop: 20
   },
 
   upperHalf: {
@@ -102,6 +94,17 @@ const styles = (fontMedium?, fontBold?) => StyleSheet.create({
   profile: {
     marginTop: 15,
   },
+
+  addButtonContainer: {
+    position: "absolute",
+    top: "10%",
+    left: 40
+  },
+
+  addButton: {
+    width: 30,
+    height: 30.5,
+  }
 });
 
 export default styles
