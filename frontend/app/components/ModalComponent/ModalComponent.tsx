@@ -1,7 +1,7 @@
 import React, { useRef, FC } from 'react';
 import { Modalize } from 'react-native-modalize';
 import { useFonts } from 'expo-font';
-import pickImage from '../../utilities/image_picker';
+import * as ImagePicker from 'expo-image-picker';
 import {
   View,
   Text,
@@ -52,6 +52,19 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     modalizeRef.current?.close();
   };
 
+  const pickImage = async (content) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      content.setCardPhoto(result);
+    }
+  };
+
   return (
     <>
       <View style={styles().container}>
@@ -80,10 +93,10 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         </View>
 
         {cardScreen &&
-          <TouchableOpacity onPress={() => content.setCardPhoto(pickImage())}>
+          <TouchableOpacity onPress={() => pickImage(content)}>
             <Image
               style={styles().image}
-              source={content.cardPhoto.uri ? { uri: content.cardPhoto.uri } : profileBig}
+              source={{ uri: content.cardPhoto.uri }}
             />
           </TouchableOpacity>
         }
