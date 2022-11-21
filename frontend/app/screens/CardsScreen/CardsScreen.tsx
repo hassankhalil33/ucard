@@ -101,6 +101,7 @@ export default function CardsScreen() {
   }
 
   const handleUpdateButton = async () => {
+    // const data = new FormData();
     const data = {
       id: currentCard._id,
       name: cardName,
@@ -112,6 +113,10 @@ export default function CardsScreen() {
       is_public: cardPublic,
       photo: cardPhoto
     }
+
+    // for (let key in putData) {
+    //   data.append(key, putData[key]);
+    // }
 
     await putCard(currentCard._id, data);
     getCardData();
