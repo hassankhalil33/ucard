@@ -47,7 +47,11 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
-  const {id, category, name, profession, email, link, is_public, location} = req.body;
+  const {id, category, name, profession, email, photo, link, is_public, location} = req.body;
+
+  if (photo) {
+    console.log(photo);
+  }
 
   if (!id) {
     res.status(400).json({message: "no id"});
@@ -55,7 +59,8 @@ const updateCard = async (req, res) => {
   }
 
   await Card.findByIdAndUpdate(id, {
-    category, name, profession, email, link, is_public, location
+    category, name, profession, email, link, is_public, location,
+    photo: photo && id
   });
 
   res.json({message: "success"})
