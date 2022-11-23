@@ -57,7 +57,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 1
+      quality: 1,
+      base64: true
     });
 
     if (!result.cancelled) {
@@ -77,7 +78,9 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
         <Image
           style={styles().image}
-          source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+          source={content.cardPhoto?.base64 ?
+            { uri: "data:image/png;base64," + content.cardPhoto.base64 }
+            : profileBig}
         />
       </View>
 
@@ -99,7 +102,9 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           <TouchableOpacity onPress={() => pickImage(content)}>
             <Image
               style={styles().image}
-              source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+              source={content.cardPhoto?.base64 ?
+                { uri: "data:image/png;base64," + content.cardPhoto.base64 }
+                : profileBig}
             />
           </TouchableOpacity>
         }

@@ -111,7 +111,7 @@ export default function CardsScreen() {
       location: cardLocation,
       category: cardType,
       is_public: cardPublic,
-      photo: cardPhoto
+      photo: cardPhoto.base64
     }
 
     // for (let key in putData) {
