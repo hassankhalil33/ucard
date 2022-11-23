@@ -56,6 +56,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     type resultType = {
       base64: string;
       cancelled: boolean;
+      uri: string;
     }
 
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -67,7 +68,8 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
     }) as resultType;
 
     if (!result.cancelled) {
-      content.setCardPhoto(result.base64);
+      content.setCardPhoto(result.uri);
+      content.setImageBase64(result.base64);
     }
   };
 
@@ -84,7 +86,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
         <Image
           style={styles().image}
           source={content.cardPhoto ?
-            { uri: "data:image/png;base64," + content.cardPhoto }
+            { uri: content.cardPhoto + '?' + new Date() }
             : profileBig}
         />
       </View>
@@ -108,7 +110,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
             <Image
               style={styles().image}
               source={content.cardPhoto ?
-                { uri: "data:image/png;base64," + content.cardPhoto }
+                { uri: content.cardPhoto + '?' + new Date() }
                 : profileBig}
             />
           </TouchableOpacity>

@@ -62,7 +62,8 @@ export default function CardsScreen() {
   const [cardLocation, setCardLocation] = useState(currentCard.location);
   const [cardType, setCardType] = useState(currentCard.category);
   const [cardPublic, setCardPublic] = useState(currentCard.is_public);
-  const [cardPhoto, setCardPhoto] = useState(imageFolder + currentCard._id + ".png");
+  const [cardPhoto, setCardPhoto] = useState(currentCard.photo && imageFolder + currentCard.photo + ".png");
+  const [imageBase64, setImageBase64] = useState("");
 
   const allUseStateData = {
     cardName, setCardName,
@@ -72,7 +73,8 @@ export default function CardsScreen() {
     cardLocation, setCardLocation,
     cardType, setCardType,
     cardPublic, setCardPublic,
-    cardPhoto, setCardPhoto
+    cardPhoto, setCardPhoto,
+    imageBase64, setImageBase64
   }
 
   useEffect(() => {
@@ -83,7 +85,7 @@ export default function CardsScreen() {
     setCardLocation(currentCard.location);
     setCardType(currentCard.category);
     setCardPublic(currentCard.is_public);
-    setCardPhoto(currentCard.photo);
+    setCardPhoto(currentCard.photo && imageFolder + currentCard.photo + ".png");
     console.log(cardPhoto);
   }, [currentCard])
 
@@ -112,7 +114,7 @@ export default function CardsScreen() {
       location: cardLocation,
       category: cardType,
       is_public: cardPublic,
-      photo: cardPhoto
+      photo: imageBase64
     }
 
     await putCard(currentCard._id, data);
