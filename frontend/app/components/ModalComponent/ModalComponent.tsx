@@ -1,4 +1,5 @@
 import React, { useRef, FC } from 'react';
+import { BASE_URL } from "@env";
 import { Modalize } from 'react-native-modalize';
 import { useFonts } from 'expo-font';
 import {
@@ -132,6 +133,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                     timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
                     dark={true}
                     margin={20}
+                    photo={item.card_id.photo && BASE_URL + item.card_id.photo + ".png"}
                   />
                 )
               })}

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { BASE_URL } from "@env";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -123,6 +124,7 @@ export default function HomeScreen() {
           name={item.name}
           profession={item.profession}
           dark={false}
+          photo={item.photo && BASE_URL + item.photo + ".png"}
         />
       </View>
     );

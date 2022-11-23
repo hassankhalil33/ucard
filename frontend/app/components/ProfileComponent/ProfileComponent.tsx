@@ -8,7 +8,7 @@ const lightPhoto = require("../../assets/profile_light.png");
 interface ProfileComponentProps {
   name: string,
   profession: string,
-  photo?: any,
+  photo?: string,
   timestamp?: string,
   dark?: boolean,
   width?: number,
@@ -30,11 +30,13 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
   return (
     <View style={styles(width, dark, margin).container}>
       <View style={styles().image}>
-        <Image style={styles().image} source={photo ? photo : dark ? darkPhoto : lightPhoto} />
+        <Image
+          style={styles().image}
+          source={photo ? { uri: photo } : dark ? darkPhoto : lightPhoto} />
       </View>
 
       <View style={styles().content}>
-        <View style={{}}>
+        <View>
           <Text style={styles(width, dark, 0, "0", "Poppins-Bold").name}>{name}</Text>
         </View>
         <View style={styles().lowerText}>
