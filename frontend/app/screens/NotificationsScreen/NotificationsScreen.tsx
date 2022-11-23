@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { BASE_URL } from "@env";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -41,6 +42,7 @@ export default function NotificationsScreen() {
           profession={"You Matched!"}
           dark={true}
           timestamp={item.timestamp.slice(11, 16)}
+          photo={item.card_id.photo && BASE_URL + item.card_id.photo + ".png"}
         />
       </View>
     )
