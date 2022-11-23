@@ -52,7 +52,7 @@ const updateCard = async (req, res) => {
 
   if (photo) {
     const decryptedPhoto = Buffer.from(photo, "base64");
-    fs.writeFile("./storage/public_images/" + id + ".png", decryptedPhoto,
+    fs.writeFile("./public/images/" + id + ".png", decryptedPhoto,
     (err) => {
       console.log(err);
     });
