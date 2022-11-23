@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { BASE_URL } from "@env";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -17,6 +18,7 @@ import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 const background = require("../../assets/background.png");
 const addButton = require("../../assets/buttons/add-button.png");
+const imageFolder = BASE_URL + "/images/";
 
 type cardDataType = {
   _id: string;
@@ -60,7 +62,7 @@ export default function CardsScreen() {
   const [cardLocation, setCardLocation] = useState(currentCard.location);
   const [cardType, setCardType] = useState(currentCard.category);
   const [cardPublic, setCardPublic] = useState(currentCard.is_public);
-  const [cardPhoto, setCardPhoto] = useState(null);
+  const [cardPhoto, setCardPhoto] = useState(imageFolder + currentCard._id + ".png");
 
   const allUseStateData = {
     cardName, setCardName,
@@ -110,7 +112,7 @@ export default function CardsScreen() {
       location: cardLocation,
       category: cardType,
       is_public: cardPublic,
-      photo: cardPhoto.base64
+      photo: cardPhoto
     }
 
     await putCard(currentCard._id, data);
