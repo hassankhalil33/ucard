@@ -32,7 +32,9 @@ const ProfileComponent: FC<ProfileComponentProps> = (props) => {
       <View style={styles().image}>
         <Image
           style={styles().image}
-          source={photo ? { uri: photo } : dark ? darkPhoto : lightPhoto} />
+          source={photo ? { uri: photo + '?' + new Date() }
+            : dark ? darkPhoto : lightPhoto}
+        />
       </View>
 
       <View style={styles().content}>
