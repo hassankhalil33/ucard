@@ -19,6 +19,7 @@ import * as ImagePicker from 'expo-image-picker';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
+const imageFolder = BASE_URL + "/images/";
 
 interface ModalComponentProps {
   title?: string;
@@ -133,7 +134,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                     timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
                     dark={true}
                     margin={20}
-                    photo={item.card_id.photo && BASE_URL + item.card_id.photo + ".png"}
+                    photo={item.card_id.photo && imageFolder + item.card_id.photo + ".png"}
                   />
                 )
               })}

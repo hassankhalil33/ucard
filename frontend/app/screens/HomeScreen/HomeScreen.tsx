@@ -29,6 +29,7 @@ import viewPort from "../../constants/viewPortConstants";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
 const logoutButton = require("../../assets/buttons/logout-button.png");
+const imageFolder = BASE_URL + "/images/";
 
 
 export default function HomeScreen() {
@@ -124,7 +125,7 @@ export default function HomeScreen() {
           name={item.name}
           profession={item.profession}
           dark={false}
-          photo={item.photo && BASE_URL + item.photo + ".png"}
+          photo={item.photo && imageFolder + item.photo + ".png"}
         />
       </View>
     );

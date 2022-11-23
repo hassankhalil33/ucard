@@ -14,6 +14,7 @@ import colors from "../../constants/pallete";
 import styles from "./styles";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import MyButton from "../../components/MyButton/MyButton";
+const imageFolder = BASE_URL + "/images/";
 
 const background = require("../../assets/background.png");
 
@@ -42,7 +43,7 @@ export default function NotificationsScreen() {
           profession={"You Matched!"}
           dark={true}
           timestamp={item.timestamp.slice(11, 16)}
-          photo={item.card_id.photo && BASE_URL + item.card_id.photo + ".png"}
+          photo={item.card_id.photo && imageFolder + item.card_id.photo + ".png"}
         />
       </View>
     )
