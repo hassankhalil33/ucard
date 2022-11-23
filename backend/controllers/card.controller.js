@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
+const fs = require("fs");
 
 
 const getAllCards = async (req, res) => {
@@ -50,7 +51,11 @@ const updateCard = async (req, res) => {
   const {id, category, name, profession, email, photo, link, is_public, location} = req.body;
 
   if (photo) {
-    console.log(photo);
+    const decryptedPhoto = Buffer.from(photo, "base64");
+    fs.writeFile("./storage/public_images/" + id + ".png", decryptedPhoto,
+    (err) => {
+      console.log(err);
+    });
   }
 
   if (!id) {
