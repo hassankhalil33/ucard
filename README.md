@@ -63,17 +63,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Welcome  | Home Page  |
-| -------- | ---------- |
-| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif)
+| Welcome  | Home Page  | Notifications Page  |
+| -------- | ---------- | ------------------- |
+| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif)
 
-| Notifications Page  | Contacts Page  |
-| ------------------- | -------------- |
-| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif)
-
-| Cards Page  | Scan QR  |
-| ----------- | -------- |
-| ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
+| Contacts Page  | Cards Page  | Scan QR  |
+| -------------- | ----------- | -------- |
+| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
 
 | Receive Push Notifications  |
 | --------------------------- |
