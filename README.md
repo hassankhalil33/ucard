@@ -65,11 +65,11 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Welcome  | Home Page  | Notifications Page  |
 | -------- | ---------- | ------------------- |
-| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif)
+| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif)
 
 | Contacts Page  | Cards Page  | Scan QR  |
 | -------------- | ----------- | -------- |
-| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
+| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
 
 | Receive Push Notifications  |
 | --------------------------- |
