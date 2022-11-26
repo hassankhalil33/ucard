@@ -23,7 +23,7 @@ Then Ucard is for you!
 - As a user, I want to edit my cards, so that I can update my info.
 - As a user, I want to create different category cards (personal / business / gaming), so that I can own multiple cards.
 - As a user, I want to share my card with others (NFC / QRCode), so that we can exchange info.
-- As a user, I want to get matched with others, so I find people with similar interests.
+- As a user, I want to get matched with others, so I can find people with similar interests.
 - As a user, I want to receive notifications, so that I stay upto date.
 
 <br><br>
