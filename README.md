@@ -65,7 +65,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Welcome Page  | Register Page | Login Page  |
 | ------------- | ------------- | ----------- |
-| <img width="250" source="./readme/welcome-imp.jpg"/> | <img width="250" source="./readme/register-imp.jpg"/> | <img width="250" source="./readme/login-imp.jpg"/>
+| <img width="250" src="./readme/welcome-imp.jpg"/> | <img width="250" src="./readme/register-imp.jpg"/> | <img width="250" src="./readme/login-imp.jpg"/>
 
 | Home Page  | Notifications Page  | Contacts Page  |
 | ---------- | ------------------- | -------------- |
