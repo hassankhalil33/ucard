@@ -61,7 +61,7 @@ Here's a brief high-level overview of the tech stack the Ucard app uses:
 <br><br>
 <img id="impplementation" src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes built with figma from the user stories we have, the implementation of the app is shown below, these are screenshots/gifs from the real app.
 
 | Welcome Page  | Register Page | Login Page  |
 | ------------- | ------------- | ----------- |
