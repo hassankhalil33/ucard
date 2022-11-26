@@ -35,15 +35,15 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 |  Welcome  |    Login    | Register |
 | --------- | ----------- | -------- |
-| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/Welcome.png) | ![Login](https://github.com/hassankhalil33/ucard/blob/master/readme/Login.png) | ![Register](https://github.com/hassankhalil33/ucard/blob/master/readme/Sign_Up.png)
+| <img width="250" src="./readme/Welcome.png"/> | <img width="250" src="./readme/Login.png"/> | <img width="250" src="./readme/Sign_Up.png"/>
 
 |      Home Page      | Home Page Continued  | Notifications Page  |
 | ------------------- | -------------------- | ------------------- |
-| ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Home_Page.png) | ![Home Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/Home_Page_Continued.png) | ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Notifications_Page.png)
+| <img width="250" src="./readme/Home_Page.png"/> | <img width="250" src="./readme/Home_Page_Continued.png"/> | <img width="250" src="./readme/Notifications_Page.png"/>
 
 | Contacts Page  | Cards Page  | Cards Page Continued
 | ----- | ----- | ----- |
-| ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Contacts_Page.png) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/Cards_Page.png) | ![Cards Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/Cards_Page_Continued.png)
+| <img width="250" src="./readme/Contacts_Page.png"/> | <img width="250" src="./readme/Cards_Page.png"/> | <img width="250" src="./readme/Cards_Page_Continued.png"/>
 
 <br><br>
 
