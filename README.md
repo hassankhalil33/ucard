@@ -69,23 +69,23 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Home Page  | Notifications Page  | Contacts Page  |
 | ---------- | ------------------- | -------------- |
-| ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-imp.jpg) | ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-imp.jpg) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-imp.jpg)
+| <img width="250" src="./readme/home-imp.jpg"/> | <img width="250" src="./readme/notifications-imp.jpg"/> | <img width="250" src="./readme/contacts-imp.jpg"/>
 
 | Cards Page  | Cards Page Continued  |
 | --------------------------- | --------------------------- |
-| ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-imp.jpg) | ![Cards Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/cards2-imp.jpg)
+| <img width="250" src="./readme/cards-imp.jpg"/> | <img width="250" src="./readme/cards2-imp.jpg"/>
 
 | Welcome  | Home Page  | Notifications Page  |
 | -------- | ---------- | ------------------- |
-| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif)
+| <img width="250" src="./readme/welcome-screen.gif"/> | <img width="250" src="./readme/home-page.gif"/> | <img width="250" src="./readme/notifications-page.gif"/>
 
 | Contacts Page  | Cards Page  | Scan QR  |
 | -------------- | ----------- | -------- |
-| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
+| <img width="250" src="./readme/contacts-page.gif"/> | <img width="250" src="./readme/cards-page.gif"/> | <img width="250" src="./readme/scan-qr.gif"/>
 
 | Receive Push Notifications  |
 | --------------------------- |
-| ![Receive Push Notifications](https://github.com/hassankhalil33/ucard/blob/master/readme/push-notifications.gif)
+| <img width="250" src="./readme/push-notifications.gif"/>
 
 
 <br><br>
