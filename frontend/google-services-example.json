@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "320409379491",
+    "project_id": "ucard-ecab4",
+    "storage_bucket": "ucard-ecab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320409379491:android:3d25ebcac82865bf445516",
+        "android_client_info": {
+          "package_name": "com.hassankhalil.ucard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320409379491-6flkn9son8nb2466tngno72nqcmts7os.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "PUT YOUR CODE HERE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320409379491-6flkn9son8nb2466tngno72nqcmts7os.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
