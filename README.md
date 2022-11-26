@@ -35,7 +35,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 |  Welcome  |    Login    | Register |
 | --------- | ----------- | -------- |
-| <img width=480 height=1067 src="https://github.com/hassankhalil33/ucard/blob/master/readme/Welcome.png"> | <img width=480 height=1067 src="https://github.com/hassankhalil33/ucard/blob/master/readme/Login.png"> | <img width=480 height=1067 src="https://github.com/hassankhalil33/ucard/blob/master/readme/Sign_Up.png">
+| <img width=480  src="https://github.com/hassankhalil33/ucard/blob/master/readme/Welcome.png"> | <img width=480  src="https://github.com/hassankhalil33/ucard/blob/master/readme/Login.png"> | <img width=480 src="https://github.com/hassankhalil33/ucard/blob/master/readme/Sign_Up.png">
 
 |      Home Page      | Home Page Continued  | Notifications Page  |
 | ------------------- | -------------------- | ------------------- |
