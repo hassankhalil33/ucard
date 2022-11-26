@@ -1,4 +1,5 @@
 import React, { useRef, FC } from 'react';
+import { BASE_URL } from "@env";
 import { Modalize } from 'react-native-modalize';
 import { useFonts } from 'expo-font';
 import {
@@ -18,6 +19,7 @@ import * as ImagePicker from 'expo-image-picker';
 const arrowUp = require("../../assets/arrows/arrow-up.png");
 const arrowDown = require("../../assets/arrows/arrow-down.png");
 const profileBig = require("../../assets/profile-big.png");
+const imageFolder = BASE_URL + "/images/";
 
 interface ModalComponentProps {
   title?: string;
@@ -53,15 +55,23 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
   };
 
   const pickImage = async (content) => {
+    type resultType = {
+      base64: string;
+      cancelled: boolean;
+      uri: string;
+    }
+
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 1
-    });
+      quality: 1,
+      base64: true
+    }) as resultType;
 
     if (!result.cancelled) {
-      content.setCardPhoto(result);
+      content.setCardPhoto(result.uri);
+      content.setImageBase64(result.base64);
     }
   };
 
@@ -77,7 +87,9 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
 
         <Image
           style={styles().image}
-          source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+          source={content.cardPhoto ?
+            { uri: content.cardPhoto + '?' + new Date() }
+            : profileBig}
         />
       </View>
 
@@ -99,7 +111,9 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
           <TouchableOpacity onPress={() => pickImage(content)}>
             <Image
               style={styles().image}
-              source={content.cardPhoto?.uri ? { uri: content.cardPhoto.uri } : profileBig}
+              source={content.cardPhoto ?
+                { uri: content.cardPhoto + '?' + new Date() }
+                : profileBig}
             />
           </TouchableOpacity>
         }
@@ -120,6 +134,7 @@ const ModalComponent: FC<ModalComponentProps> = (props) => {
                     timestamp={item.timestamp.slice(5, 10) + " " + item.timestamp.slice(11, 16)}
                     dark={true}
                     margin={20}
+                    photo={item.card_id.photo && imageFolder + item.card_id.photo + ".png"}
                   />
                 )
               })}

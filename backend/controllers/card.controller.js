@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const Card = require("../models/card.model");
+const fs = require("fs");
 
 
 const getAllCards = async (req, res) => {
@@ -47,7 +48,15 @@ const createCard = async (req, res) => {
 }
 
 const updateCard = async (req, res) => {
-  const {id, category, name, profession, email, link, is_public, location} = req.body;
+  const {id, category, name, profession, email, photo, link, is_public, location} = req.body;
+
+  if (photo) {
+    const decryptedPhoto = Buffer.from(photo, "base64");
+    fs.writeFile("./public/images/" + id + ".png", decryptedPhoto,
+    (err) => {
+      console.log(err);
+    });
+  }
 
   if (!id) {
     res.status(400).json({message: "no id"});
@@ -55,7 +64,8 @@ const updateCard = async (req, res) => {
   }
 
   await Card.findByIdAndUpdate(id, {
-    category, name, profession, email, link, is_public, location
+    category, name, profession, email, link, is_public, location,
+    photo: photo && id
   });
 
   res.json({message: "success"})

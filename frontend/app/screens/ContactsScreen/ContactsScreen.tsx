@@ -47,7 +47,7 @@ export default function ContactsScreen() {
     return null;
   }
 
-  NfcManager.start();
+  // NfcManager.start();
 
   const handleBarCodeScanned = async ({ type, data }) => {
     const ApiData = {

@@ -11,7 +11,8 @@ const styles = (width = 370, dark = false, margin = 0, fontRegular?, fontBold?) 
 
   image: {
     width: 60,
-    height: 60
+    height: 60,
+    borderRadius: 30
   },
 
   content: {

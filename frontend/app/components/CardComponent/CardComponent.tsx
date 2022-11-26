@@ -30,7 +30,7 @@ const CardComponent: FC<CardComponentProps> = (props) => {
     extraInfo = false,
     onHold,
     onPress,
-    category = "personal",
+    category = "PERSONAL",
   } = props;
 
   const [fontsLoaded] = useFonts({
@@ -61,7 +61,7 @@ const CardComponent: FC<CardComponentProps> = (props) => {
         <Text style={styles("Poppins-Medium").name}>{name}</Text>
         <Image
           style={styles().logo}
-          source={category == "personal" ? cardLogoBlue : cardLogoOrange}
+          source={category == "PERSONAL" ? cardLogoBlue : cardLogoOrange}
         />
       </View>
     </TouchableHighlight>

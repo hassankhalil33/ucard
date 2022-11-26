@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { BASE_URL } from "@env";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { UserContext } from "../../contexts/UserContext";
@@ -28,6 +29,7 @@ import viewPort from "../../constants/viewPortConstants";
 const background = require("../../assets/background.png");
 const appLogo = require("../../assets/icon.png");
 const logoutButton = require("../../assets/buttons/logout-button.png");
+const imageFolder = BASE_URL + "/images/";
 
 
 export default function HomeScreen() {
@@ -123,6 +125,7 @@ export default function HomeScreen() {
           name={item.name}
           profession={item.profession}
           dark={false}
+          photo={item.photo && imageFolder + item.photo + ".png"}
         />
       </View>
     );

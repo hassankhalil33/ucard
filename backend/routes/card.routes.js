@@ -13,7 +13,7 @@ const {
 router.get('/', getAllCards);
 router.get('/:id', getCard);
 router.post('/', createCard);
-router.put('/', upload.single("photo"), updateCard);
+router.put('/', updateCard);
 router.delete('/', deleteCard);
 
 module.exports = router;
