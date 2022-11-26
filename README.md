@@ -63,25 +63,29 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Welcome Page  | Register Page  | Login Page  |
-| ------------- | -------------- | ----------- |
+| Welcome Page  | Register Page | Login Page  |
+| ------------- | ------------- | ----------- |
 | ![Welcome Page](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-imp.jpg) | ![Register Page](https://github.com/hassankhalil33/ucard/blob/master/readme/register-imp.jpg) | ![Login Page](https://github.com/hassankhalil33/ucard/blob/master/readme/login-imp.jpg)
 
-| Welcome GIF  | Home Page  | Home GIF  |
-| ------------ | ---------- | --------- |
-| ![Welcome GIF](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-imp.jpg) | ![Home GIF](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif)
+| Home Page  | Notifications Page  | Contacts Page  |
+| ---------- | ------------------- | -------------- |
+| ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-imp.jpg) | ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-imp.jpg) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-imp.jpg)
 
-| Notifications Page  | Notifications GIF  | Contacts Page  |
-| ------------------- | ------------------ | -------------- |
-| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-imp.jpg) | ![Notifications GIF](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif)
+| Cards Page  | Cards Page Continued  |
+| --------------------------- | --------------------------- |
+| ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-imp.jpg) | ![Cards Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/cards2-imp.jpg)
 
-| Contacts GIF  | Cards Page  | Cards Page Continued  |
-| ------------- | ----------- | --------------------- |
-| ![Contacts GIF](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-imp.jpg) | ![Cards Page Continued](https://github.com/hassankhalil33/ucard/blob/master/readme/cards2-imp.jpg)
+| Welcome  | Home Page  | Notifications Page  |
+| -------- | ---------- | ------------------- |
+| ![Welcome](https://github.com/hassankhalil33/ucard/blob/master/readme/welcome-screen.gif) | ![Home Page](https://github.com/hassankhalil33/ucard/blob/master/readme/home-page.gif) | ![Contacts Page](https://github.com/hassankhalil33/ucard/blob/master/readme/notifications-page.gif)
 
-| Cards GIF  | Scan QR  | Receive Push Notifications  |
-| ---------- | -------- | --------------------------- |
-| ![Cards GIF](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif) | ![Receive Push Notifications](https://github.com/hassankhalil33/ucard/blob/master/readme/push-notifications.gif)
+| Contacts Page  | Cards Page  | Scan QR  |
+| -------------- | ----------- | -------- |
+| ![Notifications Page](https://github.com/hassankhalil33/ucard/blob/master/readme/contacts-page.gif) | ![Cards Page](https://github.com/hassankhalil33/ucard/blob/master/readme/cards-page.gif) | ![Scan QR](https://github.com/hassankhalil33/ucard/blob/master/readme/scan-qr.gif)
+
+| Receive Push Notifications  |
+| --------------------------- |
+| ![Receive Push Notifications](https://github.com/hassankhalil33/ucard/blob/master/readme/push-notifications.gif)
 
 
 <br><br>
