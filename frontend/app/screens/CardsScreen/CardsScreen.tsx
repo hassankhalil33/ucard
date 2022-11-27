@@ -86,7 +86,6 @@ export default function CardsScreen() {
     setCardType(currentCard.category);
     setCardPublic(currentCard.is_public);
     setCardPhoto(currentCard.photo && imageFolder + currentCard.photo + ".png");
-    console.log(cardPhoto);
   }, [currentCard])
 
   const [fontsLoaded] = useFonts({
@@ -123,7 +122,6 @@ export default function CardsScreen() {
   }
 
   const handleDeleteButton = async () => {
-    console.log(currentCard._id);
     await deleteCard(currentCard._id);
     getCardData();
     alert("Card Deleted!");
