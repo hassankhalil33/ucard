@@ -125,13 +125,14 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install --global expo-cli
    ```
-5. Install Expo Go app for Android (Optional)
+5. Rename `.env.example` to `.env` then set your credentials.
+6. Install Expo Go app for Android (Optional)
    > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-6. Run the Start-Up Command
+7. Run the Start-Up Command
    ```sh
    npx expo start -c
    ```
-7. Scan the QR Code with Expo Go App.
+8. Scan the QR Code with Expo Go App.
     -or-
    Press 'a' to run locally on Android Emulator (Requires an Active Android Emulator [Android Studio](https://developer.android.com/studio/install)).
    
