@@ -58,7 +58,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('name') &&
         getErrorsInField('name').map(errorMessage => (
-          <Text>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage}</Text>
         ))
       }
 
@@ -69,7 +69,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('email') &&
         getErrorsInField('email').map(errorMessage => (
-          <Text>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage}</Text>
         ))
       }
 
@@ -81,7 +81,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('password') &&
         getErrorsInField('password').map(errorMessage => (
-          <Text>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage}</Text>
         ))
       }
 
@@ -93,7 +93,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('conPassword') &&
         getErrorsInField('conPassword').map(errorMessage => (
-          <Text>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage}</Text>
         ))
       }
 
@@ -104,7 +104,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('location') &&
         getErrorsInField('location').map(errorMessage => (
-          <Text>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage}</Text>
         ))
       }
 

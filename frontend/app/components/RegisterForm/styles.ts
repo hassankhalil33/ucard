@@ -14,10 +14,16 @@ const styles = (fontFamily?) => StyleSheet.create({
     width: "100%"
   },
 
+  error: {
+    color: "#EE4238",
+    fontFamily: fontFamily,
+    fontSize: 12,
+  },
+
   title: {
     color: colors.primary,
     marginBottom: 20,
-    fontFamily: "Poppins-Bold",
+    fontFamily: fontFamily,
     fontSize: 20,
     lineHeight: 30,
   },
