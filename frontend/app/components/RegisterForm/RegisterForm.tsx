@@ -93,7 +93,7 @@ const RegisterForm: FC<RegisterFormProps> = (props) => {
       />
       {isFieldInError('conPassword') &&
         getErrorsInField('conPassword').map(errorMessage => (
-          <Text style={styles().error}>{errorMessage}</Text>
+          <Text style={styles().error}>{errorMessage.replace("conPassword", "confirm password")}</Text>
         ))
       }
 

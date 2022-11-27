@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { UserContext } from "../../contexts/UserContext";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -22,7 +22,7 @@ export default function RegisterScreen({ navigation }) {
   const [location, setLocation] = useState("");
   const { postRegister } = useContext(UserContext);
 
-  const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
+  const { validate, isFieldInError, getErrorsInField, getErrorMessages, isFormValid } =
     useValidation({
       state: { name, email, password, conPassword, location },
     });
@@ -36,17 +36,22 @@ export default function RegisterScreen({ navigation }) {
       location: { required: true }
     });
 
-    console.log(validate);
+    if (isFormValid()) {
+      const data = {
+        name: name,
+        email: email,
+        password: password,
+        location: location
+      }
 
-    // const data = {
-    //   name: name,
-    //   email: email,
-    //   password: password,
-    //   location: location
-    // }
-
-    // await postRegister(data);
-    // alert("Registered Successfully!");
+      await postRegister(data);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConPassword("");
+      setLocation("");
+      alert("Registered Successfully!");
+    }
   }
 
   const [fontsLoaded] = useFonts({
