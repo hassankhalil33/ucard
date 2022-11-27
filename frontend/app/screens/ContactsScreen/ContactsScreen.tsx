@@ -61,7 +61,6 @@ export default function ContactsScreen() {
   };
 
   const handleScanButton = () => {
-    console.log("Im Here");
     setOpenScanModal(true);
   }
 

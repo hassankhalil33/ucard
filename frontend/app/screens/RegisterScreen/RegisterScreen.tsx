@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Dimensions, Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { UserContext } from "../../contexts/UserContext";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import { useValidation } from 'react-native-form-validator';
+
 import colors from "../../constants/pallete";
 import styles from "./styles";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+
 const background = require("../../assets/background.png");
 const logo = require("../../assets/Logo.png");
 const back = require("../../assets/buttons/back-button.png");
@@ -19,16 +22,36 @@ export default function RegisterScreen({ navigation }) {
   const [location, setLocation] = useState("");
   const { postRegister } = useContext(UserContext);
 
-  const handleRegisterButton = async () => {
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-      location: location
-    }
+  const { validate, isFieldInError, getErrorsInField, getErrorMessages, isFormValid } =
+    useValidation({
+      state: { name, email, password, conPassword, location },
+    });
 
-    await postRegister(data);
-    alert("Registered Successfully!");
+  const handleRegisterButton = async () => {
+    validate({
+      name: { minlength: 3, required: true },
+      email: { email: true, required: true },
+      password: { minlength: 8, required: true },
+      conPassword: { equalPassword: password, required: true },
+      location: { required: true }
+    });
+
+    if (isFormValid()) {
+      const data = {
+        name: name,
+        email: email,
+        password: password,
+        location: location
+      }
+
+      await postRegister(data);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConPassword("");
+      setLocation("");
+      alert("Registered Successfully!");
+    }
   }
 
   const [fontsLoaded] = useFonts({
@@ -57,6 +80,8 @@ export default function RegisterScreen({ navigation }) {
           title={"Create Account"}
           buttonTitle={"REGISTER"}
           buttonColor={colors.orange}
+          isFieldInError={isFieldInError}
+          getErrorsInField={getErrorsInField}
           states={{
             name, setName,
             email, setEmail,

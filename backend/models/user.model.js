@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const followingSchema = new mongoose.Schema({
   card_id: {
@@ -33,6 +34,7 @@ const userSchema = new mongoose.Schema({
 
   email: {
     type: String,
+    validate: [ validator.isEmail, 'invalid email' ],
     required: 'email is required',
     unique: true,
     trim: true
