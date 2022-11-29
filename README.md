@@ -13,7 +13,7 @@
 
 <img id="project-philosophy" src="./readme/title2.svg"/>
 
-> Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone or scanning a code.
+> Ucard allows you to create your own Unique Digital Business Card that you can share with others by tapping your phone or scanning a code. Ucard matches Cards with similar attributes together as suggested Cards.
 > 
 > Ever been to an event and wanted to exchange cards with peers? Ever got bored of carrying multiple plastic/paper cards? Ever thought about Mother Earth? 
 Then Ucard is for you!
