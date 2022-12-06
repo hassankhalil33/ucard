@@ -1,5 +1,4 @@
 const {Router} = require('express');
-const { upload } = require("../utility/upload.utility");
 const router = Router();
 const {
   getAllCards,
